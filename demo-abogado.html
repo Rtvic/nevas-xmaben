@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Lic. Ricardo May | Abogado en Mérida</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,sans-serif;color:#1e293b;line-height:1.6;background:#fafafa}
+h1,h2,h3{font-family:'Playfair Display',serif}
+.nav{position:fixed;top:0;width:100%;z-index:100;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid #e2e8f0}
+.nav .logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:#1e3a5f;text-decoration:none}
+.nav .logo span{color:#b8860b}
+.nav a{color:#64748b;text-decoration:none;margin-left:24px;font-size:.85rem;font-weight:500;transition:color .3s}
+.nav a:hover{color:#1e3a5f}
+.nav .wa{background:#1e3a5f;color:#fff!important;padding:8px 18px;border-radius:6px;font-weight:600}
+.hero{min-height:90vh;display:flex;align-items:center;padding:100px 28px 60px;background:linear-gradient(135deg,#f8f6f3 0%,#ede9e0 100%);position:relative}
+.hero::after{content:'';position:absolute;right:0;top:0;width:40%;height:100%;background:linear-gradient(135deg,#1e3a5f 0%,#2a4a7f 100%);clip-path:polygon(30% 0,100% 0,100% 100%,0 100%)}
+.hc{max-width:900px;margin:0 auto;width:100%;position:relative;z-index:2}
+.hc .tag{display:inline-block;padding:4px 12px;background:#1e3a5f;color:#fff;font-size:.65rem;font-weight:600;letter-spacing:2px;margin-bottom:16px}
+.hc h1{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;letter-spacing:-1px;line-height:1.1;margin-bottom:12px;color:#1e293b;max-width:500px}
+.hc h1 span{color:#b8860b}
+.hc p{font-size:.95rem;color:#64748b;max-width:440px;line-height:1.7;margin-bottom:24px}
+.hc .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:#1e3a5f;color:#fff;text-decoration:none;border-radius:6px;font-weight:600;font-size:.85rem;transition:all .3s}
+.hc .btn:hover{background:#2a4a7f;transform:translateY(-2px)}
+.hc .btn-o{border:1px solid #cbd5e1;color:#1e293b;background:transparent;margin-left:10px}
+.hc .btn-o:hover{background:#fff;border-color:#1e3a5f}
+.sec{padding:80px 28px;max-width:1100px;margin:0 auto}
+.sec h2{font-size:1.8rem;font-weight:700;margin-bottom:8px;color:#1e3a5f}
+.sec .st{color:#64748b;font-size:.9rem;margin-bottom:36px;max-width:500px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.card{background:#fff;border-radius:10px;padding:28px;border:1px solid #e2e8f0;transition:all .3s;position:relative}
+.card:hover{border-color:#b8860b;transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.card .num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:#b8860b;opacity:.3;position:absolute;top:12px;right:16px}
+.card h3{font-size:1rem;margin-bottom:6px}
+.card p{font-size:.82rem;color:#64748b;line-height:1.6}
+.card .icon{font-size:1.8rem;margin-bottom:8px}
+.areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.area{background:#fff;padding:20px;border-radius:8px;border:1px solid #e2e8f0;text-align:center;transition:all .3s}
+.area:hover{border-color:#b8860b}
+.area .i{font-size:2rem;margin-bottom:6px}
+.area h4{font-size:.85rem;font-weight:600;margin-bottom:2px}
+.area p{font-size:.75rem;color:#64748b}
+.bg{background:#f8f6f3}
+.test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.test{background:#fff;padding:24px;border-radius:10px;border:1px solid #e2e8f0}
+.test p{font-style:italic;font-size:.85rem;color:#64748b;line-height:1.7}
+.test .author{font-weight:600;font-size:.8rem;margin-top:10px;color:#1e293b}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:600px;margin:0 auto}
+.ci{background:#fff;padding:20px;border-radius:8px;border:1px solid #e2e8f0;text-align:center;transition:all .3s}
+.ci:hover{border-color:#b8860b}
+.ci .i{font-size:1.5rem;margin-bottom:4px}
+.ci h4{font-size:.85rem;color:#1e3a5f}
+.ci p,.ci a{font-size:.82rem;color:#64748b;text-decoration:none}
+.ci a:hover{color:#1e3a5f}
+.cta{background:#1e3a5f;color:#fff;text-align:center;padding:60px 28px}
+.cta h2{font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:8px;color:#fff}
+.cta p{opacity:.8;font-size:.9rem;margin-bottom:20px}
+.cta .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:#b8860b;color:#fff;text-decoration:none;border-radius:6px;font-weight:600;font-size:.85rem;transition:all .3s}
+.cta .btn:hover{background:#d4a017;transform:translateY(-2px)}
+footer{background:#0f172a;color:#94a3b8;text-align:center;padding:24px;font-size:.78rem}
+footer strong{color:#b8860b}
+.whatsapp-float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 16px rgba(37,211,102,.3);text-decoration:none;transition:all .3s;z-index:50}
+.whatsapp-float:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(37,211,102,.4)}
+@media(max-width:768px){
+  .hero::after{display:none}
+  .nav a:not(.wa){display:none}
+  .hc h1{max-width:100%}
+  .hc p{max-width:100%}
+  .contact-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="#" class="logo">Ricardo <span>May</span></a>
+  <div>
+    <a href="#areas">Áreas</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#contacto">Contacto</a>
+    <a href="https://wa.me/529999999999?text=Hola%20Lic.%20May,%20necesito%20asesor%C3%ADa" target="_blank" class="wa">WhatsApp</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hc">
+    <div class="tag">ABOGADO EN MÉRIDA</div>
+    <h1>Lic. Ricardo <span>May</span> &mdash; Asesor&iacute;a Jur&iacute;dica</h1>
+    <p>M&aacute;s de 12 a&ntilde;os defendiendo los derechos de familias y empresas en Yucat&aacute;n. Penal, familiar, civil y corporativo.</p>
+    <div>
+      <a href="https://wa.me/529999999999?text=Hola%20Lic.%20May,%20necesito%20asesor%C3%ADa" target="_blank" class="btn">&#x1F4AC; Consulta por WhatsApp</a>
+      <a href="#areas" class="btn btn-o">Ver áreas</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="areas">
+  <h2>Áreas de práctica</h2>
+  <p class="st">Experiencia comprobada en las ramas del derecho m&aacute;s solicitadas.</p>
+  <div class="areas">
+    <div class="area"><div class="i">&#x2696;</div><h4>Penal</h4><p>Defensa penal, amparos, recursos legales</p></div>
+    <div class="area"><div class="i">&#x1F46A;</div><h4>Familiar</h4><p>Divorcios, pensiones, custodia, sucesiones</p></div>
+    <div class="area"><div class="i">&#x1F3E2;</div><h4>Civil</h4><p>Contratos, propiedades, deudas, arrendamientos</p></div>
+    <div class="area"><div class="i">&#x1F4BC;</div><h4>Corporativo</h4><p>Constitución de empresas, fiscal, laboral</p></div>
+  </div>
+</section>
+
+<section class="sec bg" id="proceso">
+  <h2>Cómo trabajo</h2>
+  <p class="st">Simple, claro, sin vueltas.</p>
+  <div class="grid-3">
+    <div class="card">
+      <div class="num">01</div>
+      <div class="icon">&#x1F4E9;</div>
+      <h3>Contacto</h3>
+      <p>Me escribes por WhatsApp o llamada. Agenda tu consulta inicial sin compromiso.</p>
+    </div>
+    <div class="card">
+      <div class="num">02</div>
+      <div class="icon">&#x1F4CB;</div>
+      <h3>Análisis</h3>
+      <p>Estudio tu caso, te explico las opciones legales y definimos la mejor estrategia.</p>
+    </div>
+    <div class="card">
+      <div class="num">03</div>
+      <div class="icon">&#x2705;</div>
+      <h3>Resolución</h3>
+      <p>Te represento y acompaño hasta la resolución. Comunicación constante.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="testimonios">
+  <h2>Lo que dicen mis clientes</h2>
+  <p class="st">Casos reales, resultados reales.</p>
+  <div class="test-grid">
+    <div class="test">
+      <p>"El Lic. May me ayudó con un divorcio complicado. Fue profesional, rápido y justo en sus honorarios. Lo recomiendo ampliamente."</p>
+      <div class="author">— María F., Mérida</div>
+    </div>
+    <div class="test">
+      <p>"Me asesoró para constituir mi empresa. Me explicó todo paso a paso y resolvió dudas hasta después de terminar el servicio."</p>
+      <div class="author">— Carlos R., Umán</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <h2>&#x1F4F1; ¿Necesitas asesoría legal?</h2>
+  <p>Manda un WhatsApp y en 10 minutos agendamos tu consulta.</p>
+  <a href="https://wa.me/529999999999?text=Hola%20Lic.%20May,%20necesito%20asesor%C3%ADa%20legal" target="_blank" class="btn">&#x1F4AC; Escríbeme ahora</a>
+</section>
+
+<footer>
+  <p>Lic. Ricardo May &mdash; Abogado en Mérida, Yucatán &bull; Sitio diseñado por <strong>Alex Rivera | Elite Web Studio</strong></p>
+</footer>
+
+<a href="https://wa.me/529999999999?text=Hola%20Lic.%20May,%20necesito%20asesor%C3%ADa%20legal" class="whatsapp-float" target="_blank">&#x1F4AC;</a>
+</body>
+</html>
