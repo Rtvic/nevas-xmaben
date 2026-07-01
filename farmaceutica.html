@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Farmacéutica - Tu Farmacia de Confianza</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(46, 125, 50, 0.9), rgba(27, 94, 32, 0.9)), 
+                        url('https://images.unsplash.com/photo-1631549916768-4119b2e5f926?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 20px 100px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: white;
+            color: #2e7d32;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: #2e7d32;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+        }
+        
+        /* Appointments Section */
+        .appointments {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .appointment-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2e7d32;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #2e7d32;
+            outline: none;
+        }
+        
+        .submit-btn {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #1b5e20;
+        }
+        
+        /* Catalog Section */
+        .catalog {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+        
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            width: 150px;
+            height: 150px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .product-card h4 {
+            color: #2e7d32;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1b5e20;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .info-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .info-card h3 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Footer */
+        footer {
+            background: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">La Farmacéutica</div>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#citas">Agendar Cita</a></li>
+                    <li><a href="#catalogo">Catálogo</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Tu Farmacia de Confianza</h1>
+            <p>Cuidamos de tu salud con atención personalizada y profesional. Agenda tu cita y recibe la mejor atención.</p>
+            <a href="#citas" class="btn">Agendar Cita</a>
+        </div>
+    </section>
+
+    <section class="services" id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💊</div>
+                    <h3>Venta de Medicamentos</h3>
+                    <p>Amplio stock de medicamentos con los mejores precios y marcas reconocidas.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📅</div>
+                    <h3>Agenda de Citas</h3>
+                    <p>Agenda tu cita en línea y evita esperas. Atención rápida y personalizada.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3>Domicilio</h3>
+                    <p>Servicio de entrega a domicilio para tu comodidad y conveniencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="appointments" id="citas">
+        <div class="container">
+            <h2 class="section-title">Agenda tu Cita</h2>
+            <div class="appointment-form">
+                <form id="appointmentForm">
+                    <div class="form-group">
+                        <label for="name">Nombre Completo</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Fecha</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Hora</label>
+                        <select id="time" name="time" required>
+                            <option value="">Selecciona una hora</option>
+                            <option value="07:00">7:00 AM</option>
+                            <option value="08:00">8:00 AM</option>
+                            <option value="09:00">9:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="13:00">1:00 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                            <option value="17:00">5:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Servicio</label>
+                        <select id="service" name="service" required>
+                            <option value="">Selecciona un servicio</option>
+                            <option value="consulta">Consulta General</option>
+                            <option value="medicamentos">Compra de Medicamentos</option>
+                            <option value="domicilio">Servicio a Domicilio</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Notas Adicionales</label>
+                        <textarea id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Agendar Cita</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="catalog" id="catalogo">
+        <div class="container">
+            <h2 class="section-title">Catálogo de Productos</h2>
+            <div class="catalog-grid">
+                <div class="product-card">
+                    <div class="product-image">💊</div>
+                    <h4>Paracetamol 500mg</h4>
+                    <p class="product-price">$45 MXN</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🧴</div>
+                    <h4>Alcohol Gel 250ml</h4>
+                    <p class="product-price">$85 MXN</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">💉</div>
+                    <h4>Jeringas Desechables</h4>
+                    <p class="product-price">$120 MXN</p>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🩹</div>
+                    <h4>Curitas Adhesivas</h4>
+                    <p class="product-price">$35 MXN</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon">📍</div>
+                    <h3>Ubicación</h3>
+                    <p>Campeche centro, Mérida, Yucatán</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">🕐</div>
+                    <h3>Horario</h3>
+                    <p>Lunes a Sábado: 7:00 AM - 6:00 PM<br>Domingo: Cerrado</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">📞</div>
+                    <h3>Teléfono</h3>
+                    <p>+52 921 487 5347</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 La Farmacéutica. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/529214875347?text=Hola!%20Me%20gustaría%20agendar%20una%20cita" class="whatsapp-btn" target="_blank">
+        💬
+    </a>
+
+    <script>
+        // Form submission
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Format message for WhatsApp
+            let message = `Hola! Quiero agendar una cita:\n\n`;
+            message += `Nombre: ${data.name}\n`;
+            message += `Teléfono: ${data.phone}\n`;
+            message += `Fecha: ${data.date}\n`;
+            message += `Hora: ${data.time}\n`;
+            message += `Servicio: ${data.service}\n`;
+            if (data.notes) message += `Notas: ${data.notes}\n`;
+            
+            // Send via WhatsApp
+            const whatsappUrl = `https://wa.me/529214875347?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            // Show confirmation
+            alert('¡Cita agredada! Serás redirigido a WhatsApp para confirmar.');
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
