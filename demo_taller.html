@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Taller Mecánico El Tigre | Mérida, Yucatán</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:#07070d;color:#e0e0e0;overflow-x:hidden;line-height:1.5}
+::selection{background:#2563eb;color:#fff}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#07070d}
+::-webkit-scrollbar-thumb{background:#2563eb;border-radius:3px}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+input,button,textarea{font-family:inherit;font-size:inherit}
+.s2{color:#06b6d4;font-size:.82em;letter-spacing:2px;text-transform:uppercase;font-weight:600;display:block;margin-bottom:6px}
+.s1{font-size:clamp(1.4em,4vw,2em);font-weight:800;margin-bottom:20px;background:linear-gradient(135deg,#2563eb,#06b6d4,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+#pt{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.nv{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,7,13,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05)}
+.nv-l{font-size:1.1em;font-weight:800;display:flex;align-items:center;gap:8px}
+.nv-l span{color:#38bdf8}
+.nv-m{display:none;gap:16px;align-items:center}
+.nv-m a{font-size:.82em;color:#888;transition:color .2s}
+.nv-m a:hover{color:#38bdf8}
+.nv-t{display:flex;align-items:center;gap:10px}
+.nv-t a{background:#2563eb;color:#fff;padding:8px 16px;border-radius:8px;font-size:.78em;font-weight:600;transition:all .3s}
+.nv-t a:hover{background:#1d4ed8;transform:scale(1.05)}
+.hro{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 20px 60px}
+.hro h1{font-size:clamp(1.8em,6vw,3.5em);font-weight:900;line-height:1.1;margin-bottom:16px;background:linear-gradient(135deg,#2563eb,#06b6d4,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hro p{font-size:clamp(.95em,2vw,1.15em);color:#888;max-width:520px;margin-bottom:32px}
+.hro-b{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.hro-b a{padding:12px 28px;border-radius:10px;font-weight:700;font-size:.9em;transition:all .3s}
+.hro-b a:first-child{background:#2563eb;color:#fff}
+.hro-b a:first-child:hover{background:#1d4ed8;transform:translateY(-2px)}
+.hro-b a:last-child{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#e0e0e0}
+.hro-b a:last-child:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.hro-b a:last-child span{color:#38bdf8}
+.sv{padding:60px 20px;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.sd{background:rgba(255,255,255,.02);border-radius:14px;padding:18px 14px;border:1px solid rgba(255,255,255,.05);text-align:center;transition:all .3s}
+.sd:hover{transform:translateY(-4px);background:rgba(37,99,235,.08);border-color:rgba(37,99,235,.2)}
+.si{font-size:2.2em;margin-bottom:6px;display:block}
+.sd h3{font-size:.95em;margin:4px 0;color:#e0e0e0}
+.sd p{font-size:.78em;color:#888;margin:0;line-height:1.3}
+.sp{color:#2563eb;font-weight:700;font-size:1em;margin-top:6px}
+.gl{padding:60px 20px;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.gg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.pl{background:rgba(255,255,255,.02);border-radius:12px;padding:10px 10px 40px;border:1px solid rgba(255,255,255,.05);transition:all .3s;transform:rotate(-1deg)}
+.pl:nth-child(even){transform:rotate(1deg)}
+.pl:hover{transform:rotate(0deg) scale(1.02);border-color:rgba(37,99,235,.3)}
+.pl-img{height:140px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.78em;font-weight:600;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px}
+.pl p{font-size:.75em;color:#888;margin-top:8px;padding:0 4px}
+.ts{padding:60px 20px;max-width:900px;margin:0 auto;position:relative;z-index:1}
+.tg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.tc{background:rgba(255,255,255,.02);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,.05);border-left:3px solid #2563eb}
+.tc p{font-size:.85em;color:#888;font-style:italic;margin:0;line-height:1.4}
+.ta{color:#2563eb;font-size:.8em;margin-top:8px;font-weight:600}
+.ap{padding:60px 20px;max-width:600px;margin:0 auto;position:relative;z-index:1}
+.af{background:rgba(255,255,255,.02);border-radius:14px;padding:24px;border:1px solid rgba(255,255,255,.05)}
+.af label{display:block;font-size:.82em;color:#888;margin-bottom:4px}
+.af input,.af select{width:100%;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#e0e0e0;margin-bottom:14px;outline:none;transition:border .2s}
+.af input:focus,.af select:focus{border-color:#2563eb}
+.af select option{background:#07070d;color:#e0e0e0}
+.tg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:6px;margin-bottom:14px}
+.tg2 button{padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02);color:#e0e0e0;font-size:.78em;cursor:pointer;transition:all .2s}
+.tg2 button:hover{border-color:#2563eb;background:rgba(37,99,235,.1)}
+.tg2 button.ac{border-color:#2563eb;background:#2563eb;color:#fff}
+.af .ab{width:100%;padding:14px;border:none;border-radius:10px;background:#2563eb;color:#fff;font-weight:700;font-size:.95em;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px}
+.af .ab:hover{background:#1d4ed8;transform:translateY(-2px)}
+.hr{padding:40px 20px;text-align:center;position:relative;z-index:1}
+.hr-in{display:inline-block;background:rgba(255,255,255,.02);border-radius:12px;padding:20px 32px;border:1px solid rgba(255,255,255,.05)}
+.hr-in p{font-size:.9em;color:#888;margin:4px 0}
+.hr-in span{color:#2563eb;font-weight:600}
+.mp{position:relative;z-index:1}
+.mp iframe{width:100%;height:280px;border:none;display:block}
+.ft{padding:40px 20px;text-align:center;position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.05)}
+.ft p{font-size:.82em;color:#888;margin:4px 0}
+.ft .fb{margin-top:12px}
+.ft .fb a{display:inline-block;background:#2563eb;color:#fff;padding:14px 36px;border-radius:10px;font-weight:700;font-size:1em;transition:all .3s}
+.ft .fb a:hover{background:#1d4ed8;transform:translateY(-2px)}
+.wa{position:fixed;bottom:20px;right:20px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.3);transition:all .3s}
+.wa:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(37,211,102,.4)}
+.wa svg{width:28px;height:28px;fill:#fff}
+.wa::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid #25d366;animation:pp 2s infinite}
+@keyframes pp{0%{transform:scale(1);opacity:1}100%{transform:scale(1.4);opacity:0}}
+.rl{opacity:0;transform:translateY(30px);transition:all .6s}
+.rl.sh{opacity:1;transform:translateY(0)}
+@media(min-width:768px){
+.nv{padding:12px 40px}
+.nv-m{display:flex}
+.nv-t{display:none}
+.sg{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.gg{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+}
+</style>
+</head>
+<body>
+
+<canvas id="pt"></canvas>
+
+<nav class="nv">
+  <div class="nv-l">🔧 <span>Taller El Tigre</span></div>
+  <div class="nv-m">
+    <a href="#sv">Servicios</a>
+    <a href="#gl">Galería</a>
+    <a href="#ts">Opiniones</a>
+    <a href="#ap">Agendar</a>
+  </div>
+  <div class="nv-t">
+    <a href="https://wa.me/529211234567?text=¡Hola!%20Quiero%20una%20cotización%20para%20mi%20vehículo.%20¿Me%20ayudan?" target="_blank">Llamar ahora</a>
+  </div>
+</nav>
+
+<section class="hro">
+  <h1>Expertos en mecánica automotriz en Mérida</h1>
+  <p>Más de 10 años manteniendo los vehículos de Yucatán en óptimas condiciones. Confianza, honestidad y trabajo garantizado.</p>
+  <div class="hro-b">
+    <a href="#ap">Agendar cita</a>
+    <a href="https://wa.me/529211234567?text=¡Hola!%20Quiero%20una%20cotización%20para%20mi%20vehículo.%20¿Me%20ayudan?" target="_blank">WhatsApp <span>→</span></a>
+  </div>
+</section>
+
+<section class="sv rl" id="sv">
+  <span class="s2">Servicios</span>
+  <h2 class="s1">Todo lo que tu auto necesita</h2>
+  <div class="sg">
+    <div class="sd">
+      <span class="si">🛢️</span>
+      <h3>Cambio de Aceite</h3>
+      <p>Incluye filtro, 4 litros, revisión general</p>
+      <div class="sp">$350</div>
+    </div>
+    <div class="sd">
+      <span class="si">⚙️</span>
+      <h3>Frenos</h3>
+      <p>Pastillas, discos, líquido de frenos</p>
+      <div class="sp">$800</div>
+    </div>
+    <div class="sd">
+      <span class="si">🔩</span>
+      <h3>Suspensión</h3>
+      <p>Amortiguadores, rótulas, brazos</p>
+      <div class="sp">$1,200</div>
+    </div>
+    <div class="sd">
+      <span class="si">🔋</span>
+      <h3>Diagnóstico</h3>
+      <p>Escáner computarizado, revisión completa</p>
+      <div class="sp">$250</div>
+    </div>
+    <div class="sd">
+      <span class="si">🔥</span>
+      <h3>Afinación</h3>
+      <p>Bujías, cables, filtros, puesta a punto</p>
+      <div class="sp">$600</div>
+    </div>
+    <div class="sd">
+      <span class="si">🚗</span>
+      <h3>Transmisión</h3>
+      <p>Revisión, ajuste y reparación general</p>
+      <div class="sp">$1,500</div>
+    </div>
+  </div>
+</section>
+
+<section class="gl rl" id="gl">
+  <span class="s2">Galería</span>
+  <h2 class="s1">Trabajos realizados</h2>
+  <div class="gg">
+    <div class="pl">
+      <div class="pl-img" style="background:linear-gradient(135deg,#1e3a5f,#2563eb)">Cambio de Motor</div>
+      <p>Motor V8 completamente reconstruido</p>
+    </div>
+    <div class="pl">
+      <div class="pl-img" style="background:linear-gradient(135deg,#1e3a5f,#06b6d4)">Reparación General</div>
+      <p>Servicio completo de transmisión</p>
+    </div>
+    <div class="pl">
+      <div class="pl-img" style="background:linear-gradient(135deg,#1e3a5f,#2563eb)">Sistema de Frenos</div>
+      <p>Pastillas y discos deportivos</p>
+    </div>
+    <div class="pl">
+      <div class="pl-img" style="background:linear-gradient(135deg,#1e3a5f,#06b6d4)">Afinación</div>
+      <p>Puesta a punto con escáner</p>
+    </div>
+  </div>
+</section>
+
+<section class="ts rl" id="ts">
+  <span class="s2">Testimonios</span>
+  <h2 class="s1">Lo que dicen nuestros clientes</h2>
+  <div class="tg">
+    <div class="tc">
+      <p>"Excelente servicio, me dejaron el carro como nuevo. Precio justo y trabajo rápido."</p>
+      <div class="ta">— Don Juan, Umán</div>
+    </div>
+    <div class="tc">
+      <p>"Rápidos y honestos. Diagnosticaron el problema al instante. Mi taller de confianza."</p>
+      <div class="ta">— María, Mérida Centro</div>
+    </div>
+  </div>
+</section>
+
+<section class="ap rl" id="ap">
+  <span class="s2">Agenda tu cita</span>
+  <h2 class="s1">Elige el día y la hora</h2>
+  <div class="af">
+    <label for="svc">Servicio</label>
+    <select id="svc">
+      <option value="Cambio de Aceite">Cambio de Aceite — $350</option>
+      <option value="Frenos">Frenos — $800</option>
+      <option value="Suspensión">Suspensión — $1,200</option>
+      <option value="Diagnóstico">Diagnóstico — $250</option>
+      <option value="Afinación">Afinación — $600</option>
+      <option value="Transmisión">Transmisión — $1,500</option>
+    </select>
+    <label for="dt">Fecha</label>
+    <input type="date" id="dt">
+    <label>Horario disponible</label>
+    <div class="tg2" id="tl">
+      <button data-t="8:00">8:00 AM</button>
+      <button data-t="9:00">9:00 AM</button>
+      <button data-t="10:00">10:00 AM</button>
+      <button data-t="11:00">11:00 AM</button>
+      <button data-t="12:00">12:00 PM</button>
+      <button data-t="13:00">1:00 PM</button>
+      <button data-t="14:00">2:00 PM</button>
+      <button data-t="15:00">3:00 PM</button>
+      <button data-t="16:00">4:00 PM</button>
+      <button data-t="17:00">5:00 PM</button>
+    </div>
+    <button class="ab" id="ab">📅 Agendar por WhatsApp</button>
+  </div>
+</section>
+
+<section class="hr rl">
+  <div class="hr-in">
+    <p>🕐 <strong>Horario de atención</strong></p>
+    <p>Lunes a Viernes <span>8:00 am — 6:00 pm</span></p>
+    <p>Sábado <span>8:00 am — 2:00 pm</span></p>
+  </div>
+</section>
+
+<section class="mp">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d238133.66014940755!2d-89.6970820454785!3d20.96702614454057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5670c1b0a9b5e5%3A0x9b6c0f0b5b5b5b5b!2sM%C3%A9rida%2C%20Yuc.!5e0!3m2!1ses!2smx!4v1" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+
+<footer class="ft">
+  <p><strong>Taller Mecánico El Tigre 🔧</strong></p>
+  <p>Mérida, Yucatán, México</p>
+  <p style="color:#444;font-size:.75em">Tu taller de confianza en el sureste</p>
+  <div class="fb">
+    <a href="https://wa.me/529211234567?text=¡Hola!%20Quiero%20agendar%20una%20cita%20para%20mi%20vehículo.%20Gracias." target="_blank">📞 Agenda tu cita hoy</a>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/529211234567?text=¡Hola!%20Quiero%20una%20cotización%20para%20mi%20vehículo.%20¿Me%20ayudan?" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const cn = document.getElementById('pt')
+const cx = cn.getContext('2d')
+cn.width = window.innerWidth
+cn.height = window.innerHeight
+let p = []
+const pc = 60
+for (let i = 0; i < pc; i++) {
+  p.push({
+    x: Math.random() * cn.width,
+    y: Math.random() * cn.height,
+    vx: (Math.random() - 0.5) * 0.6,
+    vy: (Math.random() - 0.5) * 0.6,
+    r: Math.random() * 2 + 1
+  })
+}
+function dr() {
+  cx.clearRect(0, 0, cn.width, cn.height)
+  for (let i = 0; i < p.length; i++) {
+    const pt2 = p[i]
+    pt2.x += pt2.vx
+    pt2.y += pt2.vy
+    if (pt2.x < 0 || pt2.x > cn.width) pt2.vx *= -1
+    if (pt2.y < 0 || pt2.y > cn.height) pt2.vy *= -1
+    cx.beginPath()
+    cx.arc(pt2.x, pt2.y, pt2.r, 0, Math.PI * 2)
+    cx.fillStyle = 'rgba(37,99,235,0.4)'
+    cx.fill()
+    for (let j = i + 1; j < p.length; j++) {
+      const dx = pt2.x - p[j].x
+      const dy = pt2.y - p[j].y
+      const d = Math.sqrt(dx * dx + dy * dy)
+      if (d < 120) {
+        cx.beginPath()
+        cx.moveTo(pt2.x, pt2.y)
+        cx.lineTo(p[j].x, p[j].y)
+        cx.strokeStyle = `rgba(37,99,235,${0.08 * (1 - d / 120)})`
+        cx.lineWidth = 1
+        cx.stroke()
+      }
+    }
+  }
+  requestAnimationFrame(dr)
+}
+dr()
+window.addEventListener('resize', () => {
+  cn.width = window.innerWidth
+  cn.height = window.innerHeight
+})
+
+const rl = document.querySelectorAll('.rl')
+const ob = new IntersectionObserver((es) => {
+  es.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('sh')
+    }
+  })
+}, { threshold: 0.15 })
+rl.forEach(e => ob.observe(e))
+
+const btns = document.querySelectorAll('#tl button')
+let st = ''
+btns.forEach(b => {
+  b.addEventListener('click', () => {
+    btns.forEach(x => x.classList.remove('ac'))
+    b.classList.add('ac')
+    st = b.dataset.t
+  })
+})
+
+document.getElementById('ab').addEventListener('click', () => {
+  const svc = document.getElementById('svc').value
+  const dt = document.getElementById('dt').value
+  if (!dt) { alert('Por favor selecciona una fecha'); return }
+  if (!st) { alert('Por favor selecciona un horario'); return }
+  const f = dt.split('-').reverse().join('/')
+  const msg = `¡Hola! Quiero agendar una cita para el servicio de *${svc}* el día *${f}* a las *${st}*. Gracias.`
+  window.open(`https://wa.me/529211234567?text=${encodeURIComponent(msg)}`, '_blank')
+})
+</script>
+
+</body>
+</html>

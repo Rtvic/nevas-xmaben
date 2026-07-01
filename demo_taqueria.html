@@ -1,197 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>MUESTRA · Studio</title>
+<title>Taquería El Trompo — Tacos al Pastor en Mérida</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:#F8F7F4;color:#1A1A1A;overflow-x:hidden}
-::selection{background:#C73B2A;color:#F8F7F4}
-img{max-width:100%;display:block}
-
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 36px;display:flex;justify-content:space-between;align-items:center}
-.nl{font-family:'Archivo',sans-serif;font-weight:900;font-size:.8rem;color:#1A1A1A;text-decoration:none;text-transform:uppercase;letter-spacing:1px}
-.nr{display:flex;gap:20px;list-style:none}
-.nr a{color:rgba(26,26,26,.08);text-decoration:none;font-size:.5rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;transition:color .2s}
-.nr a:hover{color:#1A1A1A}
-
-.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 36px;max-width:1200px;margin:0 auto}
-.hero .ht{font-family:'Archivo',sans-serif;font-weight:700;font-size:.5rem;letter-spacing:3px;text-transform:uppercase;color:rgba(199,59,42,.1);margin-bottom:8px}
-.hero h1{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(3.5rem,10vw,9rem);letter-spacing:-4px;line-height:.82;text-transform:uppercase}
-.hero h1 .g{color:#C73B2A}
-.hero .hs{font-size:.65rem;color:rgba(26,26,26,.06);margin-top:10px;font-weight:300;max-width:360px;line-height:1.6}
-.hero .hl{width:40px;height:2px;background:#C73B2A;margin:16px 0}
-.sh-i{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:rgba(26,26,26,.02);font-size:.4rem;letter-spacing:3px;text-transform:uppercase}
-
-.ssec{padding:120px 36px;max-width:1200px;margin:0 auto}
-.ssec .st{font-family:'Archivo',sans-serif;font-weight:700;font-size:.45rem;letter-spacing:3px;text-transform:uppercase;color:rgba(199,59,42,.08);margin-bottom:6px}
-.ssec h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.5rem,3.5vw,3rem);letter-spacing:-1.5px;line-height:.95;text-transform:uppercase;margin-bottom:12px;max-width:600px}
-.ssec p{font-size:.7rem;color:rgba(26,26,26,.06);line-height:1.7;font-weight:300;max-width:480px}
-
-.ab{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:120px 36px;max-width:1200px;margin:0 auto}
-.ab-i{aspect-ratio:4/5;overflow:hidden;border-radius:3px}
-.ab-i img{width:100%;height:100%;object-fit:cover}
-.ab-c .st{font-family:'Archivo',sans-serif;font-weight:700;font-size:.45rem;letter-spacing:3px;text-transform:uppercase;color:rgba(199,59,42,.08);margin-bottom:6px}
-.ab-c h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.5rem,3.5vw,3rem);letter-spacing:-1.5px;line-height:.95;text-transform:uppercase;margin-bottom:10px;max-width:450px}
-.ab-c p{font-size:.7rem;color:rgba(26,26,26,.06);line-height:1.7;font-weight:300;max-width:420px}
-
-.gg{position:relative;background:#F8F7F4}
-.gg .sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.gg .sticky .ctr{position:absolute;top:24px;right:36px;z-index:10;font-family:'Archivo',sans-serif;font-weight:700;font-size:.5rem;color:rgba(26,26,26,.02);letter-spacing:2px}
-.gg .sticky .lbl{position:absolute;bottom:28px;left:36px;z-index:10}
-.gg .sticky .lbl .nm{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1rem,2.5vw,2rem);letter-spacing:-.5px;text-transform:uppercase;color:#1A1A1A}
-.gg .sticky .lbl .ds{font-family:'Archivo',sans-serif;font-weight:300;font-size:.45rem;color:rgba(26,26,26,.04);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
-.gg .sticky .iw{position:absolute;width:clamp(220px,35vw,440px);height:clamp(300px,50vh,580px);border-radius:3px;overflow:hidden;will-change:transform;box-shadow:0 20px 80px rgba(0,0,0,.02)}
-.gg .sticky .iw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
-.gg .sp{height:100vh}
-
-.gr{padding:80px 36px;max-width:1000px;margin:0 auto}
-.gr .st{font-family:'Archivo',sans-serif;font-weight:700;font-size:.45rem;letter-spacing:3px;text-transform:uppercase;color:rgba(199,59,42,.08);margin-bottom:6px}
-.gr h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.3rem,3vw,2.5rem);letter-spacing:-1.5px;text-transform:uppercase;margin-bottom:20px}
-.gw{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
-.gi{aspect-ratio:1;overflow:hidden;border-radius:2px}
-.gi img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.gi:hover img{transform:scale(1.03)}
-.gi:first-child{grid-column:1/3;grid-row:1/3}
-
-.ct{height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 36px;border-top:1px solid rgba(26,26,26,.02)}
-.ct .st{font-family:'Archivo',sans-serif;font-weight:700;font-size:.45rem;letter-spacing:3px;text-transform:uppercase;color:rgba(199,59,42,.08);margin-bottom:6px}
-.ct h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.8rem,4vw,3.5rem);letter-spacing:-2px;text-transform:uppercase;line-height:.9;margin-bottom:10px}
-.ct p{font-size:.65rem;color:rgba(26,26,26,.04);font-weight:300;margin-bottom:20px}
-
-.btn{display:inline-flex;padding:14px 32px;background:#1A1A1A;color:#F8F7F4;text-decoration:none;font-family:'Archivo',sans-serif;font-weight:700;font-size:.5rem;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .25s;border-radius:100px}
-.btn:hover{background:#C73B2A;transform:translateY(-2px)}
-
-.ft{padding:28px 36px;text-align:center;border-top:1px solid rgba(26,26,26,.01)}
-.ft p{font-size:.45rem;color:rgba(26,26,26,.02);font-weight:200;font-family:'Archivo',sans-serif;text-transform:uppercase;letter-spacing:2px}
-.ft em{font-style:normal;color:rgba(199,59,42,.03)}
-
-@media(max-width:700px){
-  .nr{display:none}
-  .ab{grid-template-columns:1fr;gap:20px;padding:80px 20px}
-  .ab-i{order:-1}
-  .gg .sticky .iw{width:78vw;height:50vh}
-  .gg .sticky .lbl{left:20px;bottom:16px}
-  .gg .sticky .ctr{right:20px}
-  .gw{grid-template-columns:1fr 1fr}
-  .gw .gi:first-child{grid-column:1/3;grid-row:1}
-  .hero{padding:100px 20px 40px}
-  .ssec{padding:80px 20px}
-  .gr{padding:60px 20px}
-  .ct{padding:60px 20px}
-}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#07070d;--card:rgba(255,255,255,.02);--accent:#ea580c;--accent2:#f97316;--accent3:#fb923c;--text:#e0e0e0;--text2:#888;--border:rgba(255,255,255,.05);--glass:rgba(7,7,13,.8);--spring:cubic-bezier(.34,1.56,.64,1)}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.5}
+#ptcl{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.ov{position:relative;z-index:1}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-l{display:flex;align-items:center;gap:10px;font-size:1.1em;font-weight:700;color:var(--text);text-decoration:none}
+.nav-l span{font-size:1.3em}
+.nav-l .g{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-r{display:flex;gap:6px}
+.nav-r a{color:var(--text2);text-decoration:none;font-size:.82em;padding:6px 12px;border-radius:8px;transition:all .3s var(--spring);border:1px solid transparent}
+.nav-r a:hover{color:var(--accent);border-color:var(--border);background:var(--card)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:100px 20px 60px}
+.hero h1{font-size:clamp(2rem,7vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:16px}
+.hero h1 .g{background:linear-gradient(135deg,#ea580c,#f97316,#fb923c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(1rem,2.5vw,1.3rem);color:var(--text2);max-width:600px;margin-bottom:32px}
+.hero .btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:12px;font-weight:600;font-size:.95em;text-decoration:none;transition:all .3s var(--spring);border:none;cursor:pointer}
+.btn-p{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.btn-p:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(234,88,12,.3)}
+.btn-o{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-o:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.sec{padding:80px 20px;max-width:1100px;margin:0 auto}
+.sec-h{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;margin-bottom:8px;text-align:center}
+.sec-h .g{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-s{text-align:center;color:var(--text2);margin-bottom:40px;font-size:.95em}
+.mn-g{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:640px){.mn-g{grid-template-columns:1fr}}
+.mn-c{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--card)}
+.mn-h{background:linear-gradient(135deg,rgba(234,88,12,.12),rgba(249,115,22,.06));padding:14px 16px;font-weight:700;font-size:1.05em;border-bottom:1px solid var(--border)}
+.mn-h i{margin-right:8px}
+.mn-l{padding:8px}
+.mn-i{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 14px;border-radius:10px;transition:all .3s var(--spring);cursor:default}
+.mn-i:hover{background:rgba(234,88,12,.08);transform:translateX(6px)}
+.mn-i h4{font-size:.95em;font-weight:600;margin-bottom:2px}
+.mn-i p{font-size:.78em;color:var(--text2)}
+.mn-p{color:var(--accent);font-weight:700;font-size:1.15em;white-space:nowrap;margin-left:12px;font-variant-numeric:tabular-nums}
+.rh{border:1px solid var(--accent);box-shadow:0 0 20px rgba(234,88,12,.15)}
+.gl{gap:16px}
+.gl{display:grid;grid-template-columns:repeat(3,1fr)}
+@media(max-width:768px){.gl{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.gl{grid-template-columns:1fr}}
+.gl-i{aspect-ratio:4/3;border-radius:14px;border:1px solid var(--border);overflow:hidden;position:relative;display:flex;align-items:flex-end;padding:16px;transition:all .4s var(--spring)}
+.gl-i:hover{transform:scale(1.02);border-color:var(--accent)}
+.gl-i .lab{font-size:.82em;font-weight:600;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6);z-index:1;position:relative}
+.gl-i:nth-child(1){background:linear-gradient(135deg,#ea580c,#d97706)}
+.gl-i:nth-child(2){background:linear-gradient(135deg,#dc2626,#b91c1c)}
+.gl-i:nth-child(3){background:linear-gradient(135deg,#d97706,#92400e)}
+.gl-i:nth-child(4){background:linear-gradient(135deg,#ea580c,#c2410c)}
+.gl-i:nth-child(5){background:linear-gradient(135deg,#b91c1c,#7f1d1d)}
+.gl-i:nth-child(6){background:linear-gradient(135deg,#c2410c,#9a3412)}
+.sch{max-width:500px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+.sch-l{display:flex;flex-direction:column;gap:6px}
+.sch-l label{font-size:.85em;color:var(--text2);font-weight:600}
+.sch-l input,.sch-l select{padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.95em;font-family:inherit;outline:none;transition:border .3s}
+.sch-l input:focus,.sch-l select:focus{border-color:var(--accent)}
+.sch-l input[type=date]{color-scheme:dark}
+.ts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ts button{padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);cursor:pointer;transition:all .3s var(--spring);font-size:.85em;font-family:inherit}
+.ts button:hover{border-color:var(--accent);background:rgba(234,88,12,.08)}
+.ts button.act{border-color:var(--accent);background:var(--accent);color:#fff}
+#map{width:100%;height:320px;border-radius:16px;border:1px solid var(--border);overflow:hidden}
+#map iframe{width:100%;height:100%;border:0;filter:invert(.9)hue-rotate(180deg)}
+.fw{position:fixed;bottom:24px;right:24px;z-index:200;width:60px;height:60px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .3s var(--spring);animation:wp 2s infinite}
+.fw:hover{transform:scale(1.1)}
+@keyframes wp{0%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 40px rgba(37,211,102,.7)}100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}}
+.ft{text-align:center;padding:60px 20px 100px;border-top:1px solid var(--border)}
+.ft .hd{font-size:1.1em;font-weight:700;margin-bottom:4px}
+.ft .sub{color:var(--text2);font-size:.9em;margin-bottom:20px}
+.ft .hrs{display:flex;flex-direction:column;gap:4px;margin-bottom:20px;font-size:.9em;color:var(--text2)}
+.ft .hrs strong{color:var(--text)}
+.ft .soc{display:flex;justify-content:center;gap:12px;margin-bottom:20px}
+.ft .soc a{width:44px;height:44px;border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);text-decoration:none;transition:all .3s var(--spring);font-size:1.1em}
+.ft .soc a:hover{border-color:var(--accent);color:var(--accent);background:rgba(234,88,12,.08);transform:translateY(-3px)}
+.ft .cp{font-size:.8em;color:var(--text2)}
+.rv{opacity:0;transform:translateY(30px);transition:all .6s ease-out}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv-d{transition-delay:.1s}
+.rv-d2{transition-delay:.2s}
+.rv-d3{transition-delay:.3s}
+.rv-d4{transition-delay:.4s}
 </style>
 </head>
 <body>
-<nav>
-  <a href="#" class="nl">MUESTRA</a>
-  <ul class="nr">
-    <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<section class="hero">
-  <div class="ht">Est. 2026</div>
-  <h1>MUESTRA<br><span class="g">STUDIO</span></h1>
-  <div class="hl"></div>
-  <p class="hs">Dise&ntilde;o digital, identidad visual y experiencias que dejan marca. Cada proyecto es una historia que contar.</p>
-  <div class="sh-i">SCROLL</div>
-</section>
-
-<div class="ab" id="about">
-  <div class="ab-i"><img src="img/taco2.jpg" alt="" loading="lazy"></div>
-  <div class="ab-c">
-    <div class="st">About</div>
-    <h2>Dise&ntilde;o con prop&oacute;sito</h2>
-    <p>No hacemos plantillas. Cada proyecto nace de una idea &uacute;nica, con una identidad visual propia y una historia que contar. Creemos en el poder de lo simple bien ejecutado.</p>
-  </div>
+<canvas id="ptcl"></canvas>
+<div class="ov">
+<nav class="nav">
+<a href="#" class="nav-l"><span>🛞</span><span class="g">Taquería El Trompo</span></a>
+<div class="nav-r">
+<a href="#menu">Menú</a>
+<a href="#gal">Galería</a>
+<a href="#res">Reservar</a>
 </div>
-
-<section class="gg" id="work">
-  <div class="sticky" id="sticky">
-    <div class="ctr" id="ctr">001 / 005</div>
-    <div class="iw" id="w1"><img src="img/taco1.jpg" alt="" loading="lazy"></div>
-    <div class="iw" id="w2"><img src="img/taco3.jpg" alt="" loading="lazy"></div>
-    <div class="iw" id="w3"><img src="img/taco4.jpg" alt="" loading="lazy"></div>
-    <div class="iw" id="w4"><img src="img/taco5.jpg" alt="" loading="lazy"></div>
-    <div class="iw" id="w5"><img src="img/taco2.jpg" alt="" loading="lazy"></div>
-    <div class="lbl">
-      <div class="nm" id="lnm">Branding</div>
-      <div class="ds" id="lds">Proyecto uno — identidad completa</div>
-    </div>
-  </div>
-  <div class="sp" id="s1"></div>
-  <div class="sp" id="s2"></div>
-  <div class="sp" id="s3"></div>
-  <div class="sp" id="s4"></div>
-  <div class="sp" id="s5"></div>
+</nav>
+<section class="hero">
+<h1>Los mejores <span class="g">tacos al pastor</span><br>de <span class="g">Mérida</span></h1>
+<p>Sabor de trompo, tradición yucateca y la mejor carne al pastor del barrio. Visítanos y descubre por qué somos la taquería de confianza de la colonia.</p>
+<div class="btns">
+<a href="#menu" class="btn btn-p">📋 Ver Menú</a>
+<a href="https://wa.me/529211234567?text=Hola!%20Quiero%20hacer%20un%20pedido" target="_blank" class="btn btn-o">💬 Pedir por WhatsApp</a>
+</div>
 </section>
-
-<section class="gr">
-  <div class="st">Portafolio</div>
-  <h2>Proyectos</h2>
-  <div class="gw">
-    <div class="gi"><img src="img/taco3.jpg" alt="" loading="lazy"></div>
-    <div class="gi"><img src="img/taco4.jpg" alt="" loading="lazy"></div>
-    <div class="gi"><img src="img/taco5.jpg" alt="" loading="lazy"></div>
-    <div class="gi"><img src="img/taco1.jpg" alt="" loading="lazy"></div>
-  </div>
+<section id="menu" class="sec">
+<h2 class="sec-h">🔥 Nuestro <span class="g">Menú</span></h2>
+<p class="sec-s">Preparado al momento con ingredientes frescos</p>
+<div class="mn-g">
+<div class="mn-c rv">
+<div class="mn-h">🌮 Tacos</div>
+<div class="mn-l">
+<div class="mn-i"><div><h4>Taco al Pastor</h4><p>Trompo, piña, cebolla y cilantro</p></div><div class="mn-p">$20</div></div>
+<div class="mn-i"><div><h4>Taco de Suadero</h4><p>Suadero dorado, salsa verde</p></div><div class="mn-p">$25</div></div>
+<div class="mn-i"><div><h4>Taco de Carnitas</h4><p>Maciza, cuerito, salsa roja</p></div><div class="mn-p">$20</div></div>
+<div class="mn-i"><div><h4>Taco Campechano</h4><p>Pastor, suadero y longaniza</p></div><div class="mn-p">$30</div></div>
+</div>
+</div>
+<div class="mn-c rv rv-d">
+<div class="mn-h">🌯 Especialidades</div>
+<div class="mn-l">
+<div class="mn-i"><div><h4>Gringa</h4><p>Tortilla de harina, pastor, queso gratinado</p></div><div class="mn-p">$40</div></div>
+<div class="mn-i"><div><h4>Volcán</h4><p>Tostada, pastor, queso fundido, aguacate</p></div><div class="mn-p">$35</div></div>
+<div class="mn-i rh"><div><h4>Taco de Birria 🔥</h4><p>Birria de res, consomé, cebolla y cilantro</p></div><div class="mn-p">$45</div></div>
+</div>
+</div>
+<div class="mn-c rv rv-d2" style="grid-column:1/-1;max-width:450px;margin:0 auto;width:100%">
+<div class="mn-h">🥤 Bebidas</div>
+<div class="mn-l">
+<div class="mn-i"><div><h4>Agua de Horchata</h4><p>Arroz, canela y vainilla</p></div><div class="mn-p">$20</div></div>
+<div class="mn-i"><div><h4>Agua de Jamaica</h4><p>Flor de jamaica natural</p></div><div class="mn-p">$15</div></div>
+<div class="mn-i"><div><h4>Refresco</h4><p>Coca-Cola, Sprite, Sidral</p></div><div class="mn-p">$18</div></div>
+</div>
+</div>
+</div>
 </section>
-
-<section class="ct" id="contact">
-  <div class="st">Contacto</div>
-  <h2>Hablemos</h2>
-  <p>Cada proyecto empieza con una conversaci&oacute;n.</p>
-  <a href="https://wa.me/529811234567" class="btn">Escr&iacute;benos</a>
+<section id="gal" class="sec">
+<h2 class="sec-h">📸 <span class="g">Galería</span></h2>
+<p class="sec-s">Así se vive en Taquería El Trompo</p>
+<div class="gl">
+<div class="gl-i rv"><span class="lab">🌮 Tacos al Pastor</span></div>
+<div class="gl-i rv rv-d"><span class="lab">🌯 Gringa Especial</span></div>
+<div class="gl-i rv rv-d2"><span class="lab">🔥 Trompo</span></div>
+<div class="gl-i rv rv-d3"><span class="lab">🌶️ Salsas</span></div>
+<div class="gl-i rv rv-d4"><span class="lab">🍖 Birria</span></div>
+<div class="gl-i rv rv-d" style="transition-delay:.5s"><span class="lab">🥤 Aguas Frescas</span></div>
+</div>
 </section>
-
+<section id="res" class="sec">
+<h2 class="sec-h">📅 <span class="g">Reserva</span></h2>
+<p class="sec-s">Elige fecha y hora, te esperamos</p>
+<div class="sch rv">
+<div class="sch-l">
+<label for="fecha">Fecha</label>
+<input type="date" id="fecha">
+</div>
+<div class="sch-l">
+<label>Horario disponible</label>
+<div class="ts" id="ts">
+<button data-h="18:00">6:00pm</button>
+<button data-h="19:00">7:00pm</button>
+<button data-h="20:00">8:00pm</button>
+<button data-h="21:00">9:00pm</button>
+<button data-h="22:00">10:00pm</button>
+<button data-h="23:00">11:00pm</button>
+</div>
+</div>
+<div class="sch-l">
+<label for="pers">Personas</label>
+<select id="pers"><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+</div>
+<button class="btn btn-p" id="resBtn" style="justify-content:center">💬 Reservar por WhatsApp</button>
+</div>
+</section>
+<section class="sec">
+<h2 class="sec-h">📍 <span class="g">Ubicación</span></h2>
+<p class="sec-s">Encuéntranos en Mérida, Yucatán</p>
+<div id="map" class="rv">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d238131.36273933668!2d-89.69663569098218!3d20.96703364066712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f2e586a5d5e151d%3A0x81b1e5e1a9aa40c7!2sM%C3%A9rida%2C%20Yuc.!5e0!3m2!1ses-419!2smx!4v1" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</section>
 <footer class="ft">
-  <p>&copy; 2026 &middot; <em>Muestra Studio</em> &middot; Dise&ntilde;o digital</p>
+<div class="hd">🛞 Taquería El Trompo</div>
+<div class="sub">Mérida, Yucatán</div>
+<div class="hrs">
+<span>Lunes a Sábado — <strong>6:00pm – 2:00am</strong></span>
+<span>Domingo — <strong>5:00pm – 12:00am</strong></span>
+</div>
+<div class="soc">
+<a href="#" target="_blank" aria-label="Instagram">📸</a>
+<a href="#" target="_blank" aria-label="Facebook">👍</a>
+<a href="https://wa.me/529211234567" target="_blank" aria-label="WhatsApp">💬</a>
+</div>
+<div class="cp">Taquería El Trompo © 2026 — Hecho con amor en Mérida</div>
 </footer>
-
+</div>
+<a href="https://wa.me/529211234567?text=Hola!%20Quiero%20informaci%C3%B3n%20sobre%20el%20men%C3%BA" target="_blank" class="fw" aria-label="WhatsApp">💬</a>
 <script>
-gsap.registerPlugin(ScrollTrigger);
-
-var d=[{e:'#w1',nm:'Branding',ds:'Identidad completa'},{e:'#w2',nm:'Web',ds:'Diseño y desarrollo'},{e:'#w3',nm:'Motion',ds:'Animación y storytelling'},{e:'#w4',nm:'UX',ds:'Investigación y prototipado'},{e:'#w5',nm:'Estrategia',ds:'Dirección creativa'}];
-var lnm=document.getElementById('lnm'),lds=document.getElementById('lds'),ctr=document.getElementById('ctr');
-
-gsap.set('#w1',{scale:.55,opacity:0});gsap.set('#w1 img',{scale:2.2});
-gsap.timeline({scrollTrigger:{trigger:'#s1',start:'top bottom',end:'top top',scrub:1.2,
-  onEnter:function(){lnm.textContent=d[0].nm;lds.textContent=d[0].ds;ctr.textContent='001 / 005'}
-}}).to('#w1',{scale:1,opacity:1,duration:1,ease:'power2.out'},0).to('#w1 img',{scale:1,duration:1.3,ease:'power2.out'},0)
-
-for(var i=1;i<5;i++){
-  (function(idx){
-    var cd=d[idx],ni=document.querySelector(cd.e),sp=document.getElementById('s'+(idx+1));
-    gsap.set(ni,{scale:.55,opacity:0});gsap.set(ni.querySelector('img'),{scale:2.2});
-    gsap.timeline({scrollTrigger:{trigger:sp,start:'top bottom',end:'top top',scrub:1.2,
-      onEnter:function(){lnm.textContent=cd.nm;lds.textContent=cd.ds;ctr.textContent='00'+(idx+1)+' / 005'}
-    }}).to(ni,{scale:1,opacity:1,duration:1,ease:'power2.out'},0).to(ni.querySelector('img'),{scale:1,duration:1.3,ease:'power2.out'},0);
-    var prev=document.querySelector(d[idx-1].e);
-    gsap.set(prev,{scale:1,opacity:1});gsap.set(prev.querySelector('img'),{scale:1});
-    gsap.timeline({scrollTrigger:{trigger:sp,start:'top center',end:'top top',scrub:1.2}
-    }).to(prev,{scale:.7,opacity:0,duration:1,ease:'power2.in'},0).to(prev.querySelector('img'),{scale:1.6,duration:1,ease:'power2.in'},0)
-  })(i)
-}
-
-gsap.from('.hero h1',{opacity:0,y:40,duration:1.2,ease:'power3.out',delay:.4});
-gsap.from('.hero .ht',{opacity:0,y:10,duration:.8,delay:.2,ease:'power2.out'});
-gsap.from('.hero .hs',{opacity:0,y:10,duration:.8,delay:.7,ease:'power2.out'});
-gsap.from('.hero .hl',{opacity:0,width:0,duration:.8,delay:.9,ease:'power2.out'});
-
-gsap.from('.ab-c',{opacity:0,y:20,duration:.8,ease:'power2.out',scrollTrigger:{trigger:'.ab',start:'top 75%'}});
-gsap.from('.ab-i',{opacity:0,scale:.95,duration:.8,delay:.1,ease:'power2.out',scrollTrigger:{trigger:'.ab',start:'top 75%'}});
-gsap.from('.gi',{opacity:0,scale:.95,duration:.6,stagger:.06,ease:'power2.out',scrollTrigger:{trigger:'.gw',start:'top 75%'}});
-gsap.from('.ct h2',{opacity:0,y:20,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.ct',start:'top 75%'}});
-gsap.from('.ct p',{opacity:0,y:10,duration:.8,delay:.15,ease:'power2.out',scrollTrigger:{trigger:'.ct',start:'top 75%'}});
+const c=document.getElementById('ptcl'),a=c.getContext('2d')
+let w,h,p=[]
+function rs(){w=c.width=innerWidth;h=c.height=innerHeight}
+rs();addEventListener('resize',rs)
+const N=Math.floor((w*h)/12000)
+class P{constructor(){this.x=Math.random()*w;this.y=Math.random()*h;this.vx=(Math.random()-.5)*.6;this.vy=(Math.random()-.5)*.6;this.r=Math.random()*2.5+1}up(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>w)this.vx*=-1;if(this.y<0||this.y>h)this.vy*=-1}dr(){a.beginPath();a.arc(this.x,this.y,this.r,0,Math.PI*2);a.fillStyle=`rgba(234,88,12,${.3+Math.random()*.4})`;a.fill()}}
+for(let i=0;i<N;i++)p.push(new P)
+function an(){a.clearRect(0,0,w,h);p.forEach(p=>{p.up();p.dr()});for(let i=0;i<p.length;i++){for(let j=i+1;j<p.length;j++){const dx=p[i].x-p[j].x,dy=p[i].y-p[j].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<120){a.beginPath();a.moveTo(p[i].x,p[i].y);a.lineTo(p[j].x,p[j].y);a.strokeStyle=`rgba(234,88,12,${1-dist/120})`;a.lineWidth=.5;a.stroke()}}}requestAnimationFrame(an)}
+an()
+const io=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1})
+document.querySelectorAll('.rv').forEach(e=>io.observe(e))
+const ts=document.getElementById('ts')
+ts.querySelectorAll('button').forEach(b=>{b.addEventListener('click',()=>{ts.querySelectorAll('button').forEach(bt=>bt.classList.remove('act'));b.classList.add('act')})})
+const f=document.getElementById('fecha')
+const d=new Date();d.setDate(d.getDate()+1)
+f.value=d.toISOString().split('T')[0]
+f.min=d.toISOString().split('T')[0]
+document.getElementById('resBtn').addEventListener('click',()=>{const sel=ts.querySelector('.act');if(!sel){alert('Selecciona un horario');return}const fecha=f.value,hr=sel.dataset.h,pers=document.getElementById('pers').value,fm=new Date(fecha).toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'});window.open(`https://wa.me/529211234567?text=Hola!%20Quiero%20reservar%20para%20el%20${encodeURIComponent(fm)}%20a%20las%20${encodeURIComponent(hr)}%20para%20${pers}%20personas.%20Mi%20nombre%20es%20...`,'_blank')})
 </script>
 </body>
 </html>
