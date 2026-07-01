@@ -1,7 +1,49 @@
-﻿node_modules/
+﻿# System
+.DS_Store
+Thumbs.db
 *.log
-.env
-snowball_data.json
-img/
+
+# XAMPP / server
 webalizer/
 xampp/
+bitnami.css
+applications.html
+favicon.ico
+index.php
+
+# Backups & copies
+*- copia*/
+*_backup_*
+DIAGNOSTICO.bat
+REINICIAR.bat
+fix-password.sql
+plan aboarotes .txt
+
+# Old projects (not part of site)
+ball-jump/
+blackrock/
+carne/
+dashboard/
+educe/
+FPS-Game-Kilo/
+gasolinera_pos*/
+gasolinera_pos_mobile*/
+GasPOS/
+krystalflow/
+miweb/
+ml/
+nevas/
+nevas - copia/
+pos/
+pos-abarrotes/
+pos-abarrotes_backup_*/
+punto-venta-abarrotes/
+sistema_miel/
+sistema_miel - copia/
+TIENDA/
+war-game/
+wep pos/
+nevas - copia/
+
+# Node
+node_modules/

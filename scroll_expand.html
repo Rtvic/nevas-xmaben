@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Scroll Expand &middot; Demo 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#0A0A0A;color:#FAFAFA;overflow-x:hidden}
+::selection{background:#6C5CE7;color:#FAFAFA}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 32px;display:flex;justify-content:space-between;align-items:center;mix-blend-mode:difference}
+.nl{font-weight:800;font-size:.8rem;color:#FAFAFA;text-decoration:none;letter-spacing:-.3px}
+.nr{display:flex;gap:24px;list-style:none}
+.nr a{color:rgba(250,250,250,.15);text-decoration:none;font-size:.5rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;transition:color .35s}
+.nr a:hover{color:#FAFAFA}
+
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 24px;position:relative;background:#0A0A0A}
+.hero h1{font-weight:800;font-size:clamp(2rem,5vw,4.5rem);letter-spacing:-2px;line-height:.95}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,#FAFAFA,#6C5CE7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:.75rem;color:rgba(250,250,250,.12);margin-top:10px;font-weight:200;max-width:360px;letter-spacing:.5px}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(250,250,250,.03);font-size:.4rem;letter-spacing:3px;text-transform:uppercase}
+.scroll-hint .l{width:1px;height:32px;background:linear-gradient(rgba(250,250,250,.03),transparent);animation:si 2s ease-in-out infinite}
+@keyframes si{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.4);opacity:.3}}
+
+.ssec{position:relative}
+.imgs{position:relative}
+.imgs .sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.imgs .sticky .counter{position:absolute;top:24px;right:32px;z-index:10;font-weight:200;font-size:.6rem;color:rgba(250,250,250,.06);letter-spacing:2px;mix-blend-mode:difference}
+.imgs .sticky .img-wrap{position:absolute;width:clamp(260px,45vw,560px);height:clamp(340px,60vh,700px);border-radius:8px;overflow:hidden;will-change:transform}
+.imgs .sticky .img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.imgs .sticky .img-label{position:absolute;bottom:24px;left:32px;z-index:10;mix-blend-mode:difference}
+.imgs .sticky .img-label .t{font-weight:800;font-size:clamp(1rem,2vw,1.8rem);letter-spacing:-.5px;color:#FAFAFA}
+.imgs .sticky .img-label .s{font-weight:200;font-size:.55rem;color:rgba(250,250,250,.15);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.imgs .spacer{height:100vh}
+
+.cnt{padding:80px 32px;max-width:600px;margin:0 auto;text-align:center}
+.cnt .tag{font-size:.45rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(108,92,231,.15);margin-bottom:4px}
+.cnt h2{font-weight:800;font-size:clamp(1.2rem,2.5vw,2.2rem);letter-spacing:-1px;line-height:1.05;margin-bottom:8px}
+.cnt p{font-size:.75rem;color:rgba(250,250,250,.12);font-weight:200;line-height:1.8}
+
+.ft{padding:40px 32px;text-align:center;border-top:1px solid rgba(250,250,250,.02)}
+.ft p{color:rgba(250,250,250,.03);font-size:.5rem;font-weight:200}
+
+@media(max-width:700px){
+  .nr{display:none}
+  .imgs .sticky .img-wrap{width:80vw;height:60vh}
+  .imgs .sticky .img-label{left:20px;bottom:16px}
+  .imgs .sticky .counter{right:20px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nl">EXPAND</a>
+  <ul class="nr">
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#info">Info</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <h1>Im&aacute;genes que<br>se <em>expanden</em></h1>
+  <p>GSAP + ScrollTrigger para crear transiciones org&aacute;nicas entre imagen y texto. Cada foto crece desde el centro al hacer scroll.</p>
+  <div class="scroll-hint">Scroll <div class="l"></div></div>
+</section>
+
+<section class="ssec imgs" id="demo">
+  <div class="sticky" id="sticky">
+    <div class="counter" id="counter">01 / 05</div>
+    <div class="img-wrap" id="w1"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800&q=80" alt="" loading="lazy"></div>
+    <div class="img-wrap" id="w2"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80" alt="" loading="lazy"></div>
+    <div class="img-wrap" id="w3"><img src="https://images.unsplash.com/photo-1470071459604-7b8ec44ffd4b?w=800&q=80" alt="" loading="lazy"></div>
+    <div class="img-wrap" id="w4"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80" alt="" loading="lazy"></div>
+    <div class="img-wrap" id="w5"><img src="https://images.unsplash.com/photo-1518173946687-a36f968f7e38?w=800&q=80" alt="" loading="lazy"></div>
+    <div class="img-label"><div class="t" id="label-t">Monta&ntilde;as</div><div class="s" id="label-s">01 &mdash; Paisaje</div></div>
+  </div>
+  <div class="spacer" id="spacer1"></div>
+  <div class="spacer" id="spacer2"></div>
+  <div class="spacer" id="spacer3"></div>
+  <div class="spacer" id="spacer4"></div>
+  <div class="spacer" id="spacer5"></div>
+</section>
+
+<section class="ssec cnt" id="info">
+  <div class="tag">T&eacute;cnica</div>
+  <h2>C&oacute;mo funciona</h2>
+  <p>Cada imagen est&aacute; envuelta en un contenedor con overflow:hidden. Al hacer scroll, GSAP ScrollTrigger anima el scale del contenedor de 0.6 a 1 y la imagen interna de 1.8 a 1. El resultado es un efecto de expansi&oacute;n org&aacute;nica que revela la foto desde el centro.</p>
+  <p style="margin-top:12px">El texto inferior y el contador cambian sincronizados con cada imagen. Todo en un solo archivo HTML, sin frameworks.</p>
+</section>
+
+<footer class="ft">
+  <p>&copy; 2026 &middot; Scroll Expand Demo &middot; GSAP + ScrollTrigger</p>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+var imgs=[{e:'#w1',t:'Montañas',s:'01 — Paisaje'},{e:'#w2',t:'Lago',s:'02 — Naturaleza'},{e:'#w3',t:'Bosque',s:'03 — Aventura'},{e:'#w4',t:'Atardecer',s:'04 — Horizonte'},{e:'#w5',t:'Nubes',s:'05 — Cielo'}];
+var lt=document.getElementById('label-t'),ls=document.getElementById('label-s'),lc=document.getElementById('counter');
+
+imgs.forEach(function(img,i){
+  var wrap=document.querySelector(img.e);
+  var inner=wrap.querySelector('img');
+  var sp=document.getElementById('spacer'+(i+1));
+
+  gsap.set(wrap,{scale:.6,opacity:0});
+  gsap.set(inner,{scale:1.8});
+
+  var tl=gsap.timeline({scrollTrigger:{
+    trigger:sp,start:'top bottom',end:'top top',scrub:1.2,toggleActions:'play none none none',
+    onEnter:function(){lt.textContent=img.t;ls.textContent=img.s;lc.textContent='0'+(i+1)+' / 05'}
+  }});
+  tl.to(wrap,{scale:1,opacity:1,duration:1,ease:'power2.out'},0)
+    .to(inner,{scale:1,duration:1.2,ease:'power2.out'},0);
+
+  if(i<imgs.length-1){
+    var next=imgs[i+1];
+    var nw=document.querySelector(next.e);
+    gsap.set(nw,{scale:.6,opacity:0});
+    gsap.set(nw.querySelector('img'),{scale:1.8});
+    gsap.timeline({scrollTrigger:{
+      trigger:sp,start:'top center',end:'top top',scrub:1.2,toggleActions:'play none none none'
+    }}).to(wrap,{scale:.8,opacity:0,duration:1,ease:'power2.in'},0)
+      .to(wrap.querySelector('img'),{scale:1.4,duration:1,ease:'power2.in'},0)
+  }
+});
+
+gsap.from('.hero h1',{opacity:0,y:30,duration:1.2,ease:'power3.out',delay:.4});
+gsap.from('.hero p',{opacity:0,y:15,duration:.8,delay:.8,ease:'power2.out'});
+gsap.from('.cnt h2',{opacity:0,y:20,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.cnt',start:'top 75%'}});
+gsap.from('.cnt p',{opacity:0,y:15,duration:.8,delay:.2,ease:'power2.out',scrollTrigger:{trigger:'.cnt',start:'top 75%'}});
+</script>
+</body>
+</html>

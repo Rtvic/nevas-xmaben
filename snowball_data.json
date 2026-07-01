@@ -1,0 +1,97 @@
+{
+  "persona": {
+    "nombre": "Victor Ontiveros",
+    "ubicacion": "X-Mabel, Hopelchén, Campeche",
+    "meta": "$100,000 MXN",
+    "fechaInicio": "2026-06-29",
+    "diasEstimados": 365,
+    "estimacionFuente": "IA"
+  },
+  "banco": {
+    "capital": -10000,
+    "ingresoSemanal": 500,
+    "deudas": [
+      {
+        "nombre": "Mercado Pago",
+        "monto": 7630,
+        "estatus": "MSI activos"
+      },
+      {
+        "nombre": "Black Card",
+        "monto": 2000,
+        "estatus": "Restante después de pago"
+      }
+    ]
+  },
+  "bolitas": [
+    {
+      "id": 1,
+      "nombre": "Bolita 1",
+      "label": "Ahorrar $5,000 libres",
+      "meta": 5000,
+      "progreso": 0,
+      "color": "#fbbf24",
+      "estatus": "locked"
+    },
+    {
+      "id": 2,
+      "nombre": "Bolita 2",
+      "label": "Acumular $15,000",
+      "meta": 15000,
+      "progreso": 0,
+      "color": "#f97316",
+      "estatus": "locked"
+    },
+    {
+      "id": 3,
+      "nombre": "Bolita 3",
+      "label": "Acumular $30,000",
+      "meta": 30000,
+      "progreso": 0,
+      "color": "#ef4444",
+      "estatus": "locked"
+    },
+    {
+      "id": 4,
+      "nombre": "Bolita 4",
+      "label": "Acumular $60,000",
+      "meta": 60000,
+      "progreso": 0,
+      "color": "#a855f7",
+      "estatus": "locked"
+    },
+    {
+      "id": 5,
+      "nombre": "Bolita 5",
+      "label": "$100,000 MXN",
+      "meta": 100000,
+      "progreso": 0,
+      "color": "#22c55e",
+      "estatus": "locked"
+    }
+  ],
+  "calendario": {
+    "2026-07-01": {
+      "diaNumero": 1,
+      "estado": "en_curso",
+      "tasks": [],
+      "earned": 0,
+      "spent": 0,
+      "notas": ""
+    }
+  },
+  "stats": {
+    "diasCompletados": 0,
+    "diasFallidos": 0,
+    "diasEnCurso": 1,
+    "totalGenerado": 0,
+    "totalGastado": 0,
+    "rachaActual": 0,
+    "mejorRacha": 0
+  },
+  "actividades": [],
+  "ultimaActualizacion": "2026-07-01T01:03:54",
+  "url_publica": "https://30ae6fe4ec5597.lhr.life",
+  "url_local": "http://192.168.100.40/",
+  "tunel_activo": true
+}
