@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Aroma ☕ | Cafetería en Mérida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#1c0f08;color:#f5e6d3;overflow-x:hidden;line-height:1.6}
+.nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:12px 20px;background:rgba(28,15,8,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(217,119,6,0.15);display:flex;align-items:center;justify-content:space-between}
+.nav-lk{display:flex;gap:16px;list-style:none}
+.nav-lk a{color:#d4a574;text-decoration:none;font-size:13px;font-weight:500;transition:color 0.3s;letter-spacing:0.3px}
+.nav-lk a:hover{color:#d97706}
+.lgo{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#f5e6d3;text-decoration:none;display:flex;align-items:center;gap:6px}
+.lgo span{font-size:20px}
+.hmb{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hmb s{display:block;width:24px;height:2px;background:#d4a574;border-radius:2px;text-decoration:none}
+.hro{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;padding:100px 20px 60px;background:linear-gradient(180deg,rgba(120,53,15,0.3) 0%,rgba(28,15,8,0.95) 70%,#1c0f08 100%)}
+.hro h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,8vw,5rem);font-weight:700;color:#f5e6d3;margin-bottom:16px;line-height:1.1}
+.hro h1 em{font-style:normal;background:linear-gradient(135deg,#d97706,#a16207);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hro p{font-size:clamp(1rem,2.5vw,1.3rem);color:#d4a574;max-width:540px;margin-bottom:36px;font-weight:300}
+.btn{display:inline-block;padding:14px 40px;background:linear-gradient(135deg,#d97706,#a16207);color:#1c0f08;font-weight:600;font-size:15px;border-radius:50px;text-decoration:none;transition:transform 0.3s,box-shadow 0.3s;letter-spacing:0.5px;border:none;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(217,119,6,0.35)}
+.btn-w{background:#25D366;color:#fff!important;display:inline-flex;align-items:center;gap:8px;padding:14px 40px;font-weight:600;font-size:15px;border-radius:50px;text-decoration:none;transition:transform 0.3s,box-shadow 0.3s}
+.btn-w:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,0.35)}
+.sec{padding:80px 20px;position:relative;max-width:1200px;margin:0 auto}
+.ttl{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#f5e6d3;margin-bottom:12px;text-align:center}
+.stt{color:#d4a574;text-align:center;font-size:15px;max-width:600px;margin:0 auto 48px;font-weight:300}
+.mnu-c{max-width:800px;margin:0 auto}
+.mnu-g{display:grid;gap:10px}
+.mnu-h{font-family:'Playfair Display',serif;font-size:20px;color:#d97706;margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid rgba(217,119,6,0.2)}
+.mnu-h:first-child{margin-top:0}
+.mnu-i{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(120,53,15,0.12);border-radius:10px;border:1px solid rgba(217,119,6,0.06);transition:background 0.3s}
+.mnu-i:hover{background:rgba(120,53,15,0.25)}
+.mnu-n{font-weight:500;color:#f5e6d3;font-size:15px}
+.mnu-d{font-size:12px;color:#a16207;margin-top:2px}
+.mnu-p{font-weight:600;color:#d97706;font-size:16px}
+.bnf{display:grid;gap:20px;grid-template-columns:repeat(2,1fr);max-width:800px;margin:0 auto}
+.bnf-i{text-align:center;padding:28px 16px;background:rgba(120,53,15,0.1);border-radius:14px;border:1px solid rgba(217,119,6,0.08);transition:transform 0.3s}
+.bnf-i:hover{transform:translateY(-4px)}
+.bnf-n{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;color:#d97706;display:block}
+.bnf-l{font-size:13px;color:#d4a574;margin-top:4px;font-weight:300}
+.bnt{display:grid;gap:16px;grid-template-columns:1fr;max-width:1000px;margin:0 auto}
+.bnt-i{min-height:200px;border-radius:16px;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;border:1px solid rgba(217,119,6,0.12)}
+.bnt-i::before{content:'';position:absolute;inset:0;opacity:0.85;z-index:0}
+.bnt-i>*{position:relative;z-index:1}
+.bnt-i h3{font-family:'Playfair Display',serif;font-size:20px;color:#f5e6d3;margin-bottom:6px}
+.bnt-i p{font-size:14px;color:#d4a574;font-weight:300;line-height:1.5}
+.bnt-i span{font-size:36px;margin-bottom:8px;display:block}
+.bg-g1{background:linear-gradient(135deg,#78350f,#a16207)}
+.bg-g2{background:linear-gradient(135deg,#451a03,#78350f)}
+.bg-g3{background:linear-gradient(135deg,#1c0f08,#78350f)}
+.bg-g4{background:linear-gradient(135deg,#a16207,#d97706)}
+.bg-g5{background:linear-gradient(135deg,#78350f,#451a03)}
+.bg-g6{background:linear-gradient(135deg,#2d1a0e,#78350f)}
+.map-c{max-width:1000px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid rgba(217,119,6,0.15);box-shadow:0 4px 30px rgba(0,0,0,0.3)}
+.map-c iframe{width:100%;height:350px;border:0;display:block;filter:grayscale(0.8) sepia(0.3)}
+.cta-s{background:linear-gradient(135deg,rgba(120,53,15,0.25),rgba(28,15,8,0.95));border-radius:20px;padding:50px 30px;text-align:center;max-width:700px;margin:0 auto;border:1px solid rgba(217,119,6,0.12)}
+.cta-s h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:#f5e6d3;margin-bottom:12px}
+.cta-s p{color:#d4a574;margin-bottom:28px;font-weight:300;font-size:15px}
+.hrs{display:grid;gap:8px;max-width:400px;margin:28px auto 0;padding:20px;background:rgba(120,53,15,0.08);border-radius:12px;border:1px solid rgba(217,119,6,0.06)}
+.hrs-d{display:flex;justify-content:space-between;font-size:14px;color:#d4a574}
+.hrs-d strong{color:#d97706;font-weight:500}
+.gal{display:grid;gap:20px;grid-template-columns:1fr;max-width:900px;margin:0 auto}
+.gal-i{padding:20px 20px 50px;border-radius:4px;position:relative;transform:rotate(-1deg);transition:transform 0.4s;border:1px solid rgba(217,119,6,0.1);text-align:center}
+.gal-i:nth-child(even){transform:rotate(1.5deg)}
+.gal-i:hover{transform:rotate(0deg) scale(1.02)}
+.gal-i::after{content:'';position:absolute;bottom:16px;left:50%;transform:translateX(-50%);width:60%;height:2px;border-radius:2px}
+.gal-c{height:180px;border-radius:2px;margin-bottom:12px;position:relative;display:flex;align-items:center;justify-content:center;font-size:4rem}
+.gal-l{font-size:11px;color:#a16207;text-align:center;font-weight:300;letter-spacing:0.5px}
+.g1 .gal-c{background:linear-gradient(135deg,#78350f,#a16207)}
+.g1::after{background:#d97706}
+.g2 .gal-c{background:linear-gradient(135deg,#451a03,#78350f)}
+.g2::after{background:#a16207}
+.g3 .gal-c{background:linear-gradient(135deg,#a16207,#d97706)}
+.g3::after{background:#d97706}
+.g4 .gal-c{background:linear-gradient(135deg,#2d1a0e,#78350f)}
+.g4::after{background:#a16207}
+.ftr{text-align:center;padding:30px 20px;border-top:1px solid rgba(217,119,6,0.08)}
+.ftr p{font-size:13px;color:#78350f}
+.ftr a{color:#a16207;text-decoration:none}
+.wts{position:fixed;bottom:24px;right:24px;z-index:200;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.3s;text-decoration:none}
+.wts:hover{transform:scale(1.1)}
+.wts svg{width:28px;height:28px;fill:#fff}
+.rvl{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.rvl--v{opacity:1;transform:translateY(0)}
+@media(min-width:640px){
+.sec{padding:100px 32px}
+.bnt{grid-template-columns:repeat(2,1fr)}
+.bnt-i:nth-child(3){grid-column:span 2}
+.bnf{grid-template-columns:repeat(4,1fr)}
+.map-c iframe{height:400px}
+.gal{grid-template-columns:repeat(2,1fr)}
+.gal-i:first-child{grid-column:span 2}
+}
+@media(min-width:900px){
+.nav{padding:16px 48px}
+.nav-lk{gap:32px}
+.nav-lk a{font-size:14px}
+.lgo{font-size:26px}
+.bnt{grid-template-columns:repeat(3,1fr)}
+.bnt-i:first-child{grid-column:span 2;grid-row:span 2}
+.bnt-i:nth-child(4){grid-column:span 2}
+.gal{grid-template-columns:repeat(3,1fr)}
+.gal-i:first-child{grid-column:span 2;grid-row:span 2}
+.gal-i:first-child .gal-c{height:280px}
+.cta-s{padding:70px 50px}
+}
+@media(max-width:639px){
+.nav-lk{position:fixed;top:0;right:-100%;width:220px;height:100vh;background:rgba(28,15,8,0.97);backdrop-filter:blur(20px);flex-direction:column;padding:80px 24px 24px;gap:20px;transition:right 0.4s;border-left:1px solid rgba(217,119,6,0.1)}
+.nav-lk--o{right:0}
+.nav-lk a{font-size:15px}
+.hmb{display:flex}
+.hmb--a s:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hmb--a s:nth-child(2){opacity:0}
+.hmb--a s:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mnu-g{gap:8px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<a href="#" class="lgo">Café Aroma <span>☕</span></a>
+<button class="hmb" id="hmb" aria-label="Menú">
+<s></s><s></s><s></s>
+</button>
+<ul class="nav-lk" id="nvLk">
+<li><a href="#hro">Inicio</a></li>
+<li><a href="#mnu">Menú</a></li>
+<li><a href="#esp">Espacio</a></li>
+<li><a href="#gal">Galería</a></li>
+<li><a href="#ubi">Ubicación</a></li>
+<li><a href="https://wa.me/529214875347?text=¡Hola!%20Quiero%20visitar%20Café%20Aroma%20☕" target="_blank">Contacto</a></li>
+</ul>
+</nav>
+
+<section class="hro" id="hro">
+<h1>El mejor <em>café</em> de Mérida</h1>
+<p>En el corazón de Mérida, despierta tus sentidos con el aroma y sabor de nuestro café artesanal. Un espacio creado para ti.</p>
+<a href="https://wa.me/529214875347?text=¡Hola!%20Quiero%20visitar%20Café%20Aroma%20☕" target="_blank" class="btn">Contáctanos hoy</a>
+</section>
+
+<section class="sec" id="mnu">
+<h2 class="ttl rvl">Nuestro Menú</h2>
+<p class="stt rvl">Cada bebida y bocado preparado con los mejores ingredientes y el cariño que nos distingue.</p>
+<div class="mnu-c">
+<div class="mnu-g">
+<h3 class="mnu-h rvl">☕ Café</h3>
+<div class="mnu-i rvl"><div><div class="mnu-n">Espresso</div><div class="mnu-d">Intenso y aromático</div></div><div class="mnu-p">$35</div></div>
+<div class="mnu-i rvl"><div><div class="mnu-n">Cappuccino</div><div class="mnu-d">Espuma cremosa con canela</div></div><div class="mnu-p">$50</div></div>
+<div class="mnu-i rvl"><div><div class="mnu-n">Latte</div><div class="mnu-d">Suave y reconfortante</div></div><div class="mnu-p">$45</div></div>
+<div class="mnu-i rvl"><div><div class="mnu-n">Mocha</div><div class="mnu-d">Chocolate y café</div></div><div class="mnu-p">$55</div></div>
+<div class="mnu-i rvl"><div><div class="mnu-n">Frappé</div><div class="mnu-d">Helado y cremoso</div></div><div class="mnu-p">$60</div></div>
+<div class="mnu-i rvl"><div><div class="mnu-n">Cold Brew</div><div class="mnu-d">Extracción en frío 12h</div></div><div class="mnu-p">$50</div></div>
+<h3 class="mnu-h rvl">🍽️ Alimentos</h3>
+<div class="mnu-i rvl"><div><div class="mnu-n">Croissant</div><div class="mnu-d">Hojaldrado y dorado</div></div><div class="mnu-p">$40</div></div>
+<div class="mnu-i rvl"><div><div class="mnu-n">Panini</div><div class="mnu-d">Pollo, pesto y queso</div></div><div class="mnu-p">$65</div></div>
+<div class="mnu-i rvl"><div><div class="mnu-n">Cheesecake</div><div class="mnu-d">New York style</div></div><div class="mnu-p">$50</div></div>
+<div class="mnu-i rvl"><div><div class="mnu-n">Brownie</div><div class="mnu-d">Chocolate con nuez</div></div><div class="mnu-p">$40</div></div>
+<h3 class="mnu-h rvl">🥤 Bebidas Frías</h3>
+<div class="mnu-i rvl"><div><div class="mnu-n">Smoothie</div><div class="mnu-d">Frutos rojos o mango</div></div><div class="mnu-p">$55</div></div>
+<div class="mnu-i rvl"><div><div class="mnu-n">Matcha Latte Frío</div><div class="mnu-d">Té verde ceremonial</div></div><div class="mnu-p">$60</div></div>
+<div class="mnu-i rvl"><div><div class="mnu-n">Limonada Natural</div><div class="mnu-d">Con hierbabuena</div></div><div class="mnu-p">$35</div></div>
+</div>
+</div>
+</section>
+
+<section class="sec" id="esp">
+<h2 class="ttl rvl">Nuestro Espacio</h2>
+<p class="stt rvl">Un rincón acogedor con alma contemporánea, donde cada visita se convierte en un momento especial.</p>
+<div class="bnt">
+<div class="bnt-i bg-g1 rvl"><span>🪴</span><h3>Ambiente Natural</h3><p>Rodeado de plantas y luz natural que inspiran calma.</p></div>
+<div class="bnt-i bg-g2 rvl"><span>📚</span><h3>Rincón de Lectura</h3><p>Estantería abierta con libros para disfrutar tu café.</p></div>
+<div class="bnt-i bg-g3 rvl"><span>🎵</span><h3>Música en Vivo</h3><p>Jazz y trova los fines de semana en un ambiente íntimo.</p></div>
+<div class="bnt-i bg-g4 rvl"><span>💻</span><h3>WiFi Gratuito</h3><p>Alta velocidad para trabajar o estudiar cómodamente.</p></div>
+<div class="bnt-i bg-g5 rvl"><span>🧑‍🍳</span><h3>Barista Experto</h3><p>Nuestros baristas preparan cada taza con pasión.</p></div>
+<div class="bnt-i bg-g6 rvl"><span>🏛️</span><h3>Mérida</h3><p>Ubicado en una zona accesible y con encanto.</p></div>
+</div>
+</section>
+
+<section class="sec" id="gal">
+<h2 class="ttl rvl">Galería</h2>
+<p class="stt rvl">La esencia de Café Aroma en cada rincón.</p>
+<div class="gal">
+<div class="gal-i g1 rvl"><div class="gal-c">☕</div><div class="gal-l">Nuestra barra de café</div></div>
+<div class="gal-i g2 rvl"><div class="gal-c">🌿</div><div class="gal-l">Terraza al atardecer</div></div>
+<div class="gal-i g3 rvl"><div class="gal-c">🎨</div><div class="gal-l">Capuchino artesanal</div></div>
+<div class="gal-i g4 rvl"><div class="gal-c">📖</div><div class="gal-l">Rincón de lectura</div></div>
+<div class="gal-i g5 rvl"><div class="gal-c">🎵</div><div class="gal-l">Música en vivo</div></div>
+<div class="gal-i g6 rvl"><div class="gal-c">👨‍🍳</div><div class="gal-l">Nuestro equipo</div></div>
+</div>
+</section>
+
+<section class="sec">
+<h2 class="ttl rvl">Café Aroma en Números</h2>
+<p class="stt rvl">La calidad nos respalda.</p>
+<div class="bnf">
+<div class="bnf-i rvl"><span class="bnf-n" data-to="50">0</span><span class="bnf-l">Mezclas de café</span></div>
+<div class="bnf-i rvl"><span class="bnf-n" data-to="15">0</span><span class="bnf-l">Años de tradición</span></div>
+<div class="bnf-i rvl"><span class="bnf-n" data-to="24">0</span><span class="bnf-l">Horas de tueste</span></div>
+<div class="bnf-i rvl"><span class="bnf-n" data-to="100">0</span><span class="bnf-l">% Artesanal</span></div>
+</div>
+</section>
+
+<section class="sec" id="ubi">
+<h2 class="ttl rvl">Encuéntranos</h2>
+<p class="stt rvl">Estamos en Mérida, Yucatán. Te esperamos con una taza caliente.</p>
+<div class="map-c rvl">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7444.115545178587!2d-89.62204232457316!3d20.96730892018198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f5670c4b7e0b9c9%3A0x8f5670c4b7e0b9c9!2sCentro%2C%20M%C3%A9rida%2C%20Yucat%C3%A1n!5e0!3m2!1ses!2smx!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</section>
+
+<section class="sec">
+<div class="cta-s rvl">
+<h2>Visítanos hoy</h2>
+<p>Te esperamos de lunes a domingo con el mejor café de Mérida. Ven solo o acompañado, siempre habrá una taza caliente para ti.</p>
+<a href="https://wa.me/529214875347?text=¡Hola!%20Quiero%20visitar%20Café%20Aroma%20☕" target="_blank" class="btn-w">📱 Enviar WhatsApp</a>
+<div class="hrs">
+<div class="hrs-d"><span>Lunes a Viernes</span><strong>7am — 9pm</strong></div>
+<div class="hrs-d"><span>Sábado</span><strong>8am — 10pm</strong></div>
+<div class="hrs-d"><span>Domingo</span><strong>8am — 8pm</strong></div>
+</div>
+</div>
+</section>
+
+<footer class="ftr">
+<p>Café Aroma ☕ — Mérida, Yucatán</p>
+<p><a href="https://wa.me/529214875347">+52 921 487 5347</a></p>
+</footer>
+
+<a href="https://wa.me/529214875347?text=¡Hola!%20Quiero%20visitar%20Café%20Aroma%20☕" target="_blank" class="wts" aria-label="WhatsApp">
+<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const hmb = document.getElementById('hmb')
+const nvLk = document.getElementById('nvLk')
+hmb.addEventListener('click', () => {
+  hmb.classList.toggle('hmb--a')
+  nvLk.classList.toggle('nav-lk--o')
+})
+nvLk.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hmb.classList.remove('hmb--a')
+    nvLk.classList.remove('nav-lk--o')
+  })
+})
+const rv = document.querySelectorAll('.rvl')
+const ob = new IntersectionObserver(entries => {
+  for (const e of entries) {
+    if (e.isIntersecting) {
+      e.target.classList.add('rvl--v')
+      ob.unobserve(e.target)
+    }
+  }
+}, { threshold: 0.15 })
+for (const el of rv) ob.observe(el)
+const ct = document.querySelectorAll('[data-to]')
+const co = new IntersectionObserver(entries => {
+  for (const e of entries) {
+    if (e.isIntersecting) {
+      const el = e.target
+      const to = parseInt(el.dataset.to)
+      const dur = 1500
+      const st = performance.now()
+      function up(now) {
+        const p = Math.min((now - st) / dur, 1)
+        el.textContent = Math.floor(p * to)
+        if (p < 1) requestAnimationFrame(up)
+      }
+      requestAnimationFrame(up)
+      co.unobserve(el)
+    }
+  }
+}, { threshold: 0.5 })
+for (const el of ct) co.observe(el)
+</script>
+</body>
+</html>
