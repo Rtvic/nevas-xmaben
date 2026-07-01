@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Pagar con Mercado Pago — Nevas Xmaben</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<script src="https://sdk.mercadopago.com/js/v2"></script>
+<!-- Pagos directos Mercado Pago - sin backend -->
 <style>
 :root{--bg:#08080f;--s:rgba(18,18,32,.85);--b:rgba(48,48,80,.25);--t:#eef0f6;--t2:#6b6b9e;--accent:#6366f1;--green:#10b981;--gold:#fbbf24}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -88,7 +88,13 @@ h1{font-size:22px;font-weight:800;margin-bottom:4px}
 </div>
 
 <script>
-const mp = new MercadoPago('APP_USR-fff1338f-0fdb-4077-9d5f-0d1b45e24226');
+const PRODUCTOS = {
+  paquete_basico: { url: 'https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=1306973285-26d60586-7041-4919-8592-87dadd267c88', precio: 1499 },
+  paquete_profesional: { url: 'https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=1306973285-4e09b0b5-0a0e-45e3-ba7b-c1ec3ab29251', precio: 2999 },
+  paquete_premium: { url: 'https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=1306973285-de6392e6-de24-4c76-9237-d5dbdf6c97c3', precio: 5999 },
+  personalizado: { url: 'https://www.mercadopago.com.mx/checkout/v1/redirect?pref_id=1306973285-7be010be-74e3-4195-910d-bba976f14645', precio: 9999 }
+};
+
 const btnPagar = document.getElementById('btnPagar');
 const errorMsg = document.getElementById('errorMsg');
 let productoSeleccionado = null;
@@ -103,32 +109,14 @@ document.querySelectorAll('.paquete').forEach(el => {
   });
 });
 
-btnPagar.addEventListener('click', async () => {
+btnPagar.addEventListener('click', () => {
   if (!productoSeleccionado) return;
-  btnPagar.disabled = true;
-  btnPagar.innerHTML = '<span>⏳</span><span>Creando pago...</span>';
-  btnPagar.classList.add('loading');
-  errorMsg.style.display = 'none';
-
-  try {
-    const res = await fetch('/api/create_preference.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ producto: productoSeleccionado }),
-    });
-    const data = await res.json();
-
-    if (data.success && data.init_point) {
-      window.location.href = data.init_point;
-    } else {
-      throw new Error(data.error || 'Error al crear el pago');
-    }
-  } catch (err) {
-    errorMsg.textContent = 'Error: ' + err.message + '. Intenta de nuevo o escribe a WhatsApp.';
+  const prod = PRODUCTOS[productoSeleccionado];
+  if (prod && prod.url) {
+    window.location.href = prod.url;
+  } else {
+    errorMsg.textContent = 'Error: producto no disponible. Escribenos por WhatsApp.';
     errorMsg.style.display = 'block';
-    btnPagar.disabled = false;
-    btnPagar.innerHTML = '<span>🛒</span><span>Pagar con Mercado Pago</span>';
-    btnPagar.classList.remove('loading');
   }
 });
 </script>
