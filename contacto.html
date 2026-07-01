@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Solicitar Sitio Web - Nevas Xmaben</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;background:#08080f;color:#eef0f6;padding:20px;max-width:500px;margin:auto;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.card{width:100%;background:rgba(18,18,32,.85);border-radius:20px;border:1px solid rgba(48,48,80,.25);padding:28px 24px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6366f1,#10b981)}
+h1{font-size:22px;font-weight:800;margin-bottom:4px;text-align:center}
+.sub{font-size:11px;color:#6b6b9e;margin-bottom:20px;text-align:center}
+.input-group{margin-bottom:14px}
+label{display:block;font-size:11px;font-weight:600;color:#6b6b9e;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+input,select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(48,48,80,.25);background:rgba(255,255,255,.03);color:#eef0f6;font-size:14px;font-family:inherit;outline:none}
+input:focus,select:focus{border-color:#6366f1}
+select option{background:#1a1a2e;color:#eef0f6}
+.btn{width:100%;padding:14px;border-radius:10px;font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all .3s}
+.btn-primary{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(99,102,241,0.3)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.status{margin-top:12px;padding:10px;border-radius:8px;font-size:12px;text-align:center;display:none}
+.status.ok{display:block;background:rgba(16,185,129,.1);border:1px solid #10b981;color:#10b981}
+.status.err{display:block;background:rgba(239,68,68,.1);border:1px solid #ef4444;color:#ef4444}
+.info{text-align:center;margin-top:16px;font-size:11px;color:#6b6b9e}
+.info a{color:#22d3ee;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Solicitar Sitio Web</h1>
+<div class="sub">Completa y te contacto en minutos</div>
+<form id="leadForm">
+<div class="input-group"><label>Nombre del negocio</label><input type="text" id="negocio" placeholder="Ej: Taqueria El Buen Sabor" required></div>
+<div class="input-group"><label>Tu nombre</label><input type="text" id="nombre" placeholder="Tu nombre" required></div>
+<div class="input-group"><label>WhatsApp</label><input type="tel" id="telefono" placeholder="921 123 4567" required></div>
+<div class="input-group"><label>Tipo de negocio</label>
+<select id="tipo">
+<option value="restaurante">Restaurante / Taqueria</option>
+<option value="taller">Taller / Servicio</option>
+<option value="abogado">Abogado / Consultor</option>
+<option value="tienda">Tienda / Abarrotes</option>
+<option value="otro">Otro</option>
+</select></div>
+<div class="input-group"><label>Tu presupuesto</label>
+<select id="presupuesto">
+<option value="1500">$1,500 - Sitio Basico</option>
+<option value="3000">$3,000 - Sitio Premium</option>
+<option value="indefinido">No lo se</option>
+</select></div>
+<button class="btn btn-primary" id="submitBtn" onclick="enviar(event)">Enviar Solicitud</button>
+</form>
+<div class="status" id="status"></div>
+<div class="info">
+<a href="index.html">← Volver al inicio</a> &middot; <a href="https://wa.me/5219214875347" target="_blank">Whatsapp directo</a>
+</div>
+</div>
+<script>
+async function enviar(e){
+e.preventDefault();
+const btn=document.getElementById('submitBtn');
+btn.disabled=true;btn.textContent='Enviando...';
+const data={negocio:document.getElementById('negocio').value,nombre:document.getElementById('nombre').value,telefono:document.getElementById('telefono').value,tipo:document.getElementById('tipo').value,presupuesto:document.getElementById('presupuesto').value,fecha:new Date().toISOString()};
+try{
+const r=await fetch('save_lead.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+const res=await r.json();
+if(res.ok){
+document.getElementById('status').className='status ok';
+document.getElementById('status').textContent='Listo! Te contacto en breve.';
+document.getElementById('leadForm').reset();
+}else{
+document.getElementById('status').className='status err';
+document.getElementById('status').textContent='Error al guardar. Intenta de nuevo.';
+}
+}catch{
+document.getElementById('status').className='status err';
+document.getElementById('status').textContent='Error de conexion. Intenta WhatsApp directo.';
+}
+btn.disabled=false;btn.textContent='Enviar Solicitud';
+}
+</script>
+</body>
+</html>
