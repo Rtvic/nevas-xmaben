@@ -1,99 +1,136 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Pagar — Nevas Xmaben</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<title>Pagar con Mercado Pago — Nevas Xmaben</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://sdk.mercadopago.com/js/v2"></script>
 <style>
-:root{--bg:#08080f;--s:rgba(18,18,32,.85);--b:rgba(48,48,80,.25);--t:#eef0f6;--t2:#6b6b9e;--accent:#6366f1;--green:#10b981;--gold:#fbbf24;--cyan:#22d3ee}
+:root{--bg:#08080f;--s:rgba(18,18,32,.85);--b:rgba(48,48,80,.25);--t:#eef0f6;--t2:#6b6b9e;--accent:#6366f1;--green:#10b981;--gold:#fbbf24}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,sans-serif;background:var(--bg);color:var(--t);padding:20px 16px 40px;max-width:500px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.card{width:100%;background:var(--s);border-radius:20px;border:1px solid var(--b);padding:28px 24px;text-align:center;position:relative;overflow:hidden}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--t);padding:20px 16px 40px;max-width:560px;margin:0 auto;min-height:100vh}
+.card{width:100%;background:var(--s);border-radius:20px;border:1px solid var(--b);padding:28px 24px;position:relative;overflow:hidden}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--green),var(--gold))}
-h1{font-size:20px;font-weight:800;margin-bottom:4px}
-.sub{font-size:10px;color:var(--t2);margin-bottom:16px}
-.monto{font-size:36px;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--green);margin-bottom:4px}
-.monto.r{color:var(--red)}
-.monto-label{font-size:8px;color:var(--t2);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
-.pay-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
-.pay-grid a{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:12px;font-size:13px;font-weight:700;text-decoration:none;transition:all .25s;border:none;cursor:pointer}
-.pay-grid a:active{transform:scale(.97)}
-.pay-grid .mp{background:linear-gradient(135deg,#00B0F0,#009EE0);color:#fff}
-.pay-grid .pp{background:linear-gradient(135deg,#003087,#002070);color:#fff}
-.pay-grid .sp{background:linear-gradient(135deg,#25D366,#1da851);color:#fff}
-.pay-grid .ef{background:var(--s);color:var(--t);border:1px solid var(--b)}
-.qr-box{background:rgba(255,255,255,.03);border-radius:14px;padding:20px;border:1px solid var(--b);margin-bottom:16px}
-.qr-box .qr-code{width:160px;height:160px;margin:0 auto;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
-.qr-box .qr-code img{width:100%;height:100%}
-.qr-box p{font-size:8px;color:var(--t2);margin-top:8px}
-.qr-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#333;font-family:'JetBrains Mono',monospace;font-size:9px}
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px}
-.info-grid div{background:rgba(255,255,255,.01);border-radius:8px;padding:8px 10px;border:1px solid var(--b);text-align:left}
-.info-grid .il{font-size:7px;color:var(--t2);text-transform:uppercase;letter-spacing:1px}
-.info-grid .iv{font-size:11px;font-weight:700;margin-top:2px}
-.pay-footer{font-size:8px;color:var(--t2)}
-.pay-footer a{color:var(--cyan);text-decoration:none}
+h1{font-size:22px;font-weight:800;margin-bottom:4px}
+.sub{font-size:12px;color:var(--t2);margin-bottom:20px}
+.paquete{background:rgba(255,255,255,.02);border:1px solid var(--b);border-radius:12px;padding:16px;margin-bottom:10px;cursor:pointer;transition:all .2s}
+.paquete:hover,.paquete.seleccionado{border-color:var(--accent);background:rgba(99,102,241,.05)}
+.paquete .nombre{font-size:14px;font-weight:700}
+.paquete .desc{font-size:11px;color:var(--t2);margin:4px 0}
+.paquete .precio{font-size:20px;font-weight:900;color:var(--green);font-family:'JetBrains Mono',monospace}
+.paquete .precio small{font-size:11px;color:var(--t2);font-weight:400}
+.paquete .tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:700;margin-top:6px}
+.tag.popular{background:var(--accent);color:#fff}
+.tag.oferta{background:var(--gold);color:#000}
+.btn-mp{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;border-radius:12px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .25s;background:linear-gradient(135deg,#00B0F0,#009EE0);color:#fff;margin:16px 0}
+.btn-mp:active{transform:scale(.97)}
+.btn-mp:disabled{opacity:.5;cursor:not-allowed}
+.btn-mp.loading{opacity:.7}
+.metodos{margin-top:12px;padding:12px;background:rgba(255,255,255,.02);border-radius:10px}
+.metodos h3{font-size:10px;color:var(--t2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.metodos-grid{display:flex;gap:8px;flex-wrap:wrap}
+.metodo{display:flex;align-items:center;gap:5px;padding:6px 12px;background:var(--s);border:1px solid var(--b);border-radius:8px;font-size:10px;color:var(--t)}
+.footer{font-size:9px;color:var(--t2);text-align:center;margin-top:16px}
+.footer a{color:#22d3ee;text-decoration:none}
+.error-msg{color:#ef4444;font-size:12px;margin-top:8px;display:none}
 </style>
 </head>
 <body>
-
 <div class="card">
-  <h1>💳 Pagar a Nevas Xmaben</h1>
-  <div class="sub">Tu pago es seguro y se confirma al instante</div>
+  <h1>⚡ Pago Seguro</h1>
+  <div class="sub">Selecciona tu paquete y paga con Mercado Pago (tarjeta, SPEI, Oxxo)</div>
 
-  <div class="monto" id="montoDisplay">$0</div>
-  <div class="monto-label">Total a pagar</div>
-
-  <div class="pay-grid">
-    <a class="sp" href="https://wa.me/5219214875347?text=Quiero%20pagar%20con%20transferencia%20bancaria" target="_blank">
-      💰 Transferencia SPEI
-    </a>
-    <a class="mp" href="https://wa.me/5219214875347?text=Quiero%20pagar%20con%20Mercado%20Pago" target="_blank">
-      ⚡ Mercado Pago
-    </a>
-    <a class="pp" href="https://wa.me/5219214875347?text=Quiero%20pagar%20con%20PayPal" target="_blank">
-      💳 PayPal
-    </a>
-    <a class="ef" href="https://wa.me/5219214875347?text=Quiero%20pagar%20en%20efectivo" target="_blank">
-      💵 Efectivo (contra entrega)
-    </a>
-  </div>
-
-  <div class="qr-box">
-    <div class="qr-code">
-      <div class="qr-placeholder">
-        <div style="font-size:60px">📱</div>
-        <div style="font-size:8px;color:#666">Código QR</div>
-      </div>
+  <div id="paquetes">
+    <div class="paquete" data-producto="paquete_basico">
+      <div class="nombre">🌐 Paquete Básico</div>
+      <div class="desc">Página web profesional de 1 página + dominio .com + hosting 1 año + WhatsApp integrado</div>
+      <div class="precio">$1,499 <small>MXN</small></div>
+      <div class="tag oferta">Más vendido</div>
     </div>
-    <p>Escanea para pagar con tu app bancaria o escribe a WhatsApp para recibir el enlace</p>
+    <div class="paquete" data-producto="paquete_profesional">
+      <div class="nombre">🚀 Paquete Profesional</div>
+      <div class="desc">Sitio web completo de 5 páginas + dominio + hosting + SEO básico + WhatsApp + Google Maps</div>
+      <div class="precio">$2,999 <small>MXN</small></div>
+      <div class="tag popular">Recomendado</div>
+    </div>
+    <div class="paquete" data-producto="paquete_premium">
+      <div class="nombre">🏪 Paquete Premium</div>
+      <div class="desc">Tienda online completa + carrito + pagos + catálogo + dominio + hosting + SEO completo</div>
+      <div class="precio">$5,999 <small>MXN</small></div>
+    </div>
+    <div class="paquete" data-producto="personalizado">
+      <div class="nombre">📋 Cotización Personalizada</div>
+      <div class="desc">Proyecto a la medida — te contactamos para cotizar según tus necesidades</div>
+      <div class="precio">$3,999 <small>MXN</small></div>
+    </div>
   </div>
 
-  <div class="info-grid">
-    <div><div class="il">Negocio</div><div class="iv">Nevas Xmaben</div></div>
-    <div><div class="il">Titular</div><div class="iv">Victor Ontiveros</div></div>
-    <div><div class="il">WhatsApp</div><div class="iv">921 487 5347</div></div>
-    <div><div class="il">Horario</div><div class="iv">Lun-Sáb 9-7</div></div>
+  <button class="btn-mp" id="btnPagar" disabled>
+    <span>🛒</span>
+    <span>Pagar con Mercado Pago</span>
+  </button>
+  <div class="error-msg" id="errorMsg"></div>
+
+  <div class="metodos">
+    <h3>Métodos de pago aceptados</h3>
+    <div class="metodos-grid">
+      <span class="metodo">💳 Tarjeta crédito</span>
+      <span class="metodo">💳 Tarjeta débito</span>
+      <span class="metodo">🏦 SPEI (transferencia)</span>
+      <span class="metodo">🏪 Oxxo (efectivo)</span>
+    </div>
   </div>
 
-  <div class="pay-footer">
-    ¿Problemas con el pago? <a href="https://wa.me/5219214875347" target="_blank">Contacta por WhatsApp</a>
+  <div class="footer">
+    Pago procesado por Mercado Pago • Tus datos están seguros • <a href="contacto.html">Contacto</a>
   </div>
 </div>
 
 <script>
-const params = new URLSearchParams(window.location.search);
-const amt = params.get('monto');
-if (amt) {
+const mp = new MercadoPago('APP_USR-fff1338f-0fdb-4077-9d5f-0d1b45e24226');
+const btnPagar = document.getElementById('btnPagar');
+const errorMsg = document.getElementById('errorMsg');
+let productoSeleccionado = null;
+
+document.querySelectorAll('.paquete').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('.paquete').forEach(p => p.classList.remove('seleccionado'));
+    el.classList.add('seleccionado');
+    productoSeleccionado = el.dataset.producto;
+    btnPagar.disabled = false;
+    errorMsg.style.display = 'none';
+  });
+});
+
+btnPagar.addEventListener('click', async () => {
+  if (!productoSeleccionado) return;
+  btnPagar.disabled = true;
+  btnPagar.innerHTML = '<span>⏳</span><span>Creando pago...</span>';
+  btnPagar.classList.add('loading');
+  errorMsg.style.display = 'none';
+
   try {
-    const n = parseInt(amt);
-    if (n > 0) {
-      document.getElementById('montoDisplay').textContent = '$' + n.toLocaleString('es-MX');
-      document.querySelector('.sub').textContent = 'Pago de $' + n.toLocaleString('es-MX') + ' MXN';
+    const res = await fetch('/api/create_preference.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ producto: productoSeleccionado }),
+    });
+    const data = await res.json();
+
+    if (data.success && data.init_point) {
+      window.location.href = data.init_point;
+    } else {
+      throw new Error(data.error || 'Error al crear el pago');
     }
-  } catch(e) {}
-}
+  } catch (err) {
+    errorMsg.textContent = 'Error: ' + err.message + '. Intenta de nuevo o escribe a WhatsApp.';
+    errorMsg.style.display = 'block';
+    btnPagar.disabled = false;
+    btnPagar.innerHTML = '<span>🛒</span><span>Pagar con Mercado Pago</span>';
+    btnPagar.classList.remove('loading');
+  }
+});
 </script>
 </body>
 </html>
