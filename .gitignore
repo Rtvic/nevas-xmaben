@@ -1,0 +1,7 @@
+﻿node_modules/
+*.log
+.env
+snowball_data.json
+img/
+webalizer/
+xampp/

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Pagar — Nevas Xmaben</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08080f;--s:rgba(18,18,32,.85);--b:rgba(48,48,80,.25);--t:#eef0f6;--t2:#6b6b9e;--accent:#6366f1;--green:#10b981;--gold:#fbbf24;--cyan:#22d3ee}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--t);padding:20px 16px 40px;max-width:500px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.card{width:100%;background:var(--s);border-radius:20px;border:1px solid var(--b);padding:28px 24px;text-align:center;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--green),var(--gold))}
+h1{font-size:20px;font-weight:800;margin-bottom:4px}
+.sub{font-size:10px;color:var(--t2);margin-bottom:16px}
+.monto{font-size:36px;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--green);margin-bottom:4px}
+.monto.r{color:var(--red)}
+.monto-label{font-size:8px;color:var(--t2);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+.pay-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.pay-grid a{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:12px;font-size:13px;font-weight:700;text-decoration:none;transition:all .25s;border:none;cursor:pointer}
+.pay-grid a:active{transform:scale(.97)}
+.pay-grid .mp{background:linear-gradient(135deg,#00B0F0,#009EE0);color:#fff}
+.pay-grid .pp{background:linear-gradient(135deg,#003087,#002070);color:#fff}
+.pay-grid .sp{background:linear-gradient(135deg,#25D366,#1da851);color:#fff}
+.pay-grid .ef{background:var(--s);color:var(--t);border:1px solid var(--b)}
+.qr-box{background:rgba(255,255,255,.03);border-radius:14px;padding:20px;border:1px solid var(--b);margin-bottom:16px}
+.qr-box .qr-code{width:160px;height:160px;margin:0 auto;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.qr-box .qr-code img{width:100%;height:100%}
+.qr-box p{font-size:8px;color:var(--t2);margin-top:8px}
+.qr-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#333;font-family:'JetBrains Mono',monospace;font-size:9px}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px}
+.info-grid div{background:rgba(255,255,255,.01);border-radius:8px;padding:8px 10px;border:1px solid var(--b);text-align:left}
+.info-grid .il{font-size:7px;color:var(--t2);text-transform:uppercase;letter-spacing:1px}
+.info-grid .iv{font-size:11px;font-weight:700;margin-top:2px}
+.pay-footer{font-size:8px;color:var(--t2)}
+.pay-footer a{color:var(--cyan);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>💳 Pagar a Nevas Xmaben</h1>
+  <div class="sub">Tu pago es seguro y se confirma al instante</div>
+
+  <div class="monto" id="montoDisplay">$0</div>
+  <div class="monto-label">Total a pagar</div>
+
+  <div class="pay-grid">
+    <a class="sp" href="https://wa.me/5219214875347?text=Quiero%20pagar%20con%20transferencia%20bancaria" target="_blank">
+      💰 Transferencia SPEI
+    </a>
+    <a class="mp" href="https://wa.me/5219214875347?text=Quiero%20pagar%20con%20Mercado%20Pago" target="_blank">
+      ⚡ Mercado Pago
+    </a>
+    <a class="pp" href="https://wa.me/5219214875347?text=Quiero%20pagar%20con%20PayPal" target="_blank">
+      💳 PayPal
+    </a>
+    <a class="ef" href="https://wa.me/5219214875347?text=Quiero%20pagar%20en%20efectivo" target="_blank">
+      💵 Efectivo (contra entrega)
+    </a>
+  </div>
+
+  <div class="qr-box">
+    <div class="qr-code">
+      <div class="qr-placeholder">
+        <div style="font-size:60px">📱</div>
+        <div style="font-size:8px;color:#666">Código QR</div>
+      </div>
+    </div>
+    <p>Escanea para pagar con tu app bancaria o escribe a WhatsApp para recibir el enlace</p>
+  </div>
+
+  <div class="info-grid">
+    <div><div class="il">Negocio</div><div class="iv">Nevas Xmaben</div></div>
+    <div><div class="il">Titular</div><div class="iv">Victor Ontiveros</div></div>
+    <div><div class="il">WhatsApp</div><div class="iv">921 487 5347</div></div>
+    <div><div class="il">Horario</div><div class="iv">Lun-Sáb 9-7</div></div>
+  </div>
+
+  <div class="pay-footer">
+    ¿Problemas con el pago? <a href="https://wa.me/5219214875347" target="_blank">Contacta por WhatsApp</a>
+  </div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const amt = params.get('monto');
+if (amt) {
+  try {
+    const n = parseInt(amt);
+    if (n > 0) {
+      document.getElementById('montoDisplay').textContent = '$' + n.toLocaleString('es-MX');
+      document.querySelector('.sub').textContent = 'Pago de $' + n.toLocaleString('es-MX') + ' MXN';
+    }
+  } catch(e) {}
+}
+</script>
+</body>
+</html>

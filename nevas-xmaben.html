@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Nevas Xmaben — Reparaci&oacute;n de Celulares y PC</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07070d;--card:rgba(255,255,255,.02);--accent:#2563eb;--accent2:#06b6d4;--accent3:#38bdf8;--text:#e0e0e0;--text2:#888;--border:rgba(255,255,255,.05);--glass:rgba(7,7,13,.8);--spring:cubic-bezier(.34,1.56,.64,1)}
+*,::after,::before{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none;line-height:1.5}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+#preloader{position:fixed;inset:0;z-index:10000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .8s,visibility .8s}
+#preloader.hidden{opacity:0;visibility:hidden}
+#preloader .lp{width:60px;height:60px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+#preloader p{color:var(--text2);font-size:.85em;margin-top:16px;letter-spacing:2px;text-transform:uppercase}
+@keyframes spin{to{transform:rotate(360deg)}}
+#progress{position:fixed;top:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:9999;transition:width .1s}
+#cursor{position:fixed;width:12px;height:12px;border-radius:50%;pointer-events:none;z-index:9999;background:var(--accent);mix-blend-mode:screen;transform:translate(-50%,-50%);transition:width .35s var(--spring),height .35s var(--spring),background .35s var(--spring)}
+#cursor.hover{width:36px;height:36px;background:rgba(37,99,235,.3)}
+#cglow{position:fixed;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.08),transparent 70%);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .1s}
+#noise{position:fixed;inset:0;z-index:-1;opacity:.03;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px}
+.orb{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:-1;animation:dft 12s ease-in-out infinite alternate}
+.orb:nth-child(1){width:400px;height:400px;background:rgba(37,99,235,.08);top:-10%;left:-5%}
+.orb:nth-child(2){width:350px;height:350px;background:rgba(6,182,212,.06);bottom:-10%;right:-5%;animation-delay:-4s}
+.orb:nth-child(3){width:300px;height:300px;background:rgba(56,189,248,.05);top:40%;left:50%;animation-delay:-8s}
+@keyframes dft{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,-30px) scale(1.1)}}
+canvas#bg{position:fixed;inset:0;z-index:-2;pointer-events:none}
+nav{position:fixed;top:0;width:100%;z-index:1000;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+nav .logo{font-size:1.15em;font-weight:700;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:8px}
+nav .logo span{color:var(--accent)}
+nav .nv{display:flex;gap:24px;list-style:none}
+nav .nv a{color:var(--text2);text-decoration:none;font-size:.85em;font-weight:500;transition:color .3s;position:relative}
+nav .nv a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--accent);transition:width .3s var(--spring)}
+nav .nv a:hover{color:var(--text)}
+nav .nv a:hover::after{width:100%}
+.mn{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.mn span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative}
+.hero .hi{font-size:1em;color:var(--accent2);font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;opacity:0;animation:fa .8s var(--spring) .4s forwards}
+.hero h1{font-size:clamp(2.2em,7vw,4.8em);font-weight:800;line-height:1.05;max-width:800px;margin:0 auto 16px;opacity:0;animation:fa .8s var(--spring) .6s forwards}
+.hero h1 .gl{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(.95em,2vw,1.15em);color:var(--text2);max-width:520px;margin:0 auto 32px;opacity:0;animation:fa .8s var(--spring) .8s forwards}
+.hero .hb{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fa .8s var(--spring) 1s forwards}
+.hero .hb a{padding:14px 32px;border-radius:60px;font-size:.9em;font-weight:600;text-decoration:none;transition:all .4s var(--spring);position:relative;overflow:hidden}
+.hero .hb .pb{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 24px rgba(37,99,235,.3)}
+.hero .hb .pb:hover{transform:scale(1.04);box-shadow:0 8px 40px rgba(37,99,235,.4)}
+.hero .hb .sb{background:var(--card);color:var(--text);border:1px solid var(--border)}
+.hero .hb .sb:hover{background:rgba(37,99,235,.08);border-color:rgba(37,99,235,.2);transform:scale(1.04)}
+.hero .hp{position:absolute;bottom:32px;color:var(--text2);font-size:.8em;display:flex;align-items:center;gap:8px;animation:fb 2s ease-in-out infinite}
+@keyframes fb{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@keyframes fa{to{opacity:1;transform:translateY(0)}}
+.hero .hp,.hero .hi,.hero h1,.hero p,.hero .hb{transform:translateY(20px)}
+section{padding:80px 24px;max-width:1100px;margin:0 auto}
+.sec-t{text-align:center;margin-bottom:48px}
+.sec-t .st{font-size:.8em;color:var(--accent2);font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.sec-t h2{font-size:clamp(1.6em,4vw,2.6em);font-weight:700}
+.sec-t p{color:var(--text2);max-width:480px;margin:8px auto 0;font-size:.9em}
+.sv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.card{background:var(--card);border-radius:16px;padding:24px 20px;border:1px solid var(--border);text-align:center;transition:all .4s var(--spring);opacity:0;transform:translateY(24px)}
+.card.show{opacity:1;transform:translateY(0)}
+.card:hover{transform:translateY(-6px);background:rgba(37,99,235,.06);border-color:rgba(37,99,235,.2)}
+.card .ci{font-size:2.6em;margin-bottom:10px;display:block}
+.card h3{font-size:1em;margin:4px 0;color:var(--text);font-weight:600}
+.card p{font-size:.82em;color:var(--text2);margin:0;line-height:1.5}
+.cp{color:var(--accent);font-weight:700;font-size:1.05em;margin-top:10px}
+.bg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.g-item{background:var(--card);border-radius:16px;overflow:hidden;border:1px solid var(--border);transition:all .4s var(--spring);opacity:0;transform:translateY(24px)}
+.g-item.show{opacity:1;transform:translateY(0)}
+.g-item:hover{transform:translateY(-4px);border-color:rgba(37,99,235,.2)}
+.g-item .gi{aspect-ratio:4/3;background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(6,182,212,.05));display:flex;align-items:center;justify-content:center;font-size:2.8em}
+.g-item .gc{padding:14px 16px}
+.g-item .gc h4{font-size:.9em;font-weight:600}
+.g-item .gc p{font-size:.8em;color:var(--text2)}
+.agenda{max-width:440px;margin:0 auto;background:var(--card);border-radius:16px;padding:28px;border:1px solid var(--border)}
+.agenda label{display:block;font-size:.85em;color:var(--text2);margin-bottom:6px}
+.agenda input[type=date]{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text);font-family:Inter,sans-serif;font-size:.9em;outline:none;transition:border-color .3s;color-scheme:dark}
+.agenda input[type=date]:focus{border-color:var(--accent)}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
+.slot{padding:10px 8px;text-align:center;border-radius:8px;border:1px solid var(--border);font-size:.82em;color:var(--text2);cursor:pointer;transition:all .3s var(--spring);background:transparent}
+.slot:hover{border-color:var(--accent);color:var(--text);background:rgba(37,99,235,.06)}
+.slot.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+#resumen{display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+#resumen p{font-size:.9em;margin-bottom:12px;color:var(--text2)}
+#resumen span{color:var(--text);font-weight:600}
+#wa_btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:60px;background:#25D366;color:#fff;font-weight:600;font-size:.85em;text-decoration:none;transition:all .3s var(--spring)}
+#wa_btn:hover{transform:scale(1.04);box-shadow:0 4px 20px rgba(37,211,102,.3)}
+.ts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:700px;margin:0 auto}
+@media(max-width:600px){.ts-grid{grid-template-columns:1fr}}
+.ts{background:var(--card);border-radius:12px;padding:16px;border:1px solid var(--border);opacity:0;transform:translateY(24px)}
+.ts.show{opacity:1;transform:translateY(0)}
+.ts p{font-size:.88em;color:var(--text2);font-style:italic;margin:0;line-height:1.6}
+.ts .ta{color:var(--accent);font-size:.8em;margin-top:8px;font-weight:600}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:700px;margin:0 auto}
+@media(max-width:600px){.contact-grid{grid-template-columns:1fr}}
+.ci-item{display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--card);border-radius:12px;border:1px solid var(--border)}
+.ci-item .ci-icon{font-size:1.4em;flex-shrink:0}
+.ci-item h4{font-size:.9em;font-weight:600;margin-bottom:2px}
+.ci-item p{font-size:.82em;color:var(--text2)}
+.ci-item a{color:var(--accent);text-decoration:none;font-size:.82em}
+.map{width:100%;height:200px;border-radius:12px;border:1px solid var(--border);overflow:hidden;margin-top:16px}
+.map iframe{width:100%;height:100%;border:0;filter:grayscale(1) invert(.9)}
+footer{text-align:center;padding:40px 24px;border-top:1px solid var(--border);color:var(--text2);font-size:.8em;max-width:1100px;margin:0 auto}
+footer a{color:var(--accent);text-decoration:none}
+.wa-f{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;z-index:998;animation:pulse 2s infinite;box-shadow:0 4px 20px rgba(37,211,102,.4);text-decoration:none;transition:transform .3s var(--spring)}
+.wa-f:hover{transform:scale(1.08)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+@media(max-width:768px){
+  nav .nv{position:fixed;top:60px;left:0;width:100%;background:var(--glass);backdrop-filter:blur(20px);flex-direction:column;padding:16px 24px;gap:16px;display:none;border-bottom:1px solid var(--border)}
+  nav .nv.open{display:flex}
+  .mn{display:flex}
+  .hero{padding:100px 20px 60px}
+  section{padding:60px 20px}
+  .slots{grid-template-columns:repeat(3,1fr)}
+  .sv-grid{grid-template-columns:1fr}
+}
+@media(max-width:400px){
+  .slots{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<div id="preloader"><div class="lp"></div><p>Cargando...</p></div>
+<div id="progress"></div>
+<div id="cursor"></div>
+<div id="cglow"></div>
+<div id="noise"></div>
+<div class="orb"></div><div class="orb"></div><div class="orb"></div>
+<canvas id="bg"></canvas>
+
+<nav>
+  <a href="#" class="logo">Nevas <span>Xmaben</span></a>
+  <button class="mn" id="mn" aria-label="Men&uacute;">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nv" id="nv">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Galer&iacute;a</a></li>
+    <li><a href="#agenda">Agendar</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hi">🔧 Servicio T&eacute;cnico</div>
+  <h1>Reparamos tu <span class="gl">celular o PC</span> como nuevo</h1>
+  <p>Diagn&oacute;stico profesional, reparaci&oacute;n r&aacute;pida y precios justos en Xmaben, Hopelch&eacute;n.</p>
+  <div class="hb">
+    <a href="https://wa.me/5219214875347?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20para%20reparar%20mi%20equipo" target="_blank" class="pb">Cotizar ahora</a>
+    <a href="#servicios" class="sb">Ver servicios</a>
+  </div>
+  <div class="hp">Desliza para conocer m&aacute;s &darr;</div>
+</section>
+
+<section id="servicios">
+  <div class="sec-t">
+    <div class="st">Servicios</div>
+    <h2>¿Qu&eacute; reparamos?</h2>
+    <p>Más de 5 a&ntilde;os de experiencia en reparaci&oacute;n de dispositivos m&oacute;viles y c&oacute;mputo.</p>
+  </div>
+  <div class="sv-grid">
+    <div class="card">
+      <div class="ci">📱</div>
+      <h3>Cambio de Pantalla</h3>
+      <p>Pantallas originales y de alta calidad para todas las marcas</p>
+      <div class="cp">Desde $350</div>
+    </div>
+    <div class="card">
+      <div class="ci">🔋</div>
+      <h3>Cambio de Bater&iacute;a</h3>
+      <p>Bater&iacute;as con garant&iacute;a, instalaci&oacute;n r&aacute;pida</p>
+      <div class="cp">Desde $250</div>
+    </div>
+    <div class="card">
+      <div class="ci">💻</div>
+      <h3>Mantenimiento de PC</h3>
+      <p>Limpieza, cambio de pasta t&eacute;rmica, optimizaci&oacute;n</p>
+      <div class="cp">Desde $400</div>
+    </div>
+    <div class="card">
+      <div class="ci">🔄</div>
+      <h3>Formateo e Instalaci&oacute;n</h3>
+      <p>Windows, drivers, programas b&aacute;sicos incluidos</p>
+      <div class="cp">Desde $300</div>
+    </div>
+    <div class="card">
+      <div class="ci">🔧</div>
+      <h3>Reparaci&oacute;n de Software</h3>
+      <p>Virus, lentitud, configuraciones, actualizaciones</p>
+      <div class="cp">Desde $200</div>
+    </div>
+    <div class="card">
+      <div class="ci">💾</div>
+      <h3>Recuperaci&oacute;n de Datos</h3>
+      <p>Fotos, documentos, archivos borrados o da&ntilde;ados</p>
+      <div class="cp">Desde $500</div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="sec-t">
+    <div class="st">Trabajos</div>
+    <h2>Algunos de nuestros trabajos</h2>
+    <p>Cada reparaci&oacute;n se hace con cuidado y atenci&oacute;n al detalle.</p>
+  </div>
+  <div class="bg-grid">
+    <div class="g-item">
+      <div class="gi">📱</div>
+      <div class="gc"><h4>iPhone 12</h4><p>Cambio de pantalla completa</p></div>
+    </div>
+    <div class="g-item">
+      <div class="gi">💻</div>
+      <div class="gc"><h4>Laptop HP</h4><p>Mantenimiento preventivo + SSD</p></div>
+    </div>
+    <div class="g-item">
+      <div class="gi">📱</div>
+      <div class="gc"><h4>Samsung S23</h4><p>Cambio de bater&iacute;a</p></div>
+    </div>
+    <div class="g-item">
+      <div class="gi">🖥️</div>
+      <div class="gc"><h4>PC Gaming</h4><p>Limpieza profunda y formateo</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="agenda">
+  <div class="sec-t">
+    <div class="st">Citas</div>
+    <h2>Agenda tu reparaci&oacute;n</h2>
+    <p>Elige fecha y horario y te confirmamos por WhatsApp.</p>
+  </div>
+  <div class="agenda">
+    <label for="fecha">Fecha</label>
+    <input type="date" id="fecha">
+    <label style="margin-top:14px">Horario disponible</label>
+    <div class="slots" id="slots"></div>
+    <div id="resumen">
+      <p>Tu cita: <span id="r_fecha"></span> a las <span id="r_hora"></span></p>
+      <a id="wa_btn" href="#" target="_blank">Contactar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section id="testimonios">
+  <div class="sec-t">
+    <div class="st">Clientes</div>
+    <h2>Lo que dicen de nosotros</h2>
+  </div>
+  <div class="ts-grid">
+    <div class="ts">
+      <p>"R&aacute;pido y honesto. Me diagnostic&oacute; el problema al instante."</p>
+      <div class="ta">&mdash; Do&ntilde;a Lupita, Xmaben</div>
+    </div>
+    <div class="ts">
+      <p>"Le cambi&oacute; la pantalla a mi hijo y qued&oacute; perfecto. Precio justo."</p>
+      <div class="ta">&mdash; Don To&ntilde;o, Hopelch&eacute;n</div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="sec-t">
+    <div class="st">Contacto</div>
+    <h2>¿D&oacute;nde estamos?</h2>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <div class="ci-item">
+        <div class="ci-icon">📍</div>
+        <div>
+          <h4>Ubicaci&oacute;n</h4>
+          <p>Xmaben, Hopelch&eacute;n, Campeche</p>
+        </div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-icon">📱</div>
+        <div>
+          <h4>WhatsApp</h4>
+          <a href="https://wa.me/5219214875347" target="_blank">921 487 5347</a>
+        </div>
+      </div>
+      <div class="ci-item">
+        <div class="ci-icon">🕐</div>
+        <div>
+          <h4>Horario</h4>
+          <p>Lun&ndash;S&aacute;b: 9:00 AM &ndash; 7:00 PM</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.7!2d-89.84!3d19.74!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDQ0JzI0LjAiTiA4OcKwNTAnMjQuMCJX!5e0!3m2!1ses!2smx!4v1" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Nevas Xmaben &mdash; Reparaci&oacute;n de Celulares y PC</p>
+</footer>
+
+<a href="https://wa.me/5219214875347?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios" target="_blank" class="wa-f" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" width="28" height="28"><path fill="#fff" d="M16 2C8.2 2 2 8.2 2 16c0 3 .8 5.8 2.2 8.2L2 30l6-2.2c2.4 1.4 5.2 2.2 8 2.2 7.8 0 14-6.2 14-14S23.8 2 16 2zm7 19.6c-.4 1-1.6 2-2.8 2.2-.8.2-1.6.2-2.6 0-2.6-.6-5-2.4-6.8-4.2-1.8-1.8-3.2-4.2-3.8-6.8-.2-.8-.2-1.6 0-2.4.2-1.2 1.2-2.4 2.2-2.8h.8c.4 0 .6.2.8.6l1.2 2.6c.2.4.2.8 0 1.2-.2.2-.4.6-.6.8-.2.4-.4.6-.2.8.8 1.2 1.8 2.2 3 3 .2.2.6.2.8 0 .2-.2.6-.4.8-.6.4-.2.8-.4 1.2 0l2.6 1.2c.4.2.6.4.6.8v.6z"/></svg>
+</a>
+
+<script>
+const preloader=document.getElementById('preloader');
+window.addEventListener('load',function(){setTimeout(function(){preloader.classList.add('hidden')},600)});
+const progress=document.getElementById('progress');
+window.addEventListener('scroll',function(){
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  progress.style.width=(window.scrollY/h*100)+'%'
+});
+const cur=document.getElementById('cursor'),cgl=document.getElementById('cglow');
+document.addEventListener('mousemove',function(e){
+  cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+  cgl.style.left=e.clientX+'px';cgl.style.top=e.clientY+'px'
+});
+document.querySelectorAll('a,button,.card,.slot,.mg-btn,.g-item').forEach(function(el){
+  el.addEventListener('mouseenter',function(){cur.classList.add('hover')});
+  el.addEventListener('mouseleave',function(){cur.classList.remove('hover')})
+});
+const c=document.getElementById('bg'),ctx=c.getContext('2d');
+let W,H;
+function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
+window.addEventListener('resize',resize);resize();
+const pts=[];
+for(let i=0;i<50;i++){
+  pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+1,
+    vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,o:Math.random()*.12+.03})
+}
+function draw(){ctx.clearRect(0,0,W,H)
+  for(let p of pts){p.x+=p.vx;p.y+=p.vy
+    if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
+    ctx.fillStyle='rgba(37,99,235,'+p.o+')';ctx.fill()}
+  for(let i=0;i<pts.length;i++){for(let j=i+1;j<pts.length;j++){
+    let dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy)
+    if(d<150){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y)
+      ctx.strokeStyle='rgba(37,99,235,'+(.03*(1-d/150))+')';ctx.stroke()}}}
+  requestAnimationFrame(draw)}
+draw();
+['09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00'].forEach(function(h){
+  var d=document.createElement('div');d.className='slot';d.textContent=h;
+  d.addEventListener('click',function(){
+    document.querySelectorAll('.slot').forEach(function(s){s.classList.remove('sel')});
+    d.classList.add('sel');document.getElementById('r_hora').textContent=h;mostrarResumen()
+  });document.getElementById('slots').appendChild(d)
+});
+var fecha=document.getElementById('fecha');
+fecha.addEventListener('change',function(){if(fecha.value&&document.getElementById('r_hora').textContent)mostrarResumen()});
+function mostrarResumen(){
+  document.getElementById('resumen').style.display='block';
+  document.getElementById('r_fecha').textContent=fecha.value;
+  var msg='Hola,%20quiero%20agendar%20una%20cita%20para%20el%20'+encodeURIComponent(fecha.value)+'%20a%20las%20'+encodeURIComponent(document.getElementById('r_hora').textContent)+'%20para%20reparar%20mi%20equipo';
+  document.getElementById('wa_btn').href='https://wa.me/5219214875347?text='+msg
+}
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('show')}
+  })
+},{threshold:.1});
+document.querySelectorAll('.card,.g-item,.ts').forEach(function(el){obs.observe(el)});
+document.getElementById('mn').addEventListener('click',function(){
+  document.getElementById('nv').classList.toggle('open')
+});
+document.querySelectorAll('#nv a').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('nv').classList.remove('open')})
+});
+var hoy=new Date().toISOString().split('T')[0];
+document.getElementById('fecha').setAttribute('min',hoy);
+</script>
+</body>
+</html>

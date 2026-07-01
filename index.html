@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>Nevas Xmaben — Reparaci&oacute;n y Sitios Web</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08080f;--s:rgba(18,18,32,.85);--b:rgba(48,48,80,.25);--t:#eef0f6;--t2:#6b6b9e;--accent:#6366f1;--green:#10b981;--gold:#fbbf24;--cyan:#22d3ee}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--t);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px 16px 40px}
+.bg-orb{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.bg-orb div{position:absolute;border-radius:50%;filter:blur(80px);animation:d 20s ease-in-out infinite alternate}
+.bg-orb div:nth-child(1){width:400px;height:400px;background:rgba(99,102,241,.06);top:-10%;left:-10%}
+.bg-orb div:nth-child(2){width:350px;height:350px;background:rgba(34,211,238,.04);bottom:-15%;right:-10%;animation-delay:-7s}
+.bg-orb div:nth-child(3){width:250px;height:250px;background:rgba(251,191,36,.03);top:40%;left:60%;animation-delay:-14s}
+@keyframes d{0%{transform:translate(0,0)scale(1)}100%{transform:translate(30px,-30px)scale(1.1)}}
+.card{width:100%;max-width:420px;background:var(--s);border-radius:20px;border:1px solid var(--b);padding:28px 24px;text-align:center;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--cyan),var(--gold))}
+.av{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#4f46e5);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#fff;position:relative;overflow:hidden}
+.av::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,.12)50%,transparent 60%);animation:as 3s ease-in-out infinite}
+@keyframes as{0%,100%{transform:translateX(-100%)}50%{transform:translateX(100%)}}
+h1{font-size:22px;font-weight:800;margin-bottom:2px}
+h1 span{background:linear-gradient(135deg,#818cf8,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.bio{font-size:11px;color:var(--t2);margin-bottom:16px;line-height:1.5}
+.bio strong{color:var(--cyan)}
+.links{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.links a{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:12px;font-size:13px;font-weight:700;text-decoration:none;transition:all .25s;position:relative;overflow:hidden}
+.links a:active{transform:scale(.97)}
+.links a.wa{background:#25D366;color:#fff;box-shadow:0 4px 16px rgba(37,211,102,.25)}
+.links a.web{background:linear-gradient(135deg,var(--accent),#4f46e5);color:#fff;box-shadow:0 4px 16px rgba(99,102,241,.2)}
+.links a.repair{background:var(--s);color:var(--t);border:1px solid var(--b)}
+.links a.pay{background:rgba(251,191,36,.08);color:var(--gold);border:1px solid rgba(251,191,36,.15)}
+.links a i{font-size:16px;font-style:normal}
+.services{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;text-align:left}
+.services div{padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.015);border:1px solid var(--b);font-size:9px;color:var(--t2)}
+.services div strong{display:block;color:var(--t);font-size:10px;margin-bottom:2px}
+.test{background:rgba(99,102,241,.03);border-radius:10px;padding:10px 12px;border:1px solid rgba(99,102,241,.06);margin-bottom:16px}
+.test p{font-size:10px;color:var(--t2);font-style:italic;line-height:1.5}
+.test .ta{font-size:8px;color:var(--accent);margin-top:4px;font-weight:600}
+.footer-text{font-size:8px;color:var(--t2);text-align:center}
+@media(min-width:768px){.card{padding:32px 28px}}
+</style>
+</head>
+<body>
+<div class="bg-orb"><div></div><div></div><div></div></div>
+<div class="card">
+  <div class="av">NV</div>
+  <h1>Nevas <span>Xmaben</span></h1>
+  <div class="bio">
+    Reparaci&oacute;n de <strong>celulares &amp; PC</strong> &middot; Creaci&oacute;n de <strong>sitios web</strong> profesionales<br>
+    Xmaben, Hopelch&eacute;n, Campeche
+  </div>
+
+  <div class="links">
+    <a class="wa" href="https://wa.me/5219214875347" target="_blank">
+      <i>💬</i> WhatsApp: 921 487 5347
+    </a>
+    <a class="web" href="http://192.168.100.40/nevas-xmaben.html" target="_blank">
+      <i>🌐</i> Ver sitio web completo
+    </a>
+    <a class="repair" href="https://wa.me/5219214875347?text=Hola%2C%20necesito%20reparar%20mi%20equipo" target="_blank">
+      <i>🔧</i> Cotizar reparaci&oacute;n
+    </a>
+    <a class="pay" href="#" id="payLink">
+      <i>💳</i> Pagar en l&iacute;nea — Pr&oacute;ximamente
+    </a>
+  </div>
+
+  <div class="services">
+    <div><strong>📱 Pantalla</strong>Desde $350</div>
+    <div><strong>🔋 Bater&iacute;a</strong>Desde $250</div>
+    <div><strong>💻 Mantenimiento PC</strong>Desde $400</div>
+    <div><strong>🔄 Formateo</strong>Desde $300</div>
+    <div><strong>🔧 Software</strong>Desde $200</div>
+    <div><strong>🌐 Sitio Web</strong>Desde $1,500</div>
+  </div>
+
+  <div class="test">
+    <p>"R&aacute;pido y honesto. Diagnostic&oacute; el problema al instante y lo repar&oacute; el mismo d&iacute;a."</p>
+    <div class="ta">&mdash; Cliente en Xmaben</div>
+  </div>
+
+  <div class="footer-text">
+    Lun&ndash;S&aacute;b 9AM&ndash;7PM &middot; Diagn&oacute;stico gratis
+  </div>
+</div>
+
+<script>
+const payBtn = document.getElementById('payLink');
+payBtn.addEventListener('click', function(e) {
+  e.preventDefault();
+  this.innerHTML = '<i>⏳</i> Generando enlace...';
+  setTimeout(() => {
+    this.innerHTML = '<i>✅</i> Enlace listo — escribe a WhatsApp';
+    this.href = 'https://wa.me/5219214875347?text=Quiero%20pagar%20por%20transferencia%20o%20efectivo';
+  }, 800);
+});
+</script>
+</body>
+</html>

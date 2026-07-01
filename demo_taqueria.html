@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MUESTRA · Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#F8F7F4;color:#1A1A1A;overflow-x:hidden}
+::selection{background:#C73B2A;color:#F8F7F4}
+img{max-width:100%;display:block}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 36px;display:flex;justify-content:space-between;align-items:center}
+.nl{font-family:'Archivo',sans-serif;font-weight:900;font-size:.8rem;color:#1A1A1A;text-decoration:none;text-transform:uppercase;letter-spacing:1px}
+.nr{display:flex;gap:20px;list-style:none}
+.nr a{color:rgba(26,26,26,.08);text-decoration:none;font-size:.5rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;transition:color .2s}
+.nr a:hover{color:#1A1A1A}
+
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 36px;max-width:1200px;margin:0 auto}
+.hero .ht{font-family:'Archivo',sans-serif;font-weight:700;font-size:.5rem;letter-spacing:3px;text-transform:uppercase;color:rgba(199,59,42,.1);margin-bottom:8px}
+.hero h1{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(3.5rem,10vw,9rem);letter-spacing:-4px;line-height:.82;text-transform:uppercase}
+.hero h1 .g{color:#C73B2A}
+.hero .hs{font-size:.65rem;color:rgba(26,26,26,.06);margin-top:10px;font-weight:300;max-width:360px;line-height:1.6}
+.hero .hl{width:40px;height:2px;background:#C73B2A;margin:16px 0}
+.sh-i{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);color:rgba(26,26,26,.02);font-size:.4rem;letter-spacing:3px;text-transform:uppercase}
+
+.ssec{padding:120px 36px;max-width:1200px;margin:0 auto}
+.ssec .st{font-family:'Archivo',sans-serif;font-weight:700;font-size:.45rem;letter-spacing:3px;text-transform:uppercase;color:rgba(199,59,42,.08);margin-bottom:6px}
+.ssec h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.5rem,3.5vw,3rem);letter-spacing:-1.5px;line-height:.95;text-transform:uppercase;margin-bottom:12px;max-width:600px}
+.ssec p{font-size:.7rem;color:rgba(26,26,26,.06);line-height:1.7;font-weight:300;max-width:480px}
+
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:120px 36px;max-width:1200px;margin:0 auto}
+.ab-i{aspect-ratio:4/5;overflow:hidden;border-radius:3px}
+.ab-i img{width:100%;height:100%;object-fit:cover}
+.ab-c .st{font-family:'Archivo',sans-serif;font-weight:700;font-size:.45rem;letter-spacing:3px;text-transform:uppercase;color:rgba(199,59,42,.08);margin-bottom:6px}
+.ab-c h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.5rem,3.5vw,3rem);letter-spacing:-1.5px;line-height:.95;text-transform:uppercase;margin-bottom:10px;max-width:450px}
+.ab-c p{font-size:.7rem;color:rgba(26,26,26,.06);line-height:1.7;font-weight:300;max-width:420px}
+
+.gg{position:relative;background:#F8F7F4}
+.gg .sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.gg .sticky .ctr{position:absolute;top:24px;right:36px;z-index:10;font-family:'Archivo',sans-serif;font-weight:700;font-size:.5rem;color:rgba(26,26,26,.02);letter-spacing:2px}
+.gg .sticky .lbl{position:absolute;bottom:28px;left:36px;z-index:10}
+.gg .sticky .lbl .nm{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1rem,2.5vw,2rem);letter-spacing:-.5px;text-transform:uppercase;color:#1A1A1A}
+.gg .sticky .lbl .ds{font-family:'Archivo',sans-serif;font-weight:300;font-size:.45rem;color:rgba(26,26,26,.04);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.gg .sticky .iw{position:absolute;width:clamp(220px,35vw,440px);height:clamp(300px,50vh,580px);border-radius:3px;overflow:hidden;will-change:transform;box-shadow:0 20px 80px rgba(0,0,0,.02)}
+.gg .sticky .iw img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.gg .sp{height:100vh}
+
+.gr{padding:80px 36px;max-width:1000px;margin:0 auto}
+.gr .st{font-family:'Archivo',sans-serif;font-weight:700;font-size:.45rem;letter-spacing:3px;text-transform:uppercase;color:rgba(199,59,42,.08);margin-bottom:6px}
+.gr h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.3rem,3vw,2.5rem);letter-spacing:-1.5px;text-transform:uppercase;margin-bottom:20px}
+.gw{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.gi{aspect-ratio:1;overflow:hidden;border-radius:2px}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.gi:hover img{transform:scale(1.03)}
+.gi:first-child{grid-column:1/3;grid-row:1/3}
+
+.ct{height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 36px;border-top:1px solid rgba(26,26,26,.02)}
+.ct .st{font-family:'Archivo',sans-serif;font-weight:700;font-size:.45rem;letter-spacing:3px;text-transform:uppercase;color:rgba(199,59,42,.08);margin-bottom:6px}
+.ct h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(1.8rem,4vw,3.5rem);letter-spacing:-2px;text-transform:uppercase;line-height:.9;margin-bottom:10px}
+.ct p{font-size:.65rem;color:rgba(26,26,26,.04);font-weight:300;margin-bottom:20px}
+
+.btn{display:inline-flex;padding:14px 32px;background:#1A1A1A;color:#F8F7F4;text-decoration:none;font-family:'Archivo',sans-serif;font-weight:700;font-size:.5rem;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all .25s;border-radius:100px}
+.btn:hover{background:#C73B2A;transform:translateY(-2px)}
+
+.ft{padding:28px 36px;text-align:center;border-top:1px solid rgba(26,26,26,.01)}
+.ft p{font-size:.45rem;color:rgba(26,26,26,.02);font-weight:200;font-family:'Archivo',sans-serif;text-transform:uppercase;letter-spacing:2px}
+.ft em{font-style:normal;color:rgba(199,59,42,.03)}
+
+@media(max-width:700px){
+  .nr{display:none}
+  .ab{grid-template-columns:1fr;gap:20px;padding:80px 20px}
+  .ab-i{order:-1}
+  .gg .sticky .iw{width:78vw;height:50vh}
+  .gg .sticky .lbl{left:20px;bottom:16px}
+  .gg .sticky .ctr{right:20px}
+  .gw{grid-template-columns:1fr 1fr}
+  .gw .gi:first-child{grid-column:1/3;grid-row:1}
+  .hero{padding:100px 20px 40px}
+  .ssec{padding:80px 20px}
+  .gr{padding:60px 20px}
+  .ct{padding:60px 20px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nl">MUESTRA</a>
+  <ul class="nr">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="ht">Est. 2026</div>
+  <h1>MUESTRA<br><span class="g">STUDIO</span></h1>
+  <div class="hl"></div>
+  <p class="hs">Dise&ntilde;o digital, identidad visual y experiencias que dejan marca. Cada proyecto es una historia que contar.</p>
+  <div class="sh-i">SCROLL</div>
+</section>
+
+<div class="ab" id="about">
+  <div class="ab-i"><img src="img/taco2.jpg" alt="" loading="lazy"></div>
+  <div class="ab-c">
+    <div class="st">About</div>
+    <h2>Dise&ntilde;o con prop&oacute;sito</h2>
+    <p>No hacemos plantillas. Cada proyecto nace de una idea &uacute;nica, con una identidad visual propia y una historia que contar. Creemos en el poder de lo simple bien ejecutado.</p>
+  </div>
+</div>
+
+<section class="gg" id="work">
+  <div class="sticky" id="sticky">
+    <div class="ctr" id="ctr">001 / 005</div>
+    <div class="iw" id="w1"><img src="img/taco1.jpg" alt="" loading="lazy"></div>
+    <div class="iw" id="w2"><img src="img/taco3.jpg" alt="" loading="lazy"></div>
+    <div class="iw" id="w3"><img src="img/taco4.jpg" alt="" loading="lazy"></div>
+    <div class="iw" id="w4"><img src="img/taco5.jpg" alt="" loading="lazy"></div>
+    <div class="iw" id="w5"><img src="img/taco2.jpg" alt="" loading="lazy"></div>
+    <div class="lbl">
+      <div class="nm" id="lnm">Branding</div>
+      <div class="ds" id="lds">Proyecto uno — identidad completa</div>
+    </div>
+  </div>
+  <div class="sp" id="s1"></div>
+  <div class="sp" id="s2"></div>
+  <div class="sp" id="s3"></div>
+  <div class="sp" id="s4"></div>
+  <div class="sp" id="s5"></div>
+</section>
+
+<section class="gr">
+  <div class="st">Portafolio</div>
+  <h2>Proyectos</h2>
+  <div class="gw">
+    <div class="gi"><img src="img/taco3.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="img/taco4.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="img/taco5.jpg" alt="" loading="lazy"></div>
+    <div class="gi"><img src="img/taco1.jpg" alt="" loading="lazy"></div>
+  </div>
+</section>
+
+<section class="ct" id="contact">
+  <div class="st">Contacto</div>
+  <h2>Hablemos</h2>
+  <p>Cada proyecto empieza con una conversaci&oacute;n.</p>
+  <a href="https://wa.me/529811234567" class="btn">Escr&iacute;benos</a>
+</section>
+
+<footer class="ft">
+  <p>&copy; 2026 &middot; <em>Muestra Studio</em> &middot; Dise&ntilde;o digital</p>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+var d=[{e:'#w1',nm:'Branding',ds:'Identidad completa'},{e:'#w2',nm:'Web',ds:'Diseño y desarrollo'},{e:'#w3',nm:'Motion',ds:'Animación y storytelling'},{e:'#w4',nm:'UX',ds:'Investigación y prototipado'},{e:'#w5',nm:'Estrategia',ds:'Dirección creativa'}];
+var lnm=document.getElementById('lnm'),lds=document.getElementById('lds'),ctr=document.getElementById('ctr');
+
+gsap.set('#w1',{scale:.55,opacity:0});gsap.set('#w1 img',{scale:2.2});
+gsap.timeline({scrollTrigger:{trigger:'#s1',start:'top bottom',end:'top top',scrub:1.2,
+  onEnter:function(){lnm.textContent=d[0].nm;lds.textContent=d[0].ds;ctr.textContent='001 / 005'}
+}}).to('#w1',{scale:1,opacity:1,duration:1,ease:'power2.out'},0).to('#w1 img',{scale:1,duration:1.3,ease:'power2.out'},0)
+
+for(var i=1;i<5;i++){
+  (function(idx){
+    var cd=d[idx],ni=document.querySelector(cd.e),sp=document.getElementById('s'+(idx+1));
+    gsap.set(ni,{scale:.55,opacity:0});gsap.set(ni.querySelector('img'),{scale:2.2});
+    gsap.timeline({scrollTrigger:{trigger:sp,start:'top bottom',end:'top top',scrub:1.2,
+      onEnter:function(){lnm.textContent=cd.nm;lds.textContent=cd.ds;ctr.textContent='00'+(idx+1)+' / 005'}
+    }}).to(ni,{scale:1,opacity:1,duration:1,ease:'power2.out'},0).to(ni.querySelector('img'),{scale:1,duration:1.3,ease:'power2.out'},0);
+    var prev=document.querySelector(d[idx-1].e);
+    gsap.set(prev,{scale:1,opacity:1});gsap.set(prev.querySelector('img'),{scale:1});
+    gsap.timeline({scrollTrigger:{trigger:sp,start:'top center',end:'top top',scrub:1.2}
+    }).to(prev,{scale:.7,opacity:0,duration:1,ease:'power2.in'},0).to(prev.querySelector('img'),{scale:1.6,duration:1,ease:'power2.in'},0)
+  })(i)
+}
+
+gsap.from('.hero h1',{opacity:0,y:40,duration:1.2,ease:'power3.out',delay:.4});
+gsap.from('.hero .ht',{opacity:0,y:10,duration:.8,delay:.2,ease:'power2.out'});
+gsap.from('.hero .hs',{opacity:0,y:10,duration:.8,delay:.7,ease:'power2.out'});
+gsap.from('.hero .hl',{opacity:0,width:0,duration:.8,delay:.9,ease:'power2.out'});
+
+gsap.from('.ab-c',{opacity:0,y:20,duration:.8,ease:'power2.out',scrollTrigger:{trigger:'.ab',start:'top 75%'}});
+gsap.from('.ab-i',{opacity:0,scale:.95,duration:.8,delay:.1,ease:'power2.out',scrollTrigger:{trigger:'.ab',start:'top 75%'}});
+gsap.from('.gi',{opacity:0,scale:.95,duration:.6,stagger:.06,ease:'power2.out',scrollTrigger:{trigger:'.gw',start:'top 75%'}});
+gsap.from('.ct h2',{opacity:0,y:20,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.ct',start:'top 75%'}});
+gsap.from('.ct p',{opacity:0,y:10,duration:.8,delay:.15,ease:'power2.out',scrollTrigger:{trigger:'.ct',start:'top 75%'}});
+</script>
+</body>
+</html>
