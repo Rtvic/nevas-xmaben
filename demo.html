@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Demo - Nevas Xmaben</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;background:#0a0a0f;color:#eef0f6;line-height:1.6}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:rgba(10,10,15,.95);border-bottom:1px solid rgba(48,48,80,.25);position:sticky;top:0;z-index:100}
+.logo{font-weight:800;font-size:18px;background:linear-gradient(135deg,#6366f1,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links a{color:#94a3b8;text-decoration:none;margin-left:20px;font-size:14px;font-weight:600;transition:color .3s}
+.nav-links a:hover{color:#6366f1}
+.hero{max-width:1100px;margin:0 auto;padding:80px 24px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:48px;font-weight:900;line-height:1.1;margin-bottom:16px}
+.hero h1 span{background:linear-gradient(135deg,#6366f1,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:18px;color:#94a3b8;margin-bottom:24px}
+.hero .mockup{background:rgba(255,255,255,.03);border:1px solid rgba(48,48,80,.25);border-radius:20px;padding:24px;height:400px;display:flex;flex-direction:column}
+.hero .mockup .bar{display:flex;gap:8px;margin-bottom:16px}
+.hero .mockup .bar span{width:12px;height:12px;border-radius:50%}
+.hero .mockup .bar .r{background:#ef4444}
+.hero .mockup .bar .y{background:#eab308}
+.hero .mockup .bar .g{background:#10b981}
+.hero .mockup .content{flex:1;display:flex;flex-direction:column;gap:10px}
+.hero .mockup .content div{background:rgba(255,255,255,.05);border-radius:8px;padding:16px;border:1px solid rgba(48,48,80,.15)}
+.hero .mockup .content div h4{font-size:14px;color:#10b981;margin-bottom:4px}
+.hero .mockup .content div p{font-size:11px;color:#64748b}
+.btn{display:inline-block;padding:14px 32px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;transition:all .3s;margin-right:12px}
+.btn-primary{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff}
+.btn-outline{background:transparent;border:1px solid rgba(48,48,80,.5);color:#eef0f6}
+.btn:hover{transform:translateY(-2px)}
+.features{max-width:1100px;margin:0 auto;padding:80px 24px}
+.features h2{font-size:32px;font-weight:800;text-align:center;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid-item{background:rgba(255,255,255,.03);border:1px solid rgba(48,48,80,.25);border-radius:16px;padding:24px;text-align:center;transition:all .3s}
+.grid-item:hover{transform:translateY(-4px);border-color:#6366f1}
+.grid-item .icon{font-size:32px;margin-bottom:12px}
+.grid-item h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.grid-item p{font-size:13px;color:#64748b}
+.showcase{max-width:1100px;margin:0 auto;padding:80px 24px}
+.showcase h2{font-size:32px;font-weight:800;text-align:center;margin-bottom:40px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:rgba(255,255,255,.03);border:1px solid rgba(48,48,80,.25);border-radius:16px;overflow:hidden;transition:all .3s}
+.card:hover{transform:translateY(-4px);border-color:#10b981}
+.card-img{height:180px;background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(16,185,129,.1));display:flex;align-items:center;justify-content:center;font-size:48px}
+.card-body{padding:20px}
+.card-body h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.card-body p{font-size:13px;color:#64748b;margin-bottom:12px}
+.card-body .tag{display:inline-block;padding:4px 10px;border-radius:12px;font-size:11px;background:rgba(16,185,129,.1);color:#10b981}
+.cta-section{max-width:600px;margin:0 auto;padding:80px 24px;text-align:center}
+.cta-section h2{font-size:36px;font-weight:800;margin-bottom:12px}
+.cta-section p{font-size:16px;color:#94a3b8;margin-bottom:24px}
+.price{font-size:48px;font-weight:900;color:#10b981;margin-bottom:4px}
+.price-label{font-size:14px;color:#64748b;margin-bottom:24px}
+footer{text-align:center;padding:40px;color:#475569;font-size:13px;border-top:1px solid rgba(48,48,80,.25)}
+@media(max-width:768px){.hero{grid-template-columns:1fr}.grid,.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+<div class="logo">Nevas Xmaben</div>
+<div class="nav-links">
+<a href="index.html">Inicio</a>
+<a href="pagar.html">Precios</a>
+<a href="contacto.html">Contacto</a>
+<a href="https://wa.me/5219214875347" style="color:#25D366">WhatsApp</a>
+</div>
+</nav>
+<section class="hero">
+<div>
+<h1>Tu negocio merece un <span>sitio web profesional</span></h1>
+<p>Diseño moderno, adaptado a celular, con WhatsApp integrado y Google Maps. Tu página lista en 24-48 horas.</p>
+<a class="btn btn-primary" href="contacto.html">Solicitar Demo Gratis</a>
+<a class="btn btn-outline" href="pagar.html">Ver Precios</a>
+</div>
+<div class="mockup">
+<div class="bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+<div class="content">
+<div><h4>Restaurante Los Arcos</h4><p>Menú digital, WhatsApp, Google Maps, galería de platillos</p></div>
+<div><h4>Taller Mecánico El Rayo</h4><p>Catálogo de servicios, cotizador, ubicación, contacto directo</p></div>
+<div><h4>Despacho Jurídico LC</h4><p>Presentación profesional, áreas de práctica, blog de artículos</p></div>
+</div>
+</div>
+</section>
+<section class="features">
+<h2>Todo lo que incluye tu sitio web</h2>
+<div class="grid">
+<div class="grid-item"><div class="icon">📱</div><h3>Diseño Adaptable</h3><p>Se ve increíble en celulares, tablets y computadoras</p></div>
+<div class="grid-item"><div class="icon">💬</div><h3>WhatsApp Integrado</h3><p>Tus clientes te contactan con un solo clic desde cualquier página</p></div>
+<div class="grid-item"><div class="icon">📍</div><h3>Google Maps</h3><p>Ubicación exacta para que te encuentren fácilmente</p></div>
+<div class="grid-item"><div class="icon">🚀</div><h3>Hosting 1 Año</h3><p>Tu sitio funcionando 24/7 sin que te preocupes</p></div>
+<div class="grid-item"><div class="icon">📸</div><h3>Galería de Fotos</h3><p>Muestra tus productos, platillos o trabajos realizados</p></div>
+<div class="grid-item"><div class="icon">⚡</div><h3>Entrega Rápida</h3><p>Desde que confirmas, tu sitio está listo en 24-48 horas</p></div>
+</div>
+</section>
+<section class="showcase">
+<h2>Ejemplos de sitios que creamos</h2>
+<div class="cards">
+<div class="card">
+<div class="card-img">🍕</div>
+<div class="card-body">
+<h3>Restaurante</h3>
+<p>Menú digital con fotos, precios, WhatsApp y reseñas de clientes.</p>
+<span class="tag">Desde $1,500</span>
+</div>
+</div>
+<div class="card">
+<div class="card-img">🔧</div>
+<div class="card-body">
+<h3>Taller / Servicio</h3>
+<p>Catálogo de servicios, cotizador en línea y agendamiento.</p>
+<span class="tag">Desde $1,500</span>
+</div>
+</div>
+<div class="card">
+<div class="card-img">⚖️</div>
+<div class="card-body">
+<h3>Consultor / Abogado</h3>
+<p>Página profesional con áreas de práctica, testimonios y blog.</p>
+<span class="tag">Desde $1,500</span>
+</div>
+</div>
+</div>
+</section>
+<section class="cta-section">
+<h2>¿Listo para tener tu sitio web?</h2>
+<p>Precio único. Sin mensualidades. Sin contratos. Resultados garantizados.</p>
+<div class="price">$1,500</div>
+<div class="price-label">MXN · Pago único</div>
+<a class="btn btn-primary" href="contacto.html" style="font-size:18px;padding:18px 48px">Solicitar Ahora</a>
+</section>
+<footer>
+<p>Nevas Xmaben — Campeche, México</p>
+<p>© 2026 Victor Ontiveros</p>
+</footer>
+</body>
+</html>

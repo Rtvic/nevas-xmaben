@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Farmacia San Pablo - Merida</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#f0fdf4;color:#166534}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:linear-gradient(135deg,#dcfce7 0%,#f0fdf4 100%)}
+.hero-content{max-width:600px}
+.hero h1{font-size:2.5rem;font-weight:800;margin-bottom:10px;color:#166534}
+.hero p{color:#16a34a;font-size:1.1rem;margin-bottom:20px}
+.btn{display:inline-block;padding:14px 28px;border-radius:10px;font-weight:700;text-decoration:none;margin:5px}
+.btn-wa{background:#25D366;color:#fff}
+.btn-tel{background:#16a34a;color:#fff}
+.services{padding:60px 20px;text-align:center;background:#fff}
+.services h2{font-size:1.8rem;font-weight:800;margin-bottom:30px;color:#166534}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:800px;margin:0 auto}
+.service-card{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:20px}
+.service-card .icon{font-size:2rem;margin-bottom:10px}
+.service-card h3{font-size:1rem;margin-bottom:5px;color:#166534}
+.service-card p{font-size:.85rem;color:#16a34a}
+.hours{text-align:center;padding:60px 20px}
+.hours h2{font-size:1.5rem;margin-bottom:20px;color:#166534}
+.hours-table{margin:0 auto;border-collapse:collapse}
+.hours-table td{padding:8px 20px;font-size:.9rem}
+.hours-table td:first-child{font-weight:600}
+.location{text-align:center;padding:60px 20px}
+.location a{color:#16a34a;text-decoration:none}
+.footer{text-align:center;padding:30px;color:#16a34a;font-size:.8rem}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-content">
+    <h1>💊 Farmacia <span>San Pablo</span></h1>
+    <p>Tu farmacia de confianza en Merida. Medicamentos, dermocosmeticos y asesoria profesional las 24 horas.</p>
+    <a href="https://wa.me/529991234567?text=Hola,%20necesito%20informacion%20de%20un%20medicamento" class="btn btn-wa">💬 Consultar por WhatsApp</a>
+    <a href="tel:529991234567" class="btn btn-tel">📞 Llamar</a>
+  </div>
+</div>
+
+<div class="services">
+  <h2>Nuestros Servicios</h2>
+  <div class="services-grid">
+    <div class="service-card"><div class="icon">💊</div><h3>Medicamentos</h3><p>Gran variedad de medicamentos con y sin receta</p></div>
+    <div class="service-card"><div class="icon">💉</div><h3>Inyecciones</h3><p>Aplicacion de inyecciones por personal capacitado</p></div>
+    <div class="service-card"><div class="icon">🩺</div><h3>Toma de Presion</h3><p>Servicio gratuito de presion arterial</p></div>
+    <div class="service-card"><div class="icon">🧴</div><h3>Dermocosmeticos</h3><p>Productos de belleza y cuidado personal</p></div>
+  </div>
+</div>
+
+<div class="hours">
+  <h2>Horario</h2>
+  <table class="hours-table">
+    <tr><td>Lunes a Viernes</td><td>8:00 AM - 10:00 PM</td></tr>
+    <tr><td>Sabados</td><td>9:00 AM - 9:00 PM</td></tr>
+    <tr><td>Domingos</td><td>10:00 AM - 8:00 PM</td></tr>
+  </table>
+</div>
+
+<div class="location">
+  <h2>📍 Ubicacion</h2>
+  <p>Merida, Yucatan</p>
+  <a href="https://maps.google.com/?q=Farmacia+San+Pablo+Merida" target="_blank">Ver en Google Maps</a>
+</div>
+
+<div class="footer">
+  <p>Farmacia San Pablo &copy; 2026 &bull; Merida, Yucatan</p>
+</div>
+</body>
+</html>

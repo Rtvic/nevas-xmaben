@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# Redirect /r/{code} to api/redirect.php?code={code}
+RewriteRule ^r/([^/]+)/?$ api/redirect.php?code=$1 [L,QSA]

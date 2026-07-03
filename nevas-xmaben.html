@@ -1,0 +1,200 @@
+?<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Victor Ontiveros � Sitios Web Profesionales en M�rida desde $4,000</title>
+<meta name="description" content="Victor Ontiveros, desarrollador web en M�rida. Sitios web profesionales para tu negocio desde $4,000 MXN. Dise�o moderno, Google Maps, WhatsApp integrado. Paga con Mercado Pago.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#0a0a12;color:#e2e8f0;overflow-x:hidden}
+::selection{background:#6366f1;color:#fff}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 28px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,18,.7);backdrop-filter:blur(24px);border-bottom:1px solid rgba(99,102,241,.08)}
+.nl{font-weight:900;font-size:1.1rem;color:#fff;text-decoration:none}
+.nl span{background:linear-gradient(135deg,#6366f1,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nr{display:flex;gap:24px;list-style:none;align-items:center}
+.nr a{color:#888;text-decoration:none;font-size:.8rem;font-weight:500;transition:color .3s}
+.nr a:hover{color:#fff}
+.nr .wa{background:#25D366;color:#fff!important;padding:8px 18px;border-radius:8px;font-weight:700!important;font-size:.75rem!important}
+.hero{min-height:80vh;display:flex;align-items:center;padding:100px 28px 60px;position:relative}
+.hc{max-width:900px;margin:0 auto;width:100%}
+.hc .tag{display:inline-block;padding:4px 14px;border-radius:100px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);font-size:.7rem;font-weight:600;color:#a5b4fc;margin-bottom:12px}
+.hc h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;letter-spacing:-1.5px;line-height:1.05;margin-bottom:12px}
+.hc h1 span{background:linear-gradient(135deg,#6366f1,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hc p{font-size:1rem;color:#94a3b8;max-width:520px;line-height:1.6;margin-bottom:24px}
+.hc .pr{font-size:2rem;font-weight:900;color:#fff;margin-bottom:16px}
+.hc .pr small{font-size:.9rem;font-weight:400;color:#64748b}
+.hb{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;padding:12px 24px;border-radius:10px;font-weight:700;font-size:.85rem;text-decoration:none;transition:all .3s;align-items:center;gap:6px}
+.btn-p{background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,102,241,.3)}
+.btn-w{background:#25D366;color:#fff}
+.btn-w:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.3)}
+.btn-o{border:1px solid rgba(255,255,255,.12);color:#cbd5e1}
+.sc{max-width:1100px;margin:0 auto;padding:60px 28px}
+.sc h2{font-size:1.5rem;font-weight:800;letter-spacing:-.5px;margin-bottom:8px;text-align:center}
+.sc .st{text-align:center;color:#64748b;font-size:.9rem;margin-bottom:32px}
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.pc{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px;overflow:hidden;transition:all .4s}
+.pc:hover{transform:translateY(-4px);border-color:rgba(99,102,241,.25)}
+.pc .pt{height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pc .pt .pi{font-size:3rem;position:relative;z-index:1}
+.pc .pt .pg{position:absolute;inset:0}
+.pc .pb{padding:16px}
+.pc .pb .ptg{display:inline-block;padding:2px 8px;border-radius:100px;font-size:.65rem;font-weight:600;margin-bottom:6px}
+.pc .pb h3{font-size:1rem;font-weight:700;margin-bottom:4px}
+.pc .pb p{font-size:.8rem;color:#94a3b8;line-height:1.5;margin-bottom:10px}
+.pc .pb .pv{display:inline-flex;align-items:center;gap:4px;color:#10b981;font-weight:600;font-size:.8rem;text-decoration:none}
+.pc .pb .pv:hover{gap:8px}
+.gs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.gc{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:20px;text-align:center}
+.gc .i{font-size:1.8rem;margin-bottom:6px}
+.gc h4{font-weight:700;font-size:.9rem;margin-bottom:2px}
+.gc p{font-size:.78rem;color:#94a3b8}
+.prc{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:24px;text-align:center;transition:all .3s}
+.prc:hover{border-color:rgba(99,102,241,.2);transform:translateY(-3px)}
+.prc .pop{position:absolute;top:-8px;right:12px;background:#6366f1;color:#fff;padding:2px 10px;border-radius:16px;font-size:.6rem;font-weight:700}
+.prc h3{font-weight:800;font-size:1rem;margin-bottom:2px}
+.prc .pp{font-size:1.8rem;font-weight:900;color:#fff;margin:6px 0}
+.prc .pp small{font-size:13px;font-weight:400;color:#64748b}
+.prc ul{list-style:none;margin:10px 0;font-size:.8rem;color:#94a3b8}
+.prc ul li{padding:4px 0;display:flex;align-items:center;gap:6px;justify-content:center}
+.prc ul li::before{content:'\2713';color:#10b981;font-weight:700}
+.prc .bp{display:block;text-align:center;padding:10px;border-radius:8px;background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;font-weight:700;text-decoration:none;margin-top:10px;font-size:.85rem}
+.ft{text-align:center;padding:24px;border-top:1px solid rgba(255,255,255,.04);color:#64748b;font-size:.78rem}
+.ft a{color:#6366f1;text-decoration:none}
+@media(max-width:640px){
+  .hero{padding:80px 16px 40px}
+  .sc{padding:40px 16px}
+  .hc h1{font-size:1.8rem}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nl">Victor <span>Ontiveros</span></a>
+  <ul class="nr">
+    <li><a href="#trabajos">Trabajos</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="https://wa.me/529214875347?text=Hola%20Victor,%20quiero%20un%20sitio%20web" target="_blank" class="wa">WhatsApp</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hc">
+    <div class="tag">Creador de sitios web profesionales</div>
+    <h1>&iquest;Tu negocio necesita <span>presencia en internet</span>?</h1>
+    <p>Soy Victor Ontiveros. Ayudo a negocios locales en Yucat&aacute;n a tener su sitio web profesional. Dise&ntilde;o moderno, r&aacute;pido y listo para atraer clientes.</p>
+    <div class="pr">Desde $1,500 <small>MXN &mdash; sitio web + hosting y dominio aparte</small></div>
+    <div class="hb">
+      <a href="#trabajos" class="btn btn-p">Ver ejemplos</a>
+      <a href="https://wa.me/529214875347?text=Hola%20Victor,%20quiero%20un%20sitio%20web%20para%20mi%20negocio" target="_blank" class="btn btn-w">&#x1F4AC; Cont&aacute;ctame</a>
+    </div>
+  </div>
+</section>
+
+<section class="sc" id="trabajos">
+  <h2>Ejemplos de sitios web</h2>
+  <p class="st">Cada sitio es &uacute;nico. Mira lo que he creado para negocios locales.</p>
+  <div class="pg">
+    <div class="pc">
+      <div class="pt" style="background:linear-gradient(135deg,#1c0a0a,#431407)"><div class="pg" style="background:radial-gradient(circle at 30% 50%,#ea580c,transparent 60%)"></div><div class="pi">&#x1F32E;</div></div>
+      <div class="pb"><div class="ptg" style="background:rgba(234,88,12,.15);color:#fb923c">Restaurante</div><h3>Taquer&iacute;a El Trompo</h3><p>Men&uacute; digital, part&iacute;culas, agendador de reservas, Google Maps y WhatsApp.</p><a href="https://rtvic.github.io/nevas-xmaben/demo_taqueria.html" class="pv" target="_blank">Ver sitio &rarr;</a></div>
+    </div>
+    <div class="pc">
+      <div class="pt" style="background:linear-gradient(135deg,#0a0f1a,#2d1500)"><div class="pg" style="background:radial-gradient(circle at 60% 40%,#78350f,transparent 60%)"></div><div class="pi">&#x2615;</div></div>
+      <div class="pb"><div class="ptg" style="background:rgba(120,53,15,.15);color:#d97706">Cafeter&iacute;a</div><h3>Caf&eacute; Colonial</h3><p>Bento grid, galer&iacute;a polaroid, men&uacute; de caf&eacute;s, estad&iacute;sticas animadas.</p><a href="https://rtvic.github.io/nevas-xmaben/demo_cafeteria.html" class="pv" target="_blank">Ver sitio &rarr;</a></div>
+    </div>
+    <div class="pc">
+      <div class="pt" style="background:linear-gradient(135deg,#052e16,#064e3b)"><div class="pg" style="background:radial-gradient(circle at 50% 50%,#059669,transparent 60%)"></div><div class="pi">&#x1F6D2;</div></div>
+      <div class="pb"><div class="ptg" style="background:rgba(5,150,105,.15);color:#34d399">Tienda</div><h3>Abarrotes Don To&ntilde;o</h3><p>Cat&aacute;logo, promociones, delivery, pedidos por WhatsApp directos.</p><a href="https://rtvic.github.io/nevas-xmaben/demo_abarrotes.html" class="pv" target="_blank">Ver sitio &rarr;</a></div>
+    </div>
+    <div class="pc">
+      <div class="pt" style="background:linear-gradient(135deg,#0a0f2e,#172554)"><div class="pg" style="background:radial-gradient(circle at 40% 50%,#2563eb,transparent 60%)"></div><div class="pi">&#x1F527;</div></div>
+      <div class="pb"><div class="ptg" style="background:rgba(37,99,235,.15);color:#60a5fa">Taller</div><h3>Taller El Tigre</h3><p>Servicios, agendador de citas, testimonios, galer&iacute;a de trabajos.</p><a href="https://rtvic.github.io/nevas-xmaben/demo_taller.html" class="pv" target="_blank">Ver sitio &rarr;</a></div>
+    </div>
+    <div class="pc">
+      <div class="pt" style="background:linear-gradient(135deg,#1a052e,#2e1065)"><div class="pg" style="background:radial-gradient(circle at 50% 60%,#6d28d9,transparent 60%)"></div><div class="pi">&#x1F30A;</div></div>
+      <div class="pb"><div class="ptg" style="background:rgba(109,40,217,.15);color:#a78bfa">Restaurante</div><h3>Restaurante La Perla</h3><p>Three.js 3D, cursor custom, preloader animado, galer&iacute;a bento.</p><a href="https://rtvic.github.io/nevas-xmaben/demo_restaurante.html" class="pv" target="_blank">Ver sitio &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sc" id="precios">
+  <h2>Precios accesibles, sin sorpresas</h2>
+  <p class="st">Elige el plan que m&aacute;s te guste. Entrega en 3-5 d&iacute;as h&aacute;biles.</p>
+  <div class="gs">
+    <div class="prc" style="position:relative;border-color:rgba(99,102,241,.2)">
+      <span class="pop">M&aacute;s pedido</span>
+      <h3>B&aacute;sico</h3>
+      <div class="pp">$1,500 <small>MXN</small></div>
+      <ul>
+        <li>5 secciones (Inicio, Servicios, Acerca, Contacto, Galer&iacute;a)</li>
+        <li>Dise&ntilde;o 100% responsive</li>
+        <li>SEO b&aacute;sico</li>
+        <li>WhatsApp integrado</li>
+        <li>Formulario de contacto</li>
+        <li>Entrega 3-5 d&iacute;as</li>
+      </ul>
+      <a href="https://wa.me/529214875347?text=Hola%20Victor,%20quiero%20el%20paquete%20B%C3%A1sico" target="_blank" class="bp">Lo quiero</a>
+    </div>
+    <div class="prc">
+      <h3>Profesional</h3>
+      <div class="pp">$3,000 <small>MXN</small></div>
+      <ul>
+        <li>Todo lo del B&aacute;sico +</li>
+        <li>Hasta 10 secciones</li>
+        <li>Blog integrado</li>
+        <li>Galer&iacute;a de im&aacute;genes</li>
+        <li>SEO avanzado</li>
+        <li>Google Maps + Redes sociales</li>
+        <li>2 revisiones incluidas</li>
+        <li>Entrega 5-7 d&iacute;as</li>
+      </ul>
+      <a href="https://wa.me/529214875347?text=Hola%20Victor,%20quiero%20el%20paquete%20Profesional" target="_blank" class="bp">Lo quiero</a>
+    </div>
+    <div class="prc">
+      <h3>Premium</h3>
+      <div class="pp">$5,000 <small>MXN</small></div>
+      <ul>
+        <li>Todo lo del Profesional +</li>
+        <li>Tienda online productos ilimitados</li>
+        <li>Panel de administraci&oacute;n</li>
+        <li>Reservas / agenda en l&iacute;nea</li>
+        <li>Animaciones avanzadas</li>
+        <li>Soporte 30 d&iacute;as post-entrega</li>
+        <li>Entrega 7-10 d&iacute;as</li>
+      </ul>
+      <a href="https://wa.me/529214875347?text=Hola%20Victor,%20quiero%20el%20paquete%20Premium" target="_blank" class="bp">Lo quiero</a>
+    </div>
+  </div>
+  <p style="text-align:center;color:#94a3b8;font-size:.8rem;margin-top:16px"><strong>+ Hosting y Dominio:</strong> 1 a&ntilde;o <strong>$600</strong> &bull; 4 a&ntilde;os <strong>$1,800</strong> (ambos incluyen hosting + dominio .com/.mx en promoci&oacute;n)</p>
+</section>
+
+<section class="sc">
+  <h2>C&oacute;mo trabajo</h2>
+  <p class="st">As&iacute; de f&aacute;cil es tener tu sitio web</p>
+  <div class="gs">
+    <div class="gc"><div class="i">1</div><h4>Pl&aacute;ticame</h4><p>Me dices qu&eacute; negocio tienes, colores y lo que necesitas.</p></div>
+    <div class="gc"><div class="i">2</div><h4>Te muestro</h4><p>Te comparto ejemplos y te propongo un dise&ntilde;o.</p></div>
+    <div class="gc"><div class="i">3</div><h4>Pagas</h4><p>Mercado Pago (completo o 50% anticipo).</p></div>
+    <div class="gc"><div class="i">4</div><h4>Recibes</h4><p>Tu sitio listo en 3-5 d&iacute;as. Te ayudo a subirlo a internet.</p></div>
+  </div>
+</section>
+
+<section class="sc">
+  <div style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:36px;text-align:center">
+    <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px">&#x1F4A1; &iquest;Listo para tener presencia en internet?</h2>
+    <p style="color:#94a3b8;font-size:.9rem;margin-bottom:20px;max-width:450px;margin-left:auto;margin-right:auto">Manda un WhatsApp y en 5 minutos acordamos todo. Sin vueltas, sin letras chiquitas.</p>
+    <a href="https://wa.me/529214875347?text=Hola%20Victor,%20quiero%20un%20sitio%20web%20para%20mi%20negocio" target="_blank" class="btn btn-w">&#x1F4AC; Escribirme por WhatsApp</a>
+  </div>
+</section>
+
+<footer class="ft">
+  <p>Victor Ontiveros &mdash; Sitios web profesionales en M&eacute;rida, Yucat&aacute;n &bull; Pago con Mercado Pago &bull; <a href="https://wa.me/529214875347" target="_blank">WhatsApp</a></p>
+</footer>
+</body>
+</html>
+

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Nevas Xmaben - Flyer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;display:flex;flex-direction:column;align-items:center;gap:14px;padding:14px;background:#08080f}
+.f{width:360px;border-radius:20px;overflow:hidden;position:relative;background:linear-gradient(145deg,#0c0c1a,#14142a);border:1px solid rgba(99,102,241,.15);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.f-h{padding:20px 20px 14px;text-align:center;position:relative}
+.f-h::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6366f1,#22d3ee,#fbbf24)}
+.f-logo{font-size:22px;font-weight:900;background:linear-gradient(135deg,#818cf8,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.f-logo span{color:#fbbf24;-webkit-text-fill-color:#fbbf24}
+.f-sub{font-size:9px;color:#6b6b9e;letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.f-b{position:relative;padding:4px 20px}
+.f-b img{width:100%;border-radius:14px;display:block;aspect-ratio:16/9;object-fit:cover;background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(34,211,238,.06))}
+.f-b .ov{position:absolute;inset:4px 20px;border-radius:14px;background:linear-gradient(180deg,transparent 40%,rgba(8,8,15,.85) 85%);pointer-events:none}
+.f-b .ct{position:absolute;bottom:18px;left:34px;right:34px;text-align:center}
+.f-b .ct h2{font-size:26px;font-weight:900;color:#fff;line-height:1.1;text-shadow:0 2px 20px rgba(0,0,0,.5)}
+.f-b .ct p{font-size:10px;color:rgba(255,255,255,.6);margin-top:4px}
+.f-s{padding:16px 20px 6px}
+.f-s h3{font-size:11px;color:#6b6b9e;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.f-item{padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);text-align:center}
+.f-item .i{font-size:16px;display:block;margin-bottom:2px}
+.f-item .n{font-size:9px;font-weight:700;color:#eef0f6}
+.f-item .p{font-size:11px;font-weight:800;font-family:'JetBrains Mono',monospace;color:#22d3ee;margin-top:1px}
+.f-wa{padding:14px 20px 20px;display:flex;flex-direction:column;gap:8px}
+.f-wa .btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:60px;background:#25D366;color:#fff;font-weight:700;font-size:13px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.3);transition:all .2s}
+.f-wa .btn:active{transform:scale(.97)}
+.f-wa .loc{text-align:center;font-size:8px;color:#6b6b9e}
+@media(min-width:768px){body{padding:30px}.f{width:400px}}
+</style>
+</head>
+<body>
+
+<div class="f">
+  <div class="f-h">
+    <div class="f-logo">Nevas <span>Xmaben</span></div>
+    <div class="f-sub">Reparaci&oacute;n de Celulares &amp; PC</div>
+  </div>
+  <div class="f-b">
+    <div class="ov"></div>
+    <div class="ct">
+      <h2>¿Se te da&ntilde;&oacute;?<br>Lo reparamos hoy</h2>
+      <p>Diagn&oacute;stico gratis &middot; Servicio r&aacute;pido &middot; Precio justo</p>
+    </div>
+    <div style="height:200px;background:radial-gradient(ellipse at 50% 40%,rgba(99,102,241,.15),transparent 70%);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:64px;opacity:.3">🔧📱💻</div>
+  </div>
+  <div class="f-s">
+    <h3>Servicios</h3>
+    <div class="f-grid">
+      <div class="f-item"><span class="i">📱</span><span class="n">Cambio de Pantalla</span><span class="p">$350+</span></div>
+      <div class="f-item"><span class="i">🔋</span><span class="n">Cambio de Bater&iacute;a</span><span class="p">$250+</span></div>
+      <div class="f-item"><span class="i">💻</span><span class="n">Mantenimiento PC</span><span class="p">$400+</span></div>
+      <div class="f-item"><span class="i">🔄</span><span class="n">Formateo</span><span class="p">$300+</span></div>
+      <div class="f-item"><span class="i">🔧</span><span class="n">Software</span><span class="p">$200+</span></div>
+      <div class="f-item"><span class="i">💾</span><span class="n">Recuperaci&oacute;n Datos</span><span class="p">$500+</span></div>
+    </div>
+  </div>
+  <div class="f-wa">
+    <a class="btn" href="https://wa.me/5219214875347?text=Hola%2C%20vi%20tu%20publicaci%C3%B3n%2C%20necesito%20reparar%20mi%20equipo" target="_blank">
+      <svg viewBox="0 0 32 32" width="18" height="18"><path fill="#fff" d="M16 2C8.2 2 2 8.2 2 16c0 3 .8 5.8 2.2 8.2L2 30l6-2.2c2.4 1.4 5.2 2.2 8 2.2 7.8 0 14-6.2 14-14S23.8 2 16 2zm7 19.6c-.4 1-1.6 2-2.8 2.2-.8.2-1.6.2-2.6 0-2.6-.6-5-2.4-6.8-4.2-1.8-1.8-3.2-4.2-3.8-6.8-.2-.8-.2-1.6 0-2.4.2-1.2 1.2-2.4 2.2-2.8h.8c.4 0 .6.2.8.6l1.2 2.6c.2.4.2.8 0 1.2-.2.2-.4.6-.6.8-.2.4-.4.6-.2.8.8 1.2 1.8 2.2 3 3 .2.2.6.2.8 0 .2-.2.6-.4.8-.6.4-.2.8-.4 1.2 0l2.6 1.2c.4.2.6.4.6.8v.6z"/></svg>
+      Escribir por WhatsApp
+    </a>
+    <div class="loc">Xmaben, Hopelch&eacute;n &middot; Lun&ndash;S&aacute;b 9AM&ndash;7PM</div>
+  </div>
+</div>
+
+<div class="f">
+  <div class="f-h">
+    <div class="f-logo">Nevas <span>Xmaben</span></div>
+    <div class="f-sub">Creaci&oacute;n de Sitios Web Profesionales</div>
+  </div>
+  <div class="f-b">
+    <div class="ov"></div>
+    <div class="ct">
+      <h2>Tu negocio<br>en internet hoy</h2>
+      <p>Dise&ntilde;o profesional &middot; WhatsApp integrado &middot; Desde $1,500</p>
+    </div>
+    <div style="height:200px;background:radial-gradient(ellipse at 50% 40%,rgba(34,211,238,.12),transparent 70%);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:64px;opacity:.3">🌐✨📊</div>
+  </div>
+  <div class="f-s">
+    <h3>Paquetes</h3>
+    <div class="f-grid">
+      <div class="f-item"><span class="i">📄</span><span class="n">Starter</span><span class="p">$1,500</span></div>
+      <div class="f-item"><span class="i">🏪</span><span class="n">Negocio</span><span class="p">$3,500</span></div>
+      <div class="f-item"><span class="i">💎</span><span class="n">Premium</span><span class="p">$5,000</span></div>
+      <div class="f-item"><span class="i">🌐</span><span class="n">Hosting + Dominio</span><span class="p">$600/a&ntilde;o</span></div>
+    </div>
+  </div>
+  <div class="f-wa">
+    <a class="btn" href="https://wa.me/5219214875347?text=Hola%2C%20quiero%20un%20sitio%20web%20para%20mi%20negocio" target="_blank">
+      <svg viewBox="0 0 32 32" width="18" height="18"><path fill="#fff" d="M16 2C8.2 2 2 8.2 2 16c0 3 .8 5.8 2.2 8.2L2 30l6-2.2c2.4 1.4 5.2 2.2 8 2.2 7.8 0 14-6.2 14-14S23.8 2 16 2zm7 19.6c-.4 1-1.6 2-2.8 2.2-.8.2-1.6.2-2.6 0-2.6-.6-5-2.4-6.8-4.2-1.8-1.8-3.2-4.2-3.8-6.8-.2-.8-.2-1.6 0-2.4.2-1.2 1.2-2.4 2.2-2.8h.8c.4 0 .6.2.8.6l1.2 2.6c.2.4.2.8 0 1.2-.2.2-.4.6-.6.8-.2.4-.4.6-.2.8.8 1.2 1.8 2.2 3 3 .2.2.6.2.8 0 .2-.2.6-.4.8-.6.4-.2.8-.4 1.2 0l2.6 1.2c.4.2.6.4.6.8v.6z"/></svg>
+      Cotizar mi sitio web
+    </a>
+    <div class="loc">Xmaben, Hopelch&eacute;n &middot; Sitio 100% profesional</div>
+  </div>
+</div>
+
+<p style="color:#6b6b9e;font-size:10px;text-align:center;max-width:400px">Toma captura de pantalla y comparte en WhatsApp &darr;</p>
+</body>
+</html>

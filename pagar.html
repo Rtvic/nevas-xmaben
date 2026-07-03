@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Pagar — Victor Ontiveros</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#f5f5f7;color:#1d1d1f;min-height:100vh}
+
+.container{max-width:500px;margin:0 auto;padding:20px 16px 100px}
+
+/* Header */
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px}
+.back{color:#86868b;text-decoration:none;font-size:.85rem;font-weight:500;transition:color .2s}
+.back:hover{color:#1d1d1f}
+.brand{font-weight:700;font-size:1.1rem}
+.brand span{color:#0071e3}
+
+/* Hero */
+.hero{text-align:center;margin-bottom:36px}
+.hero-icon{width:80px;height:80px;border-radius:24px;background:linear-gradient(135deg,#0071e3,#00c7ff);display:inline-flex;align-items:center;justify-content:center;font-size:2.2rem;margin-bottom:16px;box-shadow:0 12px 40px rgba(0,113,227,.25)}
+.hero h1{font-size:1.8rem;font-weight:700;letter-spacing:-.5px;margin-bottom:6px}
+.hero p{color:#86868b;font-size:.9rem;max-width:300px;margin:0 auto}
+
+/* Steps */
+.steps{display:flex;justify-content:center;gap:0;margin-bottom:36px}
+.step{display:flex;flex-direction:column;align-items:center}
+.step-dot{width:36px;height:36px;border-radius:50%;background:#e5e5ea;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600;color:#86868b;transition:all .3s}
+.step.active .step-dot{background:#0071e3;color:#fff;box-shadow:0 4px 16px rgba(0,113,227,.3)}
+.step.done .step-dot{background:#34c759;color:#fff}
+.step-label{font-size:.65rem;color:#86868b;margin-top:6px;font-weight:500}
+.step.active .step-label{color:#0071e3;font-weight:600}
+.step-line{width:48px;height:2px;background:#d1d1d6;margin-bottom:22px}
+.step.done + .step-line{background:#34c759}
+
+/* Section */
+.section{background:#fff;border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.section-title{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:1.2px;color:#86868b;margin-bottom:14px}
+
+/* Plans */
+.plan-list{display:flex;flex-direction:column;gap:10px}
+.plan-item{background:#f5f5f7;border:2px solid transparent;border-radius:14px;padding:16px;cursor:pointer;transition:all .2s;position:relative}
+.plan-item:hover{background:#eee}
+.plan-item.selected{border-color:#0071e3;background:rgba(0,113,227,.04)}
+.plan-item .plan-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.plan-item .plan-name{font-weight:600;font-size:.95rem}
+.plan-item .plan-price{font-weight:700;font-size:1.1rem;color:#0071e3}
+.plan-item .plan-desc{font-size:.8rem;color:#86868b}
+.plan-features{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.feature{font-size:.75rem;color:#555;display:flex;align-items:center;gap:6px}
+.feature .fi{font-size:.85rem;width:20px;text-align:center}
+.plan-item .plan-badge{position:absolute;top:12px;right:12px;padding:3px 10px;border-radius:100px;font-size:.6rem;font-weight:600;background:#0071e3;color:#fff}
+.plan-item .plan-badge.gold{background:#ff9500;color:#fff}
+.plan-item .plan-check{position:absolute;top:16px;left:16px;width:22px;height:22px;border-radius:50%;border:2px solid #d1d1d6;display:flex;align-items:center;justify-content:center;font-size:.75rem;transition:all .2s}
+.plan-item.selected .plan-check{border-color:#0071e3;background:#0071e3;color:#fff}
+
+/* Hosting */
+.host-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.host-item{background:#f5f5f7;border:2px solid transparent;border-radius:14px;padding:16px;text-align:center;cursor:pointer;transition:all .2s;position:relative}
+.host-item:hover{background:#eee}
+.host-item.selected{border-color:#34c759;background:rgba(52,199,89,.04)}
+.host-item .host-period{font-size:.85rem;font-weight:600;margin-bottom:4px}
+.host-item .host-price{font-size:1.4rem;font-weight:700;color:#34c759}
+.host-item .host-per{font-size:.7rem;color:#86868b}
+.host-item .host-tag{position:absolute;top:-8px;right:-4px;padding:3px 10px;border-radius:100px;font-size:.55rem;font-weight:700;background:#ff9500;color:#fff}
+
+/* Type */
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.type-item{background:#f5f5f7;border:2px solid transparent;border-radius:14px;padding:14px;text-align:center;cursor:pointer;transition:all .2s}
+.type-item:hover{background:#eee}
+.type-item.selected{border-color:#0071e3;background:rgba(0,113,227,.04)}
+.type-item .type-label{font-size:.85rem;font-weight:600}
+.type-item .type-sub{font-size:.7rem;color:#86868b;margin-top:2px}
+
+/* Summary */
+.summary{background:linear-gradient(135deg,#0071e3,#00c7ff);border-radius:20px;padding:24px;color:#fff}
+.summary-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:.85rem}
+.summary-row.sub{opacity:.7}
+.summary-row.comm{font-size:.75rem;opacity:.8}
+.summary-row.total{border-top:1px solid rgba(255,255,255,.2);padding-top:10px;margin-top:6px;font-weight:700;font-size:1.1rem}
+.summary-row .label{font-weight:500}
+.summary-row .value{font-weight:700}
+
+/* Methods */
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.method-item{background:#f5f5f7;border:2px solid transparent;border-radius:14px;padding:18px;text-align:center;cursor:pointer;transition:all .2s}
+.method-item:hover{background:#eee}
+.method-item.selected{border-color:#0071e3;background:rgba(0,113,227,.04)}
+.method-item .method-icon{font-size:1.8rem;margin-bottom:6px}
+.method-item .method-name{font-size:.85rem;font-weight:600}
+.method-item .method-desc{font-size:.7rem;color:#86868b;margin-top:2px}
+
+/* Bank */
+.bank-section{background:#f5f5f7;border-radius:16px;padding:18px;margin-top:14px}
+.bank-section h4{font-size:.8rem;font-weight:600;color:#34c759;margin-bottom:12px}
+.bank-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #e5e5ea;font-size:.8rem}
+.bank-row:last-child{border:none}
+.bank-row .lbl{color:#86868b}
+.bank-row .val{font-weight:600;display:flex;align-items:center;gap:8px}
+.copy-btn{padding:4px 10px;border-radius:8px;background:#0071e3;color:#fff;font-size:.65rem;cursor:pointer;border:none;font-weight:600;transition:background .2s}
+.copy-btn:hover{background:#0077ed}
+
+/* Form */
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:.75rem;font-weight:500;color:#86868b;margin-bottom:6px}
+.form-group input{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid #d1d1d6;background:#fff;color:#1d1d1f;font-size:.9rem;font-family:DM Sans;transition:border-color .2s}
+.form-group input:focus{outline:none;border-color:#0071e3}
+.form-group input::placeholder{color:#aeaeb2}
+
+/* Buttons */
+.btn{width:100%;padding:16px;border-radius:14px;font-size:.95rem;font-weight:600;border:none;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px;font-family:DM Sans}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-mp{background:#0071e3;color:#fff;box-shadow:0 4px 16px rgba(0,113,227,.25)}
+.btn-mp:hover{background:#0077ed;box-shadow:0 8px 24px rgba(0,113,227,.35);transform:translateY(-1px)}
+.btn-bank{background:#34c759;color:#fff;box-shadow:0 4px 16px rgba(52,199,89,.25)}
+.btn-bank:hover{background:#30d158;box-shadow:0 8px 24px rgba(52,199,89,.35);transform:translateY(-1px)}
+.btn-help{background:#f5f5f7;border:1px solid #d1d1d6;color:#1d1d1f;font-weight:500;font-size:.85rem;margin-top:12px;text-decoration:none;justify-content:center}
+.btn-help:hover{background:#eee}
+
+/* Pay Icons */
+.pay-icons{display:flex;gap:6px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.pay-icon{padding:5px 12px;border-radius:8px;background:#f5f5f7;font-size:.65rem;color:#86868b;font-weight:500}
+
+/* Footer */
+.footer{text-align:center;margin-top:24px;font-size:.7rem;color:#aeaeb2}
+.footer a{color:#0071e3;text-decoration:none}
+
+/* Messages */
+.msg{display:none;text-align:center;padding:12px;border-radius:12px;font-size:.8rem;margin-top:12px}
+.msg.error{display:block;background:#fff0f0;border:1px solid #ffccc7;color:#ff3b30}
+.msg.success{display:block;background:#f0fff4;border:1px solid #b7eb8f;color:#34c759}
+
+.hidden{display:none!important}
+
+@media(max-width:480px){
+  .container{padding:16px 12px 80px}
+  .hero h1{font-size:1.5rem}
+  .step-line{width:32px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <a href="index.html#precios" class="back">← Volver</a>
+    <div class="brand">Victor <span>Ontiveros</span></div>
+    <a href="https://wa.me/529214875347" target="_blank" class="back">Ayuda</a>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-icon">🚀</div>
+    <h1>Activa tu sitio web</h1>
+    <p>Selecciona tu plan de sitio web + hosting por separado. Paga con tarjeta, SPEI, Oxxo o transferencia.</p>
+  </div>
+
+  <!-- Steps -->
+  <div class="steps">
+    <div class="step active" id="step1">
+      <div class="step-dot">1</div>
+      <div class="step-label">Plan</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step" id="step2">
+      <div class="step-dot">2</div>
+      <div class="step-label">Hosting</div>
+    </div>
+    <div class="step-line"></div>
+    <div class="step" id="step3">
+      <div class="step-dot">3</div>
+      <div class="step-label">Pago</div>
+    </div>
+  </div>
+
+  <!-- PLANES -->
+  <div class="section">
+    <div class="section-title">Tu plan</div>
+    <div class="plan-list">
+      
+      <!-- BASICO -->
+      <div class="plan-item" data-plan="basico" data-price="1500">
+        <div class="plan-check">✓</div>
+        <div class="plan-head">
+          <div class="plan-name">Basico</div>
+          <div class="plan-price">$1,500</div>
+        </div>
+        <div class="plan-features">
+          <div class="feature"><span class="fi">📄</span> 1 pagina profesional</div>
+          <div class="feature"><span class="fi">📱</span> Diseno responsive (celular y PC)</div>
+          <div class="feature"><span class="fi">💬</span> Boton de WhatsApp para pedidos</div>
+          <div class="feature"><span class="fi">📍</span> Google Maps integrado</div>
+          <div class="feature"><span class="fi">📧</span> Formulario de contacto</div>
+          <div class="feature"><span class="fi">🔍</span> SEO basico (aparece en Google)</div>
+          <div class="feature"><span class="fi">✏️</span> 1 revision incluida</div>
+          <div class="feature"><span class="fi">⚡</span> Entrega en 3-5 dias</div>
+        </div>
+      </div>
+
+      <!-- PROFESIONAL -->
+      <div class="plan-item" data-plan="profesional" data-price="3000">
+        <div class="plan-check">✓</div>
+        <div class="plan-head">
+          <div class="plan-name">Profesional</div>
+          <div class="plan-price">$3,000</div>
+        </div>
+        <div class="plan-features">
+          <div class="feature"><span class="fi">📄</span> Hasta 5 paginas</div>
+          <div class="feature"><span class="fi">📱</span> Diseno responsive premium</div>
+          <div class="feature"><span class="fi">🖼️</span> Galeria de fotos ilimitada</div>
+          <div class="feature"><span class="fi">💬</span> WhatsApp + formulario avanzado</div>
+          <div class="feature"><span class="fi">📍</span> Google Maps + horarios</div>
+          <div class="feature"><span class="fi">🔍</span> SEO completo (aparece primero en Google)</div>
+          <div class="feature"><span class="fi">📰</span> Blog para publicar noticias</div>
+          <div class="feature"><span class="fi">✏️</span> 3 revisiones incluidas</div>
+          <div class="feature"><span class="fi">📊</span> Est Basic Google Analytics</div>
+          <div class="feature"><span class="fi">⚡</span> Entrega en 5-7 dias</div>
+          <div class="feature"><span class="fi">📞</span> Soporte tecnico 30 dias</div>
+        </div>
+        <div class="plan-badge gold">Recomendado</div>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="plan-item" data-plan="premium" data-price="5000">
+        <div class="plan-check">✓</div>
+        <div class="plan-head">
+          <div class="plan-name">Premium</div>
+          <div class="plan-price">$5,000</div>
+        </div>
+        <div class="plan-features">
+          <div class="feature"><span class="fi">📄</span> Paginas ilimitadas</div>
+          <div class="feature"><span class="fi">📱</span> Diseno responsive exclusivo</div>
+          <div class="feature"><span class="fi">🛒</span> Tienda online con carrito de compras</div>
+          <div class="feature"><span class="fi">💳</span> Pasarela de pagos en linea</div>
+          <div class="feature"><span class="fi">🖼️</span> Galeria de fotos ilimitada</div>
+          <div class="feature"><span class="fi">💬</span> WhatsApp + formulario + chat en vivo</div>
+          <div class="feature"><span class="fi">📍</span> Google Maps + reservaciones</div>
+          <div class="feature"><span class="fi">🔍</span> SEO avanzado + posicionamiento</div>
+          <div class="feature"><span class="fi">📰</span> Blog completo con categorias</div>
+          <div class="feature"><span class="fi">⚙️</span> Panel de administracion (CMS)</div>
+          <div class="feature"><span class="fi">✏️</span> 5 revisiones incluidas</div>
+          <div class="feature"><span class="fi">📊</span> Google Analytics + reportes</div>
+          <div class="feature"><span class="fi">⚡</span> Entrega en 7-10 dias</div>
+          <div class="feature"><span class="fi">📞</span> Soporte tecnico 90 dias</div>
+          <div class="feature"><span class="fi">🎓</span> Capacitacion para usar tu sitio</div>
+          <div class="feature"><span class="fi">🔒</span> Certificado SSL (sitio seguro)</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- HOSTING -->
+  <div class="section">
+    <div class="section-title">Hosting + Dominio</div>
+    <div class="host-grid">
+      <div class="host-item" data-hosting="600" data-years="1">
+        <div class="host-period">1 ano</div>
+        <div class="host-price">$600</div>
+        <div class="host-per">$50/mes</div>
+      </div>
+      <div class="host-item selected" data-hosting="1800" data-years="4">
+        <div class="host-period">4 anos</div>
+        <div class="host-price">$1,800</div>
+        <div class="host-per">$37.50/mes</div>
+        <div class="host-tag">Ahorra 25%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPO -->
+  <div class="section">
+    <div class="section-title">Forma de pago</div>
+    <div class="type-grid">
+      <div class="type-item selected" data-type="full">
+        <div class="type-label">100% ahora</div>
+        <div class="type-sub">Pago completo</div>
+      </div>
+      <div class="type-item" data-type="deposit">
+        <div class="type-label">50% anticipo</div>
+        <div class="type-sub">El resto al entregar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESUMEN -->
+  <div class="summary">
+    <div class="summary-row sub"><span class="label">Subtotal</span><span class="value" id="subtotal">$2,400</span></div>
+    <div class="summary-row comm" id="commRow"><span class="label">Comision MP (3.49% + IVA)</span><span class="value" id="commission">$96</span></div>
+    <div class="summary-row total"><span class="label">Total</span><span class="value" id="total">$2,496</span></div>
+  </div>
+
+  <!-- METODO -->
+  <div class="section" style="margin-top:16px">
+    <div class="section-title">Metodo de pago</div>
+    <div class="method-grid">
+      <div class="method-item selected" data-method="mercadopago" onclick="selectMethod('mercadopago')">
+        <div class="method-icon">💳</div>
+        <div class="method-name">Mercado Pago</div>
+        <div class="method-desc">Tarjeta, SPEI, Oxxo</div>
+      </div>
+      <div class="method-item" data-method="transferencia" onclick="selectMethod('transferencia')">
+        <div class="method-icon">🏦</div>
+        <div class="method-name">Transferencia</div>
+        <div class="method-desc">Deposito directo</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MERCADO PAGO -->
+  <div id="mpSection">
+    <button class="btn btn-mp" id="btnMP" onclick="payMP()">
+      <span>🔒</span>
+      <span id="btnMPText">Pagar con Mercado Pago</span>
+    </button>
+    <div class="pay-icons">
+      <span class="pay-icon">💳 Credito</span>
+      <span class="pay-icon">💳 Debito</span>
+      <span class="pay-icon">🏦 SPEI</span>
+      <span class="pay-icon">🏪 Oxxo</span>
+    </div>
+  </div>
+
+  <!-- TRANSFERENCIA -->
+  <div id="bankSection" class="hidden">
+    <div class="bank-section">
+      <h4>🏦 Datos para transferencia</h4>
+      <div class="bank-row"><span class="lbl">Banco</span><span class="val">BBVA</span></div>
+      <div class="bank-row"><span class="lbl">Titular</span><span class="val">Victor Manuel Ontiveros Noh</span></div>
+      <div class="bank-row"><span class="lbl">Cuenta</span><span class="val">150 549 4485 <button class="copy-btn" onclick="copy('1505494485')">Copiar</button></span></div>
+      <div class="bank-row"><span class="lbl">CLABE</span><span class="val">012 180 01505494485 3 <button class="copy-btn" onclick="copy('012180015054944853')">Copiar</button></span></div>
+      <div class="bank-row"><span class="lbl">Concepto</span><span class="val" id="concepto" style="color:#34c759">—</span></div>
+    </div>
+
+    <div class="section" style="margin-top:14px">
+      <div class="form-group"><label>Tu nombre</label><input type="text" id="name" placeholder="Como aparece en tu identificacion"></div>
+      <div class="form-group"><label>WhatsApp (10 digitos)</label><input type="tel" id="phone" placeholder="9991234567" maxlength="10"></div>
+      <div class="form-group"><label>Email</label><input type="email" id="email" placeholder="tu@email.com"></div>
+    </div>
+
+    <button class="btn btn-bank" onclick="sendBank()">
+      <span>📤</span>
+      <span>Enviar comprobante por WhatsApp</span>
+    </button>
+  </div>
+
+  <a href="https://wa.me/529214875347?text=Hola%20Victor,%20tengo%20una%20duda%20sobre%20el%20pago" class="btn btn-help" target="_blank">💬 Tengo una duda</a>
+
+  <div class="msg error" id="error"></div>
+  <div class="msg success" id="success"></div>
+
+  <div class="footer">
+    <p>Pago 100% seguro via <a href="https://mercadopago.com.mx" target="_blank">Mercado Pago</a></p>
+  </div>
+</div>
+
+<script>
+const MP_TOKEN = 'APP_USR-7272894554891156-070103-614f6dfb34e271a73de7140de63e2eb5-1306973285';
+const WA = '529214875347';
+const PLANS = {basico:{name:'Basico',price:1500,desc:'Sitio Web Basico'},profesional:{name:'Profesional',price:3000,desc:'Sitio Web Profesional'},premium:{name:'Premium',price:5000,desc:'Tienda Online Premium'}};
+
+let plan=null,hosting=1800,type='full',method='mercadopago';
+
+function selectMethod(m){
+  method=m;
+  document.querySelectorAll('.method-item').forEach(b=>b.classList.remove('selected'));
+  document.querySelector(`[data-method="${m}"]`).classList.add('selected');
+  document.getElementById('mpSection').classList.toggle('hidden',m!=='mercadopago');
+  document.getElementById('bankSection').classList.toggle('hidden',m!=='transferencia');
+  update();
+}
+
+function update(){
+  if(!plan){return}
+  const p=PLANS[plan];
+  const sub=p.price+hosting;
+  const pay=type==='full'?sub:Math.round(sub*.5);
+  const comm=Math.round(pay*.0349*1.16);
+  const total=pay+comm;
+  const bankTotal=pay;
+
+  document.getElementById('subtotal').textContent='$'+pay.toLocaleString('es-MX');
+  document.getElementById('commission').textContent='$'+comm.toLocaleString('es-MX');
+  document.getElementById('total').textContent='$'+total.toLocaleString('es-MX');
+  document.getElementById('concepto').textContent=`SitioWeb_${p.name}_${pay}`;
+  document.getElementById('btnMPText').textContent=`Pagar $${total.toLocaleString('es-MX')} con Mercado Pago`;
+
+  if(method==='mercadopago'){
+    document.getElementById('commRow').style.display='flex';
+  }else{
+    document.getElementById('commRow').style.display='none';
+    document.getElementById('total').textContent='$'+bankTotal.toLocaleString('es-MX');
+  }
+
+  document.querySelectorAll('.step').forEach(s=>{s.classList.remove('active','done')});
+  document.getElementById('step1').classList.add('done');
+  document.getElementById('step2').classList.add('done');
+  document.getElementById('step3').classList.add('active');
+}
+
+document.querySelectorAll('.plan-item').forEach(el=>{
+  el.addEventListener('click',()=>{
+    document.querySelectorAll('.plan-item').forEach(p=>p.classList.remove('selected'));
+    el.classList.add('selected');
+    plan=el.dataset.plan;
+    update();
+  });
+});
+
+document.querySelectorAll('.host-item').forEach(el=>{
+  el.addEventListener('click',()=>{
+    document.querySelectorAll('.host-item').forEach(p=>p.classList.remove('selected'));
+    el.classList.add('selected');
+    hosting=parseInt(el.dataset.hosting);
+    update();
+  });
+});
+
+document.querySelectorAll('.type-item').forEach(el=>{
+  el.addEventListener('click',()=>{
+    document.querySelectorAll('.type-item').forEach(p=>p.classList.remove('selected'));
+    el.classList.add('selected');
+    type=el.dataset.type;
+    update();
+  });
+});
+
+function copy(t){navigator.clipboard.writeText(t).then(()=>alert('Copiado: '+t))}
+
+async function payMP(){
+  if(!plan)return;
+  const btn=document.getElementById('btnMP');
+  const txt=document.getElementById('btnMPText');
+  const err=document.getElementById('error');
+  btn.disabled=true;txt.textContent='Creando enlace...';err.style.display='none';
+
+  const p=PLANS[plan];
+  const sub=p.price+hosting;
+  const pay=type==='full'?sub:Math.round(sub*.5);
+  const comm=Math.round(pay*.0349*1.16);
+  const years=hosting===600?'1 ano':'4 anos';
+
+  try{
+    const r=await fetch('https://api.mercadopago.com/checkout/preferences',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+MP_TOKEN},
+      body:JSON.stringify({
+        items:[
+          {title:p.desc+(type==='deposit'?' 50% anticipo':''),quantity:1,currency_id:'MXN',unit_price:type==='full'?p.price:Math.round(p.price*.5)},
+          {title:'Hosting+Dominio '+years+(type==='deposit'?' 50% anticipo':''),quantity:1,currency_id:'MXN',unit_price:type==='full'?hosting:Math.round(hosting*.5)},
+          {title:'Comision MP (3.49%+IVA)',quantity:1,currency_id:'MXN',unit_price:comm}
+        ],
+        back_urls:{success:'https://rtvic.github.io/nevas-xmaben/pago_exitoso.html',failure:'https://rtvic.github.io/nevas-xmaben/pago_fallido.html',pending:'https://rtvic.github.io/nevas-xmaben/pago_pendiente.html'},
+        auto_return:'approved',
+        statement_descriptor:'VICTOR ONTIVEROS',
+        external_reference:'victor_web_'+plan+'_'+Date.now()
+      })
+    });
+    if(r.ok){const d=await r.json();if(d.init_point)window.location.href=d.init_point;else throw Error('Sin enlace')}
+    else{const e=await r.json();throw Error(e.message||'Error')}
+  }catch(e){
+    err.innerHTML='Error: '+e.message+' <a href="https://wa.me/'+WA+'?text='+encodeURIComponent('Error pago: '+e.message)+'" target="_blank" style="color:#0071e3">WhatsApp</a>';
+    err.style.display='block';btn.disabled=false;txt.textContent='Pagar con Mercado Pago';
+  }
+}
+
+function sendBank(){
+  const n=document.getElementById('name').value.trim();
+  const ph=document.getElementById('phone').value.trim();
+  const em=document.getElementById('email').value.trim();
+  const err=document.getElementById('error');
+  if(!n||!ph||!em){err.textContent='Completa todos los campos';err.style.display='block';return}
+  if(ph.length!==10){err.textContent='Telefono: 10 digitos';err.style.display='block';return}
+  if(!plan){err.textContent='Selecciona un plan';err.style.display='block';return}
+
+  const p=PLANS[plan];
+  const sub=p.price+hosting;
+  const pay=type==='full'?sub:Math.round(sub*.5);
+  const years=hosting===600?'1 ano':'4 anos';
+  const tipo=type==='full'?'Completo':'50% anticipo';
+
+  const msg=`🏦 *COMPROBANTE DE TRANSFERENCIA*
+
+👤 *Nombre:* ${n}
+📱 *WhatsApp:* ${ph}
+📧 *Email:* ${em}
+
+📋 *Pedido:*
+• Plan: ${p.name} — $${p.price.toLocaleString('es-MX')}
+• Hosting: ${years} — $${hosting.toLocaleString('es-MX')}
+• Tipo: ${tipo}
+
+💰 *Total:* $${pay.toLocaleString('es-MX')}
+📝 *Concepto:* ${p.name}_${pay}
+
+✅ Adjunto comprobante de transferencia.`;
+
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
+  document.getElementById('success').textContent='Abriendo WhatsApp... Envia tu comprobante';
+  document.getElementById('success').style.display='block';
+  err.style.display='none';
+}
+
+update();
+</script>
+</body>
+</html>

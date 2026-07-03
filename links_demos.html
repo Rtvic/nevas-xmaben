@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Links de Demos - Listos para Telegram</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,sans-serif;background:#1a1a2e;color:#fff;padding:40px 20px}
+h1{text-align:center;margin-bottom:10px;font-size:1.5rem}
+.sub{text-align:center;color:#888;margin-bottom:30px;font-size:.9rem}
+.section{background:#16213e;border-radius:12px;padding:20px;margin-bottom:20px}
+.section h2{color:#0f9ff5;margin-bottom:12px;font-size:1rem}
+.link-box{background:#0f3460;border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:background .2s}
+.link-box:hover{background:#1a4a8a}
+.link-box .name{font-weight:600;font-size:.9rem}
+.link-box .plan{color:#aaa;font-size:.75rem}
+.link-box .copy{background:#e94560;border:none;color:#fff;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:.75rem;font-weight:600}
+.msg-box{background:#1a1a2e;border:1px solid #333;border-radius:8px;padding:14px;margin-top:12px;font-size:.8rem;line-height:1.6;color:#ccc}
+.msg-box strong{color:#0f9ff5}
+.btn-all{display:block;width:100%;padding:14px;background:#e94560;border:none;color:#fff;border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer;margin-top:10px}
+.status{text-align:center;margin-top:20px;padding:10px;border-radius:8px;display:none}
+.status.ok{display:block;background:#16a34a;color:#fff}
+</style>
+</head>
+<body>
+
+<h1>Links de Demos - Listos para Telegram</h1>
+<p class="sub">Clic en "Copiar" → pega en Telegram → el cliente abre directo</p>
+
+<div class="section">
+<h2>📋 Links Individuales (copiar uno por uno)</h2>
+
+<div class="link-box">
+  <div><div class="name">Taller mecanico</div><div class="plan">Basico $1,500</div></div>
+  <button class="copy" onclick="copy(this,'https://rtvic.github.io/nevas-xmaben/demo_taller_basico.html')">Copiar</button>
+</div>
+
+<div class="link-box">
+  <div><div class="name">Consultorio dental</div><div class="plan">Basico $1,500</div></div>
+  <button class="copy" onclick="copy(this,'https://rtvic.github.io/nevas-xmaben/demo_clinica_basico.html')">Copiar</button>
+</div>
+
+<div class="link-box">
+  <div><div class="name">Farmacia</div><div class="plan">Basico $1,500</div></div>
+  <button class="copy" onclick="copy(this,'https://rtvic.github.io/nevas-xmaben/demo_farmacia_basico.html')">Copiar</button>
+</div>
+
+<div class="link-box">
+  <div><div class="name">Salon de belleza</div><div class="plan">Profesional $3,000</div></div>
+  <button class="copy" onclick="copy(this,'https://rtvic.github.io/nevas-xmaben/demo_salon_profesional.html')">Copiar</button>
+</div>
+
+<div class="link-box">
+  <div><div class="name">Tienda de ropa</div><div class="plan">Premium $5,000</div></div>
+  <button class="copy" onclick="copy(this,'https://rtvic.github.io/nevas-xmaben/demo_tienda_premium.html')">Copiar</button>
+</div>
+</div>
+
+<div class="section">
+<h2>💬 Mensajes listos para Telegram (solo copiar y pegar)</h2>
+
+<div class="msg-box">
+<strong>Mensaje basico - Taller mecanico:</strong><br>
+Hola! Hice un ejemplo especial para tu taller:<br>
+<a href="https://rtvic.github.io/nevas-xmaben/demo_taller_basico.html" style="color:#0f9ff5">https://rtvic.github.io/nevas-xmaben/demo_taller_basico.html</a><br>
+Es una pagina profesional con WhatsApp, mapa y todo. Te gusta?
+</div>
+
+<div class="msg-box">
+<strong>Mensaje basico - Clinica dental:</strong><br>
+Hola! Mira este ejemplo que hice para un consultorio dental:<br>
+<a href="https://rtvic.github.io/nevas-xmaben/demo_clinica_basico.html" style="color:#0f9ff5">https://rtvic.github.io/nevas-xmaben/demo_clinica_basico.html</a><br>
+Tiene WhatsApp integrado y se ve muy profesional. Que opinas?
+</div>
+
+<div class="msg-box">
+<strong>Mensaje basico - Farmacia:</strong><br>
+Hola! Hice un ejemplo de pagina para farmacia:<br>
+<a href="https://rtvic.github.io/nevas-xmaben/demo_farmacia_basico.html" style="color:#0f9ff5">https://rtvic.github.io/nevas-xmaben/demo_farmacia_basico.html</a><br>
+Con WhatsApp, horarios y mapa. Te interesa algo asi?
+</div>
+
+<div class="msg-box">
+<strong>Mensaje profesional - Salon de belleza:</strong><br>
+Hola! Mira este ejemplo que hice, es una pagina con galeria, servicios y testimonios:<br>
+<a href="https://rtvic.github.io/nevas-xmaben/demo_salon_profesional.html" style="color:#0f9ff5">https://rtvic.github.io/nevas-xmaben/demo_salon_profesional.html</a><br>
+Se ve muy elegante. Te gustaria algo asi?
+</div>
+
+<div class="msg-box">
+<strong>Mensaje premium - Tienda online:</strong><br>
+Hola! Hice un ejemplo de tienda online con carrito de compras:<br>
+<a href="https://rtvic.github.io/nevas-xmaben/demo_tienda_premium.html" style="color:#0f9ff5">https://rtvic.github.io/nevas-xmaben/demo_tienda_premium.html</a><br>
+El cliente puede comprar directo desde el telefono. Te interesa?
+</div>
+
+<button class="btn-all" onclick="copyAll()">Copiar TODOS los links (uno por linea)</button>
+</div>
+
+<div id="status" class="status"></div>
+
+<script>
+function copy(btn, url) {
+  navigator.clipboard.writeText(url).then(() => {
+    btn.textContent = 'Copiado!';
+    btn.style.background = '#16a34a';
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.style.background = '#e94560'; }, 2000);
+  });
+}
+
+function copyAll() {
+  const links = [
+    'https://rtvic.github.io/nevas-xmaben/demo_taller_basico.html',
+    'https://rtvic.github.io/nevas-xmaben/demo_clinica_basico.html',
+    'https://rtvic.github.io/nevas-xmaben/demo_farmacia_basico.html',
+    'https://rtvic.github.io/nevas-xmaben/demo_salon_profesional.html',
+    'https://rtvic.github.io/nevas-xmaben/demo_tienda_premium.html'
+  ];
+  navigator.clipboard.writeText(links.join('\n')).then(() => {
+    const s = document.getElementById('status');
+    s.textContent = '5 links copiados! Pegalos en Telegram';
+    s.className = 'status ok';
+  });
+}
+</script>
+</body>
+</html>

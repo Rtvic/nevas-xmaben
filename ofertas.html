@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>Nevas Xmaben — Ofertas</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08080f;--s:rgba(18,18,32,.85);--b:rgba(48,48,80,.25);--t:#eef0f6;--t2:#6b6b9e;--accent:#6366f1;--green:#10b981;--gold:#fbbf24;--red:#ef4444;--cyan:#22d3ee;--spring:cubic-bezier(.34,1.56,.64,1)}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--t);padding:0;line-height:1.5;overflow-x:hidden}
+#amb{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#amb div{position:absolute;border-radius:50%;filter:blur(80px);animation:d 20s ease-in-out infinite alternate}
+#amb div:nth-child(1){width:400px;height:400px;background:rgba(99,102,241,.08);top:-15%;left:-10%}
+#amb div:nth-child(2){width:350px;height:350px;background:rgba(34,211,238,.05);bottom:-20%;right:-10%;animation-delay:-7s}
+#amb div:nth-child(3){width:300px;height:300px;background:rgba(251,191,36,.03);top:50%;left:60%;animation-delay:-14s}
+@keyframes d{0%{transform:translate(0,0)scale(1)}100%{transform:translate(30px,-30px)scale(1.12)}}
+.top{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--b)}
+.top .l{font-size:15px;font-weight:800;background:linear-gradient(135deg,#818cf8,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.top .l span{color:#fbbf24;-webkit-text-fill-color:#fbbf24}
+.top .s{font-size:8px;color:var(--t2);display:flex;align-items:center;gap:4px}
+.top .s .dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:p 1.5s infinite}
+@keyframes p{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.6)}50%{box-shadow:0 0 0 6px rgba(16,185,129,0)}}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 20px 60px;position:relative;z-index:1;max-width:600px;margin:0 auto}
+.hero .badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:60px;background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.1);font-size:8px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.hero h1{font-size:clamp(1.8em,6vw,3.2em);font-weight:900;line-height:1.08;margin-bottom:10px}
+.hero h1 .hl{background:linear-gradient(135deg,var(--accent),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:13px;color:var(--t2);max-width:450px;margin-bottom:20px;line-height:1.6}
+.hero .hb{display:flex;gap:8px;flex-wrap:wrap}
+.hero .hb a{padding:12px 24px;border-radius:60px;font-size:13px;font-weight:700;text-decoration:none;transition:all .3s var(--spring);display:inline-flex;align-items:center;gap:6px}
+.hero .hb a:active{transform:scale(.96)}
+.hero .hb .pb{background:linear-gradient(135deg,var(--accent),#4f46e5);color:#fff;box-shadow:0 4px 20px rgba(99,102,241,.25)}
+.hero .hb .sb{background:var(--s);color:var(--t);border:1px solid var(--b)}
+.hero .stats{display:flex;gap:12px;margin-top:24px;padding-top:20px;border-top:1px solid var(--b)}
+.hero .stats div{text-align:center;flex:1}
+.hero .stats .sv{font-size:18px;font-weight:800;font-family:'JetBrains Mono',monospace}
+.hero .stats .sl{font-size:7px;color:var(--t2);text-transform:uppercase;letter-spacing:1px}
+.section{padding:50px 20px;position:relative;z-index:1;max-width:600px;margin:0 auto}
+.sh{font-size:clamp(1.2em,4vw,1.8em);font-weight:800;margin-bottom:4px}
+.shs{font-size:11px;color:var(--t2);margin-bottom:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:400px){.grid{grid-template-columns:1fr}}
+.oc{background:var(--s);border-radius:14px;padding:16px;border:1px solid var(--b);text-align:center;transition:all .3s var(--spring);position:relative;overflow:hidden}
+.oc:active{transform:scale(.97)}
+.oc .emo{font-size:28px;margin-bottom:6px;display:block}
+.oc h3{font-size:12px;font-weight:700;margin-bottom:2px}
+.oc p{font-size:9px;color:var(--t2);margin-bottom:6px}
+.oc .pr{font-size:15px;font-weight:800;font-family:'JetBrains Mono',monospace;color:var(--cyan)}
+.oc .tag{position:absolute;top:8px;right:8px;font-size:6.5px;padding:2px 6px;border-radius:4px;background:rgba(251,191,36,.12);color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.oc.copy{background:rgba(99,102,241,.04);border-color:rgba(99,102,241,.12)}
+.oc.copy .pr{font-size:9px;font-weight:400;color:var(--t2);font-family:Inter}
+.oc.copy code{display:block;background:rgba(0,0,0,.3);padding:8px;border-radius:6px;font-size:7.5px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:4px;word-break:break-all}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border-radius:60px;background:#25D366;color:#fff;font-weight:700;font-size:14px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.25);transition:all .3s var(--spring);margin-top:14px}
+.wa-btn:active{transform:scale(.97)}
+.wa-btn.s{margin-top:0;padding:10px;font-size:11px}
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.pay-grid a{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:10px;font-size:10px;font-weight:700;text-decoration:none;transition:all .3s var(--spring)}
+.pay-grid a:active{transform:scale(.95)}
+.pay-grid .mp{background:linear-gradient(135deg,#00B0F0,#009EE0);color:#fff}
+.pay-grid .pp{background:linear-gradient(135deg,#003087,#002070);color:#fff}
+.pay-grid .sp{background:linear-gradient(135deg,#6772E5,#5469D4);color:#fff}
+.pay-grid .cl{background:linear-gradient(135deg,#00A859,#00804A);color:#fff}
+.qr-box{background:var(--s);border-radius:14px;padding:20px;border:1px solid var(--b);text-align:center;margin-top:12px}
+.qr-box .qr{width:160px;height:160px;margin:0 auto;background:rgba(255,255,255,.95);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:60px}
+.qr-box p{font-size:8px;color:var(--t2);margin-top:8px}
+.msg-box{background:rgba(99,102,241,.03);border-radius:10px;padding:10px 12px;border:1px solid rgba(99,102,241,.08);margin-top:8px}
+.msg-box .lb{font-size:7px;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+.msg-box p{font-size:9px;color:var(--t2);line-height:1.5}
+.msg-box code{display:block;background:rgba(0,0,0,.3);padding:6px 8px;border-radius:5px;font-size:8px;color:var(--cyan);font-family:'JetBrains Mono',monospace;margin-top:4px;word-break:break-all}
+@media(min-width:768px){.hero,.section{padding-left:32px;padding-right:32px;max-width:700px}}
+</style>
+</head>
+<body>
+<div id="amb"><div></div><div></div><div></div></div>
+
+<div class="top">
+  <div class="l">Nevas <span>Xmaben</span></div>
+  <div class="s"><span class="dot"></span> Disponible hoy</div>
+</div>
+
+<section class="hero">
+  <div class="badge">🔥 Oferta especial &mdash; 3 lugares disponibles</div>
+  <h1>Reparamos tu celular o PC <span class="hl">en 24 horas</span></h1>
+  <p>Diagn&oacute;stico gratis. Precio justo. Sin cobro si no lo arreglamos. Tambi&eacute;n creamos sitios web profesionales para tu negocio con WhatsApp integrado.</p>
+  <div class="hb">
+    <a class="pb" href="https://wa.me/5219214875347?text=Hola%2C%20vi%20tu%20oferta%20y%20quiero%20reparar%20mi%20equipo" target="_blank">Cotizar ahora</a>
+    <a class="sb" href="#paquetes">Ver paquetes</a>
+  </div>
+  <div class="stats">
+    <div><div class="sv">5+</div><div class="sl">A&ntilde;os exp.</div></div>
+    <div><div class="sv">120+</div><div class="sl">Equipos reparados</div></div>
+    <div><div class="sv">⭐</div><div class="sl">Clientes felices</div></div>
+  </div>
+</section>
+
+<section class="section" id="paquetes">
+  <div class="sh">📦 Paquetes de reparaci&oacute;n</div>
+  <div class="shs">Precios en MXN &middot; Paga contra entrega o por transferencia</div>
+  <div class="grid">
+    <div class="oc"><span class="emo">📱</span><h3>Cambio de Pantalla</h3><p>Original o alta calidad. Todas las marcas.</p><div class="pr">$350+</div></div>
+    <div class="oc"><span class="emo">🔋</span><h3>Cambio de Bater&iacute;a</h3><p>Bater&iacute;a nueva con garant&iacute;a.</p><div class="pr">$250+</div></div>
+    <div class="oc"><span class="emo">💻</span><h3>Mantenimiento PC</h3><p>Limpieza, pasta t&eacute;rmica, optimizaci&oacute;n.</p><div class="pr">$400+</div></div>
+    <div class="oc"><span class="emo">🔄</span><h3>Formateo + Instalaci&oacute;n</h3><p>Windows y programas b&aacute;sicos incluidos.</p><div class="pr">$300+</div></div>
+    <div class="oc"><span class="emo">🔧</span><h3>Reparaci&oacute;n de Software</h3><p>Virus, lentitud, configuraciones.</p><div class="pr">$200+</div></div>
+    <div class="oc"><span class="emo">💾</span><h3>Recuperaci&oacute;n de Datos</h3><p>Fotos, documentos, archivos.</p><div class="pr">$500+</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sh">🌐 Sitios web para negocios</div>
+  <div class="shs">Presencia profesional en internet con WhatsApp integrado</div>
+  <div class="grid">
+    <div class="oc"><div class="tag">Popular</div><span class="emo">📄</span><h3>Starter</h3><p>1 p&aacute;gina informativa, dise&ntilde;o responsivo.</p><div class="pr">$1,500</div></div>
+    <div class="oc"><div class="tag">Recomendado</div><span class="emo">🏪</span><h3>Negocio</h3><p>Landing page + agendador + WhatsApp + galer&iacute;a.</p><div class="pr">$3,500</div></div>
+    <div class="oc"><span class="emo">💎</span><h3>Ultra Premium</h3><p>3D, animaciones, part&iacute;culas, todo incluido.</p><div class="pr">$5,000</div></div>
+    <div class="oc"><span class="emo">🌐</span><h3>Hosting + Dominio</h3><p>1 a&ntilde;o de hosting y dominio .com.mx</p><div class="pr">$600/a&ntilde;o</div></div>
+  </div>
+  <a class="wa-btn" href="https://wa.me/5219214875347?text=Hola%2C%20quiero%20un%20sitio%20web%20para%20mi%20negocio%20en%20Hopelch%C3%A9n" target="_blank">Cotizar mi sitio web</a>
+</section>
+
+<section class="section">
+  <div class="sh">💳 C&oacute;mo pagar</div>
+  <div class="shs">Elige el m&eacute;todo que prefieras</div>
+  <div class="pay-grid">
+    <a class="mp" href="https://www.mercadopago.com.mx/" target="_blank">Mercado Pago</a>
+    <a class="pp" href="https://www.paypal.com/paypalme/victorontiveros" target="_blank">PayPal</a>
+    <a class="sp" href="https://wa.me/5219214875347?text=Quiero%20pagar%20con%20transferencia" target="_blank">Transferencia</a>
+    <a class="cl" href="https://wa.me/5219214875347?text=Quiero%20pagar%20en%20efectivo" target="_blank">Efectivo</a>
+  </div>
+  <div class="qr-box">
+    <div class="qr">📱💳</div>
+    <p>Escanea con tu banco o escribe al WhatsApp para recibir el enlace de pago</p>
+  </div>
+  <div class="msg-box">
+    <div class="lb">DATOS PARA TRANSFERENCIA</div>
+    <p>Pide los datos por WhatsApp:</p>
+    <a class="wa-btn s" href="https://wa.me/5219214875347?text=Hola%2C%20quiero%20los%20datos%20para%20transferencia" target="_blank">Solicitar datos bancarios</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="sh">📤 Comparte y gana</div>
+  <div class="shs">Recomi&eacute;ndanos y gana $100 por cliente nuevo</div>
+  <div class="msg-box">
+    <div class="lb">MENSAJE PARA COMPARTIR</div>
+    <p>Copia y pega en tus grupos de WhatsApp:</p>
+    <code>"🔧 ¿Tienes un celular o PC da&ntilde;ado? Yo lo reparo en Xmaben. Diagn&oacute;stico gratis, precio justo. Tambi&eacute;n hago sitios web para negocios desde $1,500. Manda mensaje: wa.me/5219214875347"</code>
+  </div>
+  <a class="wa-btn s" href="https://wa.me/5219214875347?text=Quiero%20recomendar%20tu%20servicio" target="_blank">Gana $100 por referral &rarr;</a>
+</section>
+
+<section class="section" style="text-align:center;padding-bottom:60px">
+  <div class="sh">🚀 Empieza ahora</div>
+  <div class="shs">Un mensaje y te respondo al instante</div>
+  <a class="wa-btn" href="https://wa.me/5219214875347" target="_blank">💬 Abrir WhatsApp</a>
+  <p style="margin-top:8px;font-size:8px;color:var(--t2)">Nevas Xmaben &middot; Xmaben, Hopelch&eacute;n &middot; Lun&ndash;S&aacute;b 9AM&ndash;7PM</p>
+</section>
+
+<script>
+document.querySelectorAll('.oc').forEach(function(c){
+  c.addEventListener('click',function(){
+    var name=this.querySelector('h3')?.textContent||'servicio'
+    window.open('https://wa.me/5219214875347?text=Hola%2C%20quiero%20el%20paquete%3A%20'+encodeURIComponent(name),'_blank')
+  })
+})
+</script>
+</body>
+</html>

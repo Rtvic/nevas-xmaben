@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Pagar — Nevas Xmaben</title>
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f5f5;padding:20px;max-width:480px;margin:0 auto}
+.hdr{text-align:center;margin-bottom:16px;padding:10px;border-radius:12px;background:#0a0a23;color:#fff;font-weight:800;font-size:16px}
+.hdr span{color:#6366f1}
+.card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 1px 8px rgba(0,0,0,.06)}
+h1{font-size:18px;font-weight:800;color:#1a1a1a;margin-bottom:4px}
+.sub{font-size:12px;color:#666;margin-bottom:16px}
+.prod{display:flex;gap:12px;padding:12px;background:#f8f9fa;border-radius:10px;margin-bottom:16px}
+.prod .i{flex:1}
+.prod .n{font-size:13px;font-weight:600;color:#1a1a1a}
+.prod .p{font-size:16px;font-weight:800;color:#00a650;margin-top:2px}
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tab{padding:8px 14px;border-radius:20px;border:1.5px solid #ddd;background:#fff;font-size:12px;font-weight:600;cursor:pointer;color:#333;font-family:inherit}
+.tab.act{background:#00a650;border-color:#00a650;color:#fff}
+.fg{margin-bottom:12px}
+.fg label{font-size:11px;font-weight:600;color:#333;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg select{width:100%;padding:10px 12px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit;background:#fff}
+.fg input:focus{outline:none;border-color:#00a650;box-shadow:0 0 0 2px rgba(0,166,80,.1)}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{display:block;width:100%;padding:14px;background:linear-gradient(135deg,#00a650,#008f45);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;transition:all .2s;text-align:center}
+.btn:hover{box-shadow:0 4px 16px rgba(0,166,80,.3)}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.ftr{text-align:center;margin-top:16px;font-size:11px;color:#888}
+.ftr svg{vertical-align:middle;margin-right:4px}
+#wallet_box{min-height:50px;margin-top:16px}
+.err{color:#dc3545;font-size:12px;margin-top:6px;display:none;text-align:center}
+</style>
+</head>
+<body>
+<div class="hdr">NEVAS <span>XMABEN</span></div>
+<div class="card">
+<h1>Pago seguro</h1>
+<div class="sub">Completa el pago con tu método favorito</div>
+<div class="prod" id="prodBox">
+<div class="i">
+<div class="n" id="nomProd">Paquete Profesional</div>
+<div class="p" id="precProd">$2,999 MXN</div>
+</div>
+</div>
+<div class="tabs" id="tabs">
+<button class="tab act" data-m="card">Tarjeta</button>
+<button class="tab" data-m="oxxo">Oxxo</button>
+<button class="tab" data-m="spei">SPEI</button>
+</div>
+<form id="frm">
+<div class="fg"><label>Número de tarjeta</label><input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" inputmode="numeric"></div>
+<div class="r2">
+<div class="fg"><label>Vencimiento</label><input type="text" id="cardExp" placeholder="MM/AA"></div>
+<div class="fg"><label>CVC</label><input type="text" id="cardCVC" placeholder="123" inputmode="numeric"></div>
+</div>
+<div class="fg"><label>Titular</label><input type="text" id="cardName" placeholder="Como en la tarjeta"></div>
+<div class="fg"><label>Email</label><input type="email" id="cardEmail" placeholder="tu@email.com"></div>
+<div class="fg" id="issuerBox" style="display:none"><label>Banco</label><select id="issuer"></select></div>
+<div class="fg" id="installmentsBox" style="display:none"><label>Cuotas</label><select id="installments"></select></div>
+</form>
+<button class="btn" id="btnPay" disabled>⏳ Cargando...</button>
+<div id="oxxoBox" style="display:none"><p style="font-size:13px;color:#555;margin:12px 0">Genera un código para pagar en Oxxo.</p><button class="btn" id="btnOxxo">💰 Generar código Oxxo</button></div>
+<div id="speiBox" style="display:none"><p style="font-size:13px;color:#555;margin:12px 0">Recibirás una CLABE para transferencia.</p><button class="btn" id="btnSpei">🏦 Generar pago SPEI</button></div>
+<div id="wallet_box"></div>
+<div class="err" id="errMsg"></div>
+</div>
+<div class="ftr"><svg width="12" height="12" viewBox="0 0 24 24" fill="#888"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg> Pago 100% seguro · Mercado Pago</div>
+<script>
+const mp=new MercadoPago('APP_USR-fff1338f-0fdb-4077-9d5f-0d1b45e24226');
+const q=new URLSearchParams(location.search);
+const prod=q.get('p')||'paquete_profesional';
+const PR={paquete_basico:[1499,'Básico'],paquete_profesional:[2999,'Profesional'],paquete_premium:[5999,'Premium'],personalizado:[3999,'Personalizado'],paquete_demo:[10,'Demo']};
+const[mon,nom]=PR[prod]||[2999,'Profesional'];
+document.getElementById('nomProd').textContent='Paquete '+nom;
+document.getElementById('precProd').textContent='$'+mon.toLocaleString('es-MX')+' MXN';
+const cf=mp.cardForm({amount:mon.toString(),autoMount:false,form:{id:'frm',cardNumber:{id:'cardNumber'},expirationDate:{id:'cardExp'},securityCode:{id:'cardCVC'},cardholderName:{id:'cardName'},cardholderEmail:{id:'cardEmail'},installments:{id:'installments'},issuer:{id:'issuer'}},callbacks:{onFormMounted:function(){document.getElementById('btnPay').textContent='💳 Pagar $'+mon.toLocaleString('es-MX');document.getElementById('btnPay').disabled=false},onSubmit:async function(e){e.preventDefault();const b=document.getElementById('btnPay');b.disabled=true;b.textContent='⏳ Procesando...';const td=await cf.getCardFormData();if(!td){b.disabled=false;b.textContent='💳 Pagar $'+mon.toLocaleString('es-MX');return}const r=await fetch('/api/process_payment.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:td.token,producto:prod,email:td.cardholderEmail,installments:td.installments,paymentMethodId:td.paymentMethodId})});const d=await r.json();if(d.status==='approved')location.href='/pago_exitoso.html';else{document.getElementById('errMsg').textContent='Rechazado: '+(d.status_detail||'Error');document.getElementById('errMsg').style.display='block';b.disabled=false;b.textContent='💳 Pagar $'+mon.toLocaleString('es-MX')}}}});cf.mount();
+document.querySelectorAll('.tab').forEach(t=>{t.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('act'));t.classList.add('act');const m=t.dataset.m;document.getElementById('frm').style.display=m==='card'?'block':'none';document.getElementById('btnPay').style.display=m==='card'?'block':'none';document.getElementById('oxxoBox').style.display=m==='oxxo'?'block':'none';document.getElementById('speiBox').style.display=m==='spei'?'block':'none';document.getElementById('wallet_box').style.display=m==='card'?'block':'none'})});
+async function mkPref(){const r=await fetch('/api/create_preference.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({producto:prod})});return r.json()}
+document.getElementById('btnOxxo').addEventListener('click',async function(){this.disabled=true;this.textContent='⏳ Generando...';const d=await mkPref();if(d.init_point)location.href=d.init_point;else{document.getElementById('errMsg').textContent='Error';document.getElementById('errMsg').style.display='block';this.disabled=false;this.textContent='💰 Generar código Oxxo'}});
+document.getElementById('btnSpei').addEventListener('click',async function(){this.disabled=true;this.textContent='⏳ Generando...';const d=await mkPref();if(d.init_point)location.href=d.init_point;else{document.getElementById('errMsg').textContent='Error';document.getElementById('errMsg').style.display='block';this.disabled=false;this.textContent='🏦 Generar pago SPEI'}});
+(async()=>{try{const d=await mkPref();if(d.init_point&&d.preference_id){mp.bricks().create('wallet','wallet_box',{initialization:{preferenceId:d.preference_id}})}}catch(e){}})();
+</script>
+</body>
+</html>

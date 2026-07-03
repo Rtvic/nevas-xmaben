@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Restaurante La Perla — Cocina de Autor en Mérida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--p:#6d28d9;--p2:#8b5cf6;--g:#f59e0b;--g2:#d97706;--bg:#08080e;--card:rgba(255,255,255,.02);--tx:#e8e0f0;--tx2:#999;--br:rgba(255,255,255,.05);--gl:rgba(109,45,217,.8);--sp:cubic-bezier(.34,1.56,.64,1)}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;line-height:1.6;cursor:none}
+::selection{background:var(--p);color:#fff}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--p);border-radius:4px}
+#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.ov{position:relative;z-index:1}
+#cr{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--g);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s;box-shadow:0 0 10px var(--g);mix-blend-mode:screen}
+#cg{position:fixed;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(109,45,217,.15),transparent 70%);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);mix-blend-mode:screen}
+#cr.big{width:28px;height:28px;background:var(--p2);box-shadow:0 0 20px var(--gl)}
+#pl{position:fixed;inset:0;z-index:999999;display:flex;align-items:center;justify-content:center;background:var(--bg);transition:opacity .7s ease}
+#pl.out{opacity:0;pointer-events:none}
+.pl-c{text-align:center}
+.pl-l{font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;font-family:'Playfair Display',serif;background:linear-gradient(135deg,var(--p),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px}
+.pl-p{width:220px;height:3px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;margin:0 auto}
+.pl-b{height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--g));border-radius:4px;transition:width .3s}
+.nv{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;background:rgba(8,8,14,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--br)}
+.nv-l{display:flex;align-items:center;gap:10px;font-size:1.15em;font-weight:700;color:var(--tx);text-decoration:none;font-family:'Playfair Display',serif}
+.nv-l .hl{background:linear-gradient(135deg,var(--p2),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nv-r{display:flex;gap:8px}
+.nv-r a{color:var(--tx2);text-decoration:none;font-size:.8em;padding:6px 14px;border-radius:8px;transition:all .3s var(--sp);border:1px solid transparent;letter-spacing:.3px}
+.nv-r a:hover{color:var(--g);border-color:var(--br);background:var(--card)}
+.hr{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:100px 20px 60px}
+.hr h1{font-size:clamp(2.2rem,7vw,5rem);font-weight:900;line-height:1.15;margin-bottom:20px;font-family:'Playfair Display',serif}
+.hr h1 .hl{background:linear-gradient(135deg,var(--p2),var(--g),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hr p{font-size:clamp(1rem,2.5vw,1.3rem);color:var(--tx2);max-width:600px;margin-bottom:36px;font-weight:300;letter-spacing:.5px}
+.hr .bt{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:12px;font-weight:600;font-size:.92em;text-decoration:none;transition:all .3s var(--sp);border:none;cursor:pointer;font-family:inherit;letter-spacing:.3px}
+.btn-p{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff}
+.btn-p:hover{transform:scale(1.05);box-shadow:0 0 40px rgba(109,45,217,.35)}
+.btn-o{background:transparent;color:var(--tx);border:1px solid var(--br)}
+.btn-o:hover{border-color:var(--g);color:var(--g);transform:translateY(-3px);box-shadow:0 0 30px rgba(245,158,11,.12)}
+.sc{padding:100px 20px;max-width:1140px;margin:0 auto}
+.sh{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;margin-bottom:6px;text-align:center;font-family:'Playfair Display',serif}
+.sh .hl{background:linear-gradient(135deg,var(--p2),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ss{text-align:center;color:var(--tx2);margin-bottom:48px;font-size:.92em;font-weight:300;letter-spacing:.4px}
+.mn{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:720px){.mn{grid-template-columns:1fr}}
+.mc{border:1px solid var(--br);border-radius:18px;overflow:hidden;background:var(--card)}
+.mh{background:linear-gradient(135deg,rgba(109,45,217,.1),rgba(139,92,246,.05));padding:16px 18px;font-weight:700;font-size:1em;border-bottom:1px solid var(--br);font-family:'Playfair Display',serif;color:var(--g)}
+.ml{padding:10px}
+.mi{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 14px;border-radius:12px;transition:all .3s var(--sp);cursor:default}
+.mi:hover{background:rgba(109,45,217,.08);transform:translateX(6px)}
+.mi h4{font-size:.9em;font-weight:600;margin-bottom:2px;color:var(--tx)}
+.mi p{font-size:.75em;color:var(--tx2);font-weight:300}
+.mp{color:var(--g);font-weight:700;font-size:1.1em;white-space:nowrap;margin-left:16px;font-variant-numeric:tabular-nums}
+.gl{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:768px){.gl{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.gl{grid-template-columns:1fr}}
+.gi{aspect-ratio:1;border-radius:16px;border:1px solid var(--br);overflow:hidden;position:relative;display:flex;align-items:flex-end;padding:18px;transition:all .4s var(--sp)}
+.gi:hover{transform:scale(1.03);border-color:var(--g);box-shadow:0 0 30px rgba(245,158,11,.12)}
+.gi .lb{font-size:.85em;font-weight:600;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.5);z-index:1;position:relative;font-family:'Playfair Display',serif}
+.gi::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),transparent 60%)}
+.gi:nth-child(1){grid-column:span 2;aspect-ratio:16/9;background:linear-gradient(135deg,#4c1d95,#7c3aed)}
+.gi:nth-child(2){aspect-ratio:1;background:linear-gradient(135deg,#7c3aed,#f59e0b)}
+.gi:nth-child(3){aspect-ratio:1;grid-row:span 2;background:linear-gradient(135deg,#d97706,#92400e)}
+.gi:nth-child(4){aspect-ratio:1;background:linear-gradient(135deg,#6d28d9,#1e40af)}
+.gi:nth-child(5){grid-column:span 2;aspect-ratio:16/9;background:linear-gradient(135deg,#f59e0b,#6d28d9)}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:900px;margin:0 auto}
+@media(max-width:768px){.sg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.sg{grid-template-columns:1fr}}
+.si{text-align:center;padding:28px 16px;border-radius:16px;border:1px solid var(--br);background:var(--card);transition:all .3s var(--sp)}
+.si:hover{border-color:var(--p);box-shadow:0 0 30px rgba(109,45,217,.1);transform:translateY(-4px)}
+.sv{font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;background:linear-gradient(135deg,var(--p2),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:'Playfair Display',serif}
+.sl{font-size:.82em;color:var(--tx2);margin-top:4px;font-weight:400}
+.bk{max-width:520px;margin:0 auto;background:var(--card);border:1px solid var(--br);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:18px}
+.bk .fl{display:flex;flex-direction:column;gap:6px}
+.bk .fl label{font-size:.82em;color:var(--tx2);font-weight:600;letter-spacing:.3px}
+.bk .fl input,.bk .fl select{padding:12px 16px;border-radius:12px;border:1px solid var(--br);background:var(--bg);color:var(--tx);font-size:.92em;font-family:inherit;outline:none;transition:border .3s}
+.bk .fl input:focus,.bk .fl select:focus{border-color:var(--p)}
+.bk .fl input[type=date]{color-scheme:dark}
+.ts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ts button{padding:10px;border-radius:10px;border:1px solid var(--br);background:var(--bg);color:var(--tx);cursor:pointer;transition:all .3s var(--sp);font-size:.82em;font-family:inherit}
+.ts button:hover{border-color:var(--g);background:rgba(245,158,11,.06);color:var(--g)}
+.ts button.sl{border-color:var(--p);background:var(--p);color:#fff}
+#mp{width:100%;height:340px;border-radius:18px;border:1px solid var(--br);overflow:hidden}
+#mp iframe{width:100%;height:100%;border:0;filter:invert(.9)hue-rotate(180deg)}
+.wa{position:fixed;bottom:28px;right:28px;z-index:99;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--g2));display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 25px rgba(245,158,11,.4);transition:all .3s var(--sp);animation:wg 2.5s infinite}
+.wa:hover{transform:scale(1.1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+@keyframes wg{0%{box-shadow:0 4px 25px rgba(245,158,11,.4)}50%{box-shadow:0 4px 50px rgba(245,158,11,.65)}100%{box-shadow:0 4px 25px rgba(245,158,11,.4)}}
+.ft{text-align:center;padding:60px 20px 100px;border-top:1px solid var(--br)}
+.ft .hd{font-size:1.2em;font-weight:700;margin-bottom:4px;font-family:'Playfair Display',serif;background:linear-gradient(135deg,var(--p2),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ft .sb{color:var(--tx2);font-size:.85em;margin-bottom:16px;font-weight:300}
+.ft .hr{display:flex;flex-direction:column;gap:6px;margin-bottom:24px;font-size:.88em;color:var(--tx2)}
+.ft .hr strong{color:var(--tx);font-weight:600}
+.ft .sc{display:flex;justify-content:center;gap:14px;margin-bottom:24px}
+.ft .sc a{width:44px;height:44px;border-radius:14px;border:1px solid var(--br);display:flex;align-items:center;justify-content:center;color:var(--tx2);text-decoration:none;transition:all .3s var(--sp);font-size:1.1em}
+.ft .sc a:hover{border-color:var(--g);color:var(--g);background:rgba(245,158,11,.06);transform:translateY(-3px)}
+.ft .cp{font-size:.78em;color:var(--tx2);font-weight:300}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .7s ease-out,transform .7s ease-out}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.1s}
+.rv-d2{transition-delay:.2s}
+.rv-d3{transition-delay:.3s}
+.rv-d4{transition-delay:.4s}
+.rv-d5{transition-delay:.5s}
+.mg{transition:transform .2s ease}
+@media(max-width:768px){#cr,#cg{display:none}body{cursor:auto}}
+</style>
+</head>
+<body>
+<div id="pl"><div class="pl-c"><div class="pl-l">La Perla</div><div class="pl-p"><div class="pl-b"></div></div></div></div>
+<div id="bg"></div>
+<div id="cr"></div>
+<div id="cg"></div>
+<div class="ov">
+<nav class="nv">
+<a href="#" class="nv-l">🌊 <span class="hl">La Perla</span></a>
+<div class="nv-r">
+<a href="#menu">Menú</a>
+<a href="#gal">Galería</a>
+<a href="#res">Reservar</a>
+<a href="#map">Ubicación</a>
+</div>
+</nav>
+<section class="hr">
+<h1>Cocina de <span class="hl">autor</span><br>en el corazón de <span class="hl">Mérida</span></h1>
+<p>Alta cocina yucateca con un toque contemporáneo. Cada platillo cuenta una historia de tradición y vanguardia.</p>
+<div class="bt">
+<a href="#menu" class="btn btn-p mg">Explorar Menú</a>
+<a href="https://wa.me/529211234567?text=Hola!%20Quiero%20hacer%20una%20reservaci%C3%B3n%20en%20Restaurante%20La%20Perla" target="_blank" class="btn btn-o mg">Reservar Mesa</a>
+</div>
+</section>
+<section id="menu" class="sc">
+<h2 class="sh">Nuestro <span class="hl">Menú</span></h2>
+<p class="ss">Sabores de Yucatán, preparados con ingredientes frescos y pasión</p>
+<div class="mn">
+<div class="mc rv">
+<div class="mh">Entradas</div>
+<div class="ml">
+<div class="mi"><div><h4>Sopa de Lima</h4><p>Caldo de pollo con lima, tortilla frita y chile habanero</p></div><div class="mp">$85</div></div>
+<div class="mi"><div><h4>Panuchos</h4><p>Tortilla rellena de frijol, pavo, lechuga y tomate</p></div><div class="mp">$60</div></div>
+<div class="mi"><div><h4>Salbutes</h4><p>Tortilla frita con pavo, lechuga, tomate y aguacate</p></div><div class="mp">$65</div></div>
+<div class="mi"><div><h4>Queso Relleno</h4><p>Queso de bola relleno de picadillo, pasas y almendras</p></div><div class="mp">$95</div></div>
+</div>
+</div>
+<div class="mc rv rv-d1">
+<div class="mh">Platos Fuertes</div>
+<div class="ml">
+<div class="mi"><div><h4>Cochinita Pibil</h4><p>Cerdo marinado en achiote, cítricos, salsa de habanero</p></div><div class="mp">$140</div></div>
+<div class="mi"><div><h4>Poc Chuc</h4><p>Cerdo a la parrilla con cebolla morada, chiltomate</p></div><div class="mp">$130</div></div>
+<div class="mi"><div><h4>Pargo Frito</h4><p>Pargo fresco frito con ensalada de vegetales</p></div><div class="mp">$180</div></div>
+<div class="mi"><div><h4>Filete Relleno</h4><p>Filete de res relleno de queso de bola y verduras</p></div><div class="mp">$160</div></div>
+</div>
+</div>
+<div class="mc rv rv-d2">
+<div class="mh">Postres</div>
+<div class="ml">
+<div class="mi"><div><h4>Flan Napolitano</h4><p>Flan cremoso de vainilla con caramelo artesanal</p></div><div class="mp">$55</div></div>
+<div class="mi"><div><h4>Marquesita</h4><p>Tortilla de harina rellena de Nutella o queso de bola</p></div><div class="mp">$40</div></div>
+<div class="mi"><div><h4>Helado de Xtabentún</h4><p>Helado artesanal de licor de miel y anís</p></div><div class="mp">$50</div></div>
+</div>
+</div>
+<div class="mc rv rv-d3">
+<div class="mh">Bebidas</div>
+<div class="ml">
+<div class="mi"><div><h4>Agua de Chaya</h4><p>Agua fresca de chaya, piña y limón</p></div><div class="mp">$25</div></div>
+<div class="mi"><div><h4>Horchata</h4><p>Arroz, canela y vainilla</p></div><div class="mp">$25</div></div>
+<div class="mi"><div><h4>Cerveza</h4><p>Montejo, Indio, Corona</p></div><div class="mp">$35</div></div>
+<div class="mi"><div><h4>Margarita</h4><p>Tequila, triple sec, limón, sal</p></div><div class="mp">$70</div></div>
+</div>
+</div>
+</div>
+</section>
+<section id="stats" class="sc" style="padding-bottom:40px">
+<h2 class="sh">La Perla en <span class="hl">cifras</span></h2>
+<p class="ss">Nuestra trayectoria habla por sí sola</p>
+<div class="sg">
+<div class="si rv"><div class="sv" data-n="10">0</div><div class="sl">Años de tradición</div></div>
+<div class="si rv rv-d1"><div class="sv" data-n="5000">0</div><div class="sl">Clientes satisfechos</div></div>
+<div class="si rv rv-d2"><div class="sv" data-n="48">0</div><div class="sl">Calificación ★</div></div>
+<div class="si rv rv-d3"><div class="sv" data-n="1">0</div><div class="sl">Premio al mejor sabor 2025</div></div>
+</div>
+</section>
+<section id="gal" class="sc">
+<h2 class="sh">Nuestra <span class="hl">galería</span></h2>
+<p class="ss">Cada platillo es una obra de arte</p>
+<div class="gl">
+<div class="gi rv"><span class="lb">Cochinita Pibil</span></div>
+<div class="gi rv rv-d1"><span class="lb">Poc Chuc</span></div>
+<div class="gi rv rv-d2"><span class="lb">Pargo Frito</span></div>
+<div class="gi rv rv-d3"><span class="lb">Sopa de Lima</span></div>
+<div class="gi rv rv-d4"><span class="lb">Flan Napolitano</span></div>
+</div>
+</section>
+<section id="res" class="sc">
+<h2 class="sh">Reserva tu <span class="hl">mesa</span></h2>
+<p class="ss">Te esperamos de martes a domingo</p>
+<div class="bk rv">
+<div class="fl">
+<label for="fd">Fecha</label>
+<input type="date" id="fd">
+</div>
+<div class="fl">
+<label>Horario disponible</label>
+<div class="ts" id="ts">
+<button data-h="13:00">1:00pm</button>
+<button data-h="15:00">3:00pm</button>
+<button data-h="18:00">6:00pm</button>
+<button data-h="19:00">7:00pm</button>
+<button data-h="20:00">8:00pm</button>
+<button data-h="21:00">9:00pm</button>
+</div>
+</div>
+<div class="fl">
+<label for="pp">Personas</label>
+<select id="pp"><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+</div>
+<button class="btn btn-p mg" id="rb" style="justify-content:center">Reservar por WhatsApp</button>
+</div>
+</section>
+<section id="map" class="sc" style="padding-top:40px">
+<h2 class="sh"><span class="hl">Ubicación</span></h2>
+<p class="ss">Encuéntranos en el corazón de Mérida</p>
+<div id="mp" class="rv">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d238131.36273933668!2d-89.69663569098218!3d20.96703364066712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f2e586a5d5e151d%3A0x81b1e5e1a9aa40c7!2sM%C3%A9rida%2C%20Yuc.!5e0!3m2!1ses-419!2smx!4v1" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</section>
+<footer class="ft">
+<div class="hd">🌊 La Perla</div>
+<div class="sb">Mérida, Yucatán — Calle 60 x 47, Centro</div>
+<div class="hr">
+<span>Martes a Domingo — <strong>1:00pm – 11:00pm</strong></span>
+<span>Lunes — <strong>Cerrado</strong></span>
+</div>
+<div class="sc">
+<a href="#" target="_blank" aria-label="Instagram">IG</a>
+<a href="#" target="_blank" aria-label="Facebook">FB</a>
+<a href="https://wa.me/529211234567" target="_blank" aria-label="WhatsApp">WA</a>
+</div>
+<div class="cp">&copy; 2025 La Perla — Cocina de Autor. Todos los derechos reservados.</div>
+</footer>
+</div>
+<a href="https://wa.me/529211234567" target="_blank" class="wa" aria-label="WhatsApp">
+<svg viewBox="0 0 32 32"><path d="M16 2C8.2 2 2 8.2 2 16c0 3 .8 5.8 2.2 8.2L2 30l6-2.2c2.4 1.4 5.2 2.2 8 2.2 7.8 0 14-6.2 14-14S23.8 2 16 2zm7 19.6c-.4 1-1.6 2-2.8 2.2-.8.2-1.6.2-2.6 0-2.6-.6-5-2.4-6.8-4.2-1.8-1.8-3.2-4.2-3.8-6.8-.2-.8-.2-1.6 0-2.4.2-1.2 1.2-2.4 2.2-2.8h.8c.4 0 .6.2.8.6l1.2 2.6c.2.4.2.8 0 1.2-.2.2-.4.6-.6.8-.2.4-.4.6-.2.8.8 1.2 1.8 2.2 3 3 .2.2.6.2.8 0 .2-.2.6-.4.8-.6.4-.2.8-.4 1.2 0l2.6 1.2c.4.2.6.4.6.8v.6z"/></svg>
+</a>
+<script>
+var isT = 'ontouchstart' in window
+if (!isT) {
+  var cr = document.getElementById('cr'), cg = document.getElementById('cg')
+  document.addEventListener('mousemove', function(e){
+    cr.style.left = e.clientX + 'px'
+    cr.style.top = e.clientY + 'px'
+    cg.style.left = e.clientX + 'px'
+    cg.style.top = e.clientY + 'px'
+  })
+  document.querySelectorAll('a,button,.btn,.mi,.gi,.si').forEach(function(el){
+    el.addEventListener('mouseenter', function(){ cr.classList.add('big') })
+    el.addEventListener('mouseleave', function(){ cr.classList.remove('big') })
+  })
+}
+var W = window.innerWidth, H = window.innerHeight
+var sc = new THREE.Scene()
+var ca = new THREE.PerspectiveCamera(75, W / H, .1, 1000)
+var re = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+re.setSize(W, H)
+re.setPixelRatio(Math.min(devicePixelRatio, 2))
+document.getElementById('bg').appendChild(re.domElement)
+var g = new THREE.TorusKnotGeometry(1, .3, 128, 16)
+var m = new THREE.MeshBasicMaterial({ color: 0x6d28d9, wireframe: true, transparent: true, opacity: .1 })
+var me = new THREE.Mesh(g, m)
+sc.add(me)
+var st = new THREE.BufferGeometry()
+var sp = new Float32Array(3000)
+for (var i = 0; i < 3000; i++) { sp[i] = (Math.random() - .5) * 40 }
+st.setAttribute('position', new THREE.BufferAttribute(sp, 3))
+var sf = new THREE.Points(st, new THREE.PointsMaterial({ color: 0xf59e0b, size: .02, transparent: true, opacity: .2 }))
+sc.add(sf)
+ca.position.z = 5
+var mx = 0, my = 0
+document.addEventListener('mousemove', function(e){
+  mx = (e.clientX / W - .5) * 2
+  my = (e.clientY / H - .5) * 2
+})
+window.addEventListener('resize', function(){
+  W = window.innerWidth
+  H = window.innerHeight
+  ca.aspect = W / H
+  ca.updateProjectionMatrix()
+  re.setSize(W, H)
+})
+function an(){
+  requestAnimationFrame(an)
+  me.rotation.x += .004
+  me.rotation.y += .006
+  me.rotation.x += my * .002
+  me.rotation.y += mx * .002
+  sf.rotation.y += .0003
+  re.render(sc, ca)
+}
+an()
+var pl = document.getElementById('pl')
+var pb = document.querySelector('.pl-b')
+var pct = 0
+function ld(){
+  pct += Math.random() * 18 + 4
+  if (pct > 100) pct = 100
+  pb.style.width = pct + '%'
+  if (pct < 100) { setTimeout(ld, 160) }
+  else {
+    setTimeout(function(){
+      pl.classList.add('out')
+      setTimeout(function(){ pl.style.display = 'none' }, 700)
+    }, 400)
+  }
+}
+ld()
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1'
+      e.target.style.transform = 'translateY(0)'
+    }
+  })
+}, { threshold: .1 })
+document.querySelectorAll('.rv').forEach(function(el){
+  el.style.opacity = '0'
+  el.style.transform = 'translateY(30px)'
+  el.style.transition = 'opacity .7s ease-out,transform .7s ease-out'
+  obs.observe(el)
+})
+var cObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if (e.isIntersecting) {
+      var sv = e.target
+      var n = parseInt(sv.getAttribute('data-n'))
+      var cur = 0
+      var spd = Math.max(20, Math.floor(n / 40))
+      function cnt(){
+        cur += Math.ceil((n - cur) / spd) + 1
+        if (cur > n) cur = n
+        if (n > 100) { sv.textContent = cur.toLocaleString() + '+' }
+        else if (n > 10) { sv.textContent = cur + '+' }
+        else { sv.textContent = cur }
+        if (cur < n) { setTimeout(cnt, 30) }
+      }
+      cnt()
+      cObs.unobserve(sv)
+    }
+  })
+}, { threshold: .5 })
+document.querySelectorAll('.sv').forEach(function(el){ cObs.observe(el) })
+var fd = document.getElementById('fd')
+var ts = document.getElementById('ts')
+var pp = document.getElementById('pp')
+var rb = document.getElementById('rb')
+var selH = ''
+var today = new Date()
+var y = today.getFullYear()
+var m = String(today.getMonth() + 1).padStart(2, '0')
+var d = String(today.getDate()).padStart(2, '0')
+fd.setAttribute('min', y + '-' + m + '-' + d)
+ts.querySelectorAll('button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    ts.querySelectorAll('button').forEach(function(b){ b.classList.remove('sl') })
+    btn.classList.add('sl')
+    selH = btn.getAttribute('data-h')
+  })
+})
+rb.addEventListener('click', function(){
+  if (!fd.value || !selH) { alert('Selecciona fecha y horario'); return }
+  var msg = 'Hola%2C%20quiero%20reservar%20una%20mesa%20en%20Restaurante%20La%20Perla%20para%20el%20' + encodeURIComponent(fd.value) + '%20a%20las%20' + encodeURIComponent(selH) + '%20para%20' + encodeURIComponent(pp.value) + '%20personas'
+  window.open('https://wa.me/529211234567?text=' + msg, '_blank')
+})
+document.querySelectorAll('.mg').forEach(function(btn){
+  btn.addEventListener('mousemove', function(e){
+    var r = btn.getBoundingClientRect()
+    var x = e.clientX - r.left - r.width / 2
+    var y = e.clientY - r.top - r.height / 2
+    var d = Math.min(20, Math.sqrt(x * x + y * y) / 4)
+    btn.style.transform = 'translate(' + (x * d / 30) + 'px,' + (y * d / 30) + 'px)'
+  })
+  btn.addEventListener('mouseleave', function(){ btn.style.transform = 'translate(0,0)' })
+})
+</script>
+</body>
+</html>

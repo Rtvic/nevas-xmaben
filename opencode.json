@@ -1,0 +1,21 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "skills": {
+    "paths": [".opencode/skills"]
+  },
+  "permission": {
+    "edit": "allow",
+    "bash": "allow",
+    "read": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "write": "allow",
+    "websearch": "allow",
+    "webfetch": "allow",
+    "external_directory": { "*": "allow" },
+    "skill": "allow",
+    "task": "allow",
+    "todowrite": "allow",
+    "question": "allow"
+  }
+}
