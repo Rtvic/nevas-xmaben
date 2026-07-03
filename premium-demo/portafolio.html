@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portafolio — Victor Ontiveros</title>
+<meta name="description" content="Ve ejemplos reales de sitios web que he creado para restaurantes, tiendas, talleres y servicios en Merida, Cancun y Campeche.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -18,6 +19,7 @@ a{color:inherit;text-decoration:none}
 #cursor-dot{position:fixed;width:5px;height:5px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%)}
 #cglow{position:fixed;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 70%);pointer-events:none;z-index:99997;transform:translate(-50%,-50%)}
 canvas#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+.noise{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(10,10,15,.6);border-bottom:1px solid rgba(108,92,231,.1)}
 .nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.2rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{display:flex;gap:32px;list-style:none}
@@ -36,24 +38,34 @@ section{position:relative;z-index:2}
 .filters{display:flex;justify-content:center;gap:12px;padding:20px 24px 40px;flex-wrap:wrap;position:relative;z-index:2}
 .filter-btn{padding:10px 24px;border:1px solid rgba(108,92,231,.2);border-radius:50px;background:transparent;color:var(--text2);font-size:13px;font-weight:500;cursor:none;transition:all .3s}
 .filter-btn.active,.filter-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
-.hscroll{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 24px 80px;display:flex;gap:24px}
-.hscroll::-webkit-scrollbar{display:none}
-.hscroll-progress{width:min(600px,80vw);height:3px;background:var(--bg3);border-radius:3px;margin:0 auto 60px;overflow:hidden;position:relative;z-index:2}
-.hscroll-progress-fill{height:100%;width:20%;background:var(--grad);border-radius:3px;transition:width .1s}
-.port-card{flex:0 0 min(420px,85vw);scroll-snap-align:center;background:var(--card);border:1px solid rgba(108,92,231,.08);border-radius:var(--radius);overflow:hidden;transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
-.port-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.port-img{width:100%;aspect-ratio:16/10;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;overflow:hidden}
-.port-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,var(--card))}
-.port-tag{position:absolute;top:16px;left:16px;padding:6px 14px;border-radius:50px;background:rgba(108,92,231,.8);backdrop-filter:blur(10px);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.port-count{text-align:center;color:var(--text3);font-size:13px;margin-bottom:32px;position:relative;z-index:2}
+.port-count span{color:var(--accent2);font-weight:600}
+.port-showcase{padding:0 24px 100px;max-width:1200px;margin:0 auto}
+.port-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
+.port-card{background:var(--card);border:1px solid rgba(108,92,231,.08);border-radius:var(--radius);overflow:hidden;transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;opacity:1;transform:translateY(0)}
+.port-card.hidden{display:none}
+.port-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.port-img{width:100%;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;overflow:hidden}
+.port-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,var(--card))}
+.port-tag{position:absolute;top:16px;left:16px;padding:6px 14px;border-radius:50px;background:rgba(108,92,231,.8);backdrop-filter:blur(10px);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;z-index:1}
+.port-level{position:absolute;top:16px;right:16px;padding:6px 14px;border-radius:50px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;z-index:1}
+.port-level.basic{background:rgba(0,206,201,.8)}
+.port-level.pro{background:rgba(108,92,231,.8)}
+.port-level.premium{background:rgba(255,107,107,.8)}
 .port-body{padding:24px}
-.port-body h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.port-body h3{font-size:1.15rem;font-weight:700;margin-bottom:8px}
 .port-body p{color:var(--text2);font-size:14px;line-height:1.6;margin-bottom:16px}
+.port-tech{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.port-tech span{padding:4px 10px;border-radius:50px;background:rgba(108,92,231,.1);font-size:11px;color:var(--accent2);font-weight:500}
 .port-link{display:inline-flex;align-items:center;gap:6px;color:var(--accent2);font-size:13px;font-weight:600;transition:color .3s}
 .port-link:hover{color:var(--accent3)}
-.port-link::after{content:'→';transition:transform .3s}
+.port-link::after{content:'\2192';transition:transform .3s}
 .port-link:hover::after{transform:translateX(4px)}
-
 .bento{padding:80px 24px;max-width:1200px;margin:0 auto}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--accent2);margin-bottom:16px}
+.section-label::before{content:'';width:24px;height:2px;background:var(--grad)}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:800;margin-bottom:16px;line-height:1.15}
+.section-sub{color:var(--text2);font-size:1.05rem;max-width:560px;line-height:1.7;margin-bottom:56px}
 .bento-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:20px}
 .bento-item{background:var(--card);border:1px solid rgba(108,92,231,.08);border-radius:var(--radius);padding:32px 24px;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
 .bento-item:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.2)}
@@ -63,7 +75,6 @@ section{position:relative;z-index:2}
 .bento-icon{font-size:28px;margin-bottom:16px}
 .bento-item h3{font-size:1rem;font-weight:700;margin-bottom:8px}
 .bento-item p{color:var(--text2);font-size:14px;line-height:1.6}
-
 .cta{padding:80px 24px;text-align:center}
 .cta-box{max-width:700px;margin:0 auto;padding:60px 40px;background:var(--card);border:1px solid rgba(108,92,231,.15);border-radius:24px}
 .cta-box h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;margin-bottom:16px}
@@ -83,18 +94,12 @@ footer{padding:60px 24px 30px;border-top:1px solid rgba(108,92,231,.08);max-widt
 .wa-float svg{width:30px;height:30px;fill:#fff}
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease-out,transform .7s ease-out}
 .reveal.visible{opacity:1;transform:translateY(0)}
-@media(max-width:768px){
-.bento-grid{grid-template-columns:1fr 1fr}
-.bento-item.span2{grid-column:span 2}
-.footer-grid{grid-template-columns:1fr 1fr}
-nav{padding:12px 20px}.nav-links{display:none}.nav-cta{display:none}
-}
+@media(max-width:768px){.bento-grid{grid-template-columns:1fr 1fr}.bento-item.span2{grid-column:span 2}.footer-grid{grid-template-columns:1fr 1fr}nav{padding:12px 20px}.nav-links{display:none}.nav-cta{display:none}.port-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div id="cursor"></div>
-<div id="cursor-dot"></div>
-<div id="cglow"></div>
+<div class="noise"></div>
+<div id="cursor"></div><div id="cursor-dot"></div><div id="cglow"></div>
 <canvas id="particles"></canvas>
 
 <nav>
@@ -110,7 +115,7 @@ nav{padding:12px 20px}.nav-links{display:none}.nav-cta{display:none}
 
 <section class="hero-port">
 <h1 class="reveal">Trabajos que <span class="grad">hablan solos</span></h1>
-<p class="reveal">Cada sitio es unico, disenado para el tipo de negocio. Revisa ejemplos reales.</p>
+<p class="reveal">Cada sitio es unico, disenado para el tipo de negocio. Revisa ejemplos reales y abritelos para ver como funcionan.</p>
 </section>
 
 <div class="filters">
@@ -118,36 +123,99 @@ nav{padding:12px 20px}.nav-links{display:none}.nav-cta{display:none}
 <button class="filter-btn mg-btn" data-f="restaurante">Restaurantes</button>
 <button class="filter-btn mg-btn" data-f="tienda">Tiendas</button>
 <button class="filter-btn mg-btn" data-f="taller">Talleres</button>
+<button class="filter-btn mg-btn" data-f="salon">Salones</button>
 <button class="filter-btn mg-btn" data-f="servicio">Servicios</button>
 </div>
+<div class="port-count">Mostrando <span id="pcount">12</span> proyectos</div>
 
-<div class="hscroll-progress"><div class="hscroll-progress-fill" id="spf"></div></div>
+<div class="port-showcase">
+<div class="port-grid" id="portGrid">
 
-<div class="hscroll" id="hscroll">
-<a href="https://rtvic.github.io/nevas-xmaben/demo_taqueria.html" target="_blank" class="port-card reveal" data-cat="restaurante">
-<div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#2d1b4e)">🌮<span class="port-tag">Restaurante</span></div>
-<div class="port-body"><h3>Taqueria El Trompo</h3><p>Menu digital interactivo, particulas 3D, agendador de reservas, Google Maps y WhatsApp directo.</p><span class="port-link">Ver sitio</span></div>
+<a href="https://rtvic.github.io/nevas-xmaben/demo_taqueria.html" target="_blank" class="port-card" data-cat="restaurante" data-level="pro">
+<div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#2d1b4e)">🌮<span class="port-tag">Restaurante</span><span class="port-level pro">Profesional</span></div>
+<div class="port-body"><h3>Taqueria El Trompo</h3><p>Menu digital interactivo con particulas 3D, agendador de reservas, Google Maps y WhatsApp directo.</p>
+<div class="port-tech"><span>Three.js</span><span>WhatsApp</span><span>Maps</span><span>Agendador</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
 </a>
-<a href="https://rtvic.github.io/nevas-xmaben/demo_cafeteria.html" target="_blank" class="port-card reveal" data-cat="restaurante">
-<div class="port-img" style="background:linear-gradient(135deg,#0a1628,#1a2a4e)">☕<span class="port-tag">Cafeteria</span></div>
-<div class="port-body"><h3>Cafe Colonial</h3><p>Bento grid, galeria polaroid animada, menu de cafes con precios, estadisticas en tiempo real.</p><span class="port-link">Ver sitio</span></div>
+
+<a href="https://rtvic.github.io/nevas-xmaben/demo_cafeteria.html" target="_blank" class="port-card" data-cat="restaurante" data-level="pro">
+<div class="port-img" style="background:linear-gradient(135deg,#0a1628,#1a2a4e)">☕<span class="port-tag">Cafeteria</span><span class="port-level pro">Profesional</span></div>
+<div class="port-body"><h3>Cafe Colonial</h3><p>Bento grid, galeria polaroid animada, menu de cafes con precios y estadisticas en tiempo real.</p>
+<div class="port-tech"><span>Bento Grid</span><span>Animaciones</span><span>SEO</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
 </a>
-<a href="https://rtvic.github.io/nevas-xmaben/demo_abarrotes.html" target="_blank" class="port-card reveal" data-cat="tienda">
-<div class="port-img" style="background:linear-gradient(135deg,#0a2818,#1a3a2e)">🛒<span class="port-tag">Tienda</span></div>
-<div class="port-body"><h3>Abarrotes Don Toño</h3><p>Catalogo de productos, promociones destacadas, delivery, pedidos por WhatsApp directos.</p><span class="port-link">Ver sitio</span></div>
+
+<a href="https://rtvic.github.io/nevas-xmaben/demo_abarrotes.html" target="_blank" class="port-card" data-cat="tienda" data-level="pro">
+<div class="port-img" style="background:linear-gradient(135deg,#0a2818,#1a3a2e)">🛒<span class="port-tag">Tienda</span><span class="port-level pro">Profesional</span></div>
+<div class="port-body"><h3>Abarrotes Don Toño</h3><p>Catalogo de productos, promociones destacadas, delivery y pedidos por WhatsApp directos.</p>
+<div class="port-tech"><span>Catalogo</span><span>WhatsApp</span><span>Promos</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
 </a>
-<a href="https://rtvic.github.io/nevas-xmaben/demo_taller.html" target="_blank" class="port-card reveal" data-cat="taller">
-<div class="port-img" style="background:linear-gradient(135deg,#1a1a0a,#2e2a1a)">🔧<span class="port-tag">Taller</span></div>
-<div class="port-body"><h3>Taller El Tigre</h3><p>Servicios detallados, agendador de citas, testimonios de clientes, galeria de trabajos realizados.</p><span class="port-link">Ver sitio</span></div>
+
+<a href="https://rtvic.github.io/nevas-xmaben/demo_taller.html" target="_blank" class="port-card" data-cat="taller" data-level="pro">
+<div class="port-img" style="background:linear-gradient(135deg,#1a1a0a,#2e2a1a)">🔧<span class="port-tag">Taller</span><span class="port-level pro">Profesional</span></div>
+<div class="port-body"><h3>Taller El Tigre</h3><p>Servicios detallados, agendador de citas, testimonios de clientes y galeria de trabajos realizados.</p>
+<div class="port-tech"><span>Agendador</span><span>Galeria</span><span>Testimonios</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
 </a>
-<a href="https://rtvic.github.io/nevas-xmaben/demo_restaurante.html" target="_blank" class="port-card reveal" data-cat="restaurante">
-<div class="port-img" style="background:linear-gradient(135deg,#0a0a2e,#1a1a4e)">🌊<span class="port-tag">Premium</span></div>
-<div class="port-body"><h3>Restaurante La Perla</h3><p>Three.js 3D, cursor custom, preloader animado, galeria bento, efectos de scroll.</p><span class="port-link">Ver sitio</span></div>
+
+<a href="https://rtvic.github.io/nevas-xmaben/demo_restaurante.html" target="_blank" class="port-card" data-cat="restaurante" data-level="premium">
+<div class="port-img" style="background:linear-gradient(135deg,#0a0a2e,#1a1a4e)">🌊<span class="port-tag">Restaurante</span><span class="port-level premium">Premium</span></div>
+<div class="port-body"><h3>Restaurante La Perla</h3><p>Three.js 3D inmersivo, cursor personalizado, preloader animado, galeria bento y efectos de scroll.</p>
+<div class="port-tech"><span>Three.js</span><span>Cursor 3D</span><span>Scroll FX</span><span>Preloader</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
 </a>
-<a href="https://rtvic.github.io/nevas-xmaben/cafe-aroma.html" target="_blank" class="port-card reveal" data-cat="restaurante">
-<div class="port-img" style="background:linear-gradient(135deg,#1a0a1a,#2e1a2e)">☕<span class="port-tag">Cafeteria</span></div>
-<div class="port-body"><h3>Cafe Aroma</h3><p>Menu digital interactivo, Google Maps, horarios animados, estadisticas, WhatsApp integrado.</p><span class="port-link">Ver sitio</span></div>
+
+<a href="https://rtvic.github.io/nevas-xmaben/demo_salon_profesional.html" target="_blank" class="port-card" data-cat="salon" data-level="pro">
+<div class="port-img" style="background:linear-gradient(135deg,#2e0a2e,#4e1a4e)">💇<span class="port-tag">Salon</span><span class="port-level pro">Profesional</span></div>
+<div class="port-body"><h3>Salon Belleza Moderna</h3><p>Galeria de trabajos, agendador de citas, servicios con precios y WhatsApp integrado.</p>
+<div class="port-tech"><span>Galeria</span><span>Agendador</span><span>WhatsApp</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
 </a>
+
+<a href="https://rtvic.github.io/nevas-xmaben/demo_sitio.html" target="_blank" class="port-card" data-cat="servicio" data-level="basic">
+<div class="port-img" style="background:linear-gradient(135deg,#0a1a28,#1a2a3e)">💼<span class="port-tag">Servicios</span><span class="port-level basic">Basico</span></div>
+<div class="port-body"><h3>Consultoria Profesional</h3><p>Pagina informativa con servicios, testimonios, Google Maps y boton de WhatsApp.</p>
+<div class="port-tech"><span>Informativo</span><span>Maps</span><span>WhatsApp</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
+</a>
+
+<a href="https://rtvic.github.io/nevas-xmaben/demo_ultra.html" target="_blank" class="port-card" data-cat="restaurante" data-level="premium">
+<div class="port-img" style="background:linear-gradient(135deg,#1a0028,#2e004e)">✨<span class="port-tag">Ultra Premium</span><span class="port-level premium">Ultra</span></div>
+<div class="port-body"><h3>Experiencia Ultra</h3><p>Three.js avanzado, particulas interactivas, scroll-driven narrative, cursor trail y mas.</p>
+<div class="port-tech"><span>Three.js</span><span>GSAP</span><span>Cursor Trail</span><span>Narrative</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
+</a>
+
+<a href="https://rtvic.github.io/nevas-xmaben/demo_farmacia_basico.html" target="_blank" class="port-card" data-cat="tienda" data-level="basic">
+<div class="port-img" style="background:linear-gradient(135deg,#0a280a,#1a3a1a)">💊<span class="port-tag">Farmacia</span><span class="port-level basic">Basico</span></div>
+<div class="port-body"><h3>Farmacia San Juan</h3><p>Pagina informativa con servicios, horarios, ubicacion y contacto directo por WhatsApp.</p>
+<div class="port-tech"><span>Informativo</span><span>Horarios</span><span>WhatsApp</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
+</a>
+
+<a href="https://rtvic.github.io/nevas-xmaben/demo_clinica_basico.html" target="_blank" class="port-card" data-cat="servicio" data-level="basic">
+<div class="port-img" style="background:linear-gradient(135deg,#0a1a28,#1a2a3e)">🏥<span class="port-tag">Clinica</span><span class="port-level basic">Basico</span></div>
+<div class="port-body"><h3>Clinica Dental</h3><p>Servicios dentales, agendamiento por WhatsApp, horarios y ubicacion en Google Maps.</p>
+<div class="port-tech"><span>Servicios</span><span>WhatsApp</span><span>Maps</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
+</a>
+
+<a href="https://rtvic.github.io/nevas-xmaben/demo_taller_basico.html" target="_blank" class="port-card" data-cat="taller" data-level="basic">
+<div class="port-img" style="background:linear-gradient(135deg,#1a1a0a,#2e2a1a)">🔩<span class="port-tag">Taller</span><span class="port-level basic">Basico</span></div>
+<div class="port-body"><h3>Taller Mecanico Basico</h3><p>Servicios basicos, contacto por WhatsApp, horarios y Google Maps integrado.</p>
+<div class="port-tech"><span>Informativo</span><span>WhatsApp</span><span>Maps</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
+</a>
+
+<a href="https://rtvic.github.io/nevas-xmaben/demo_tienda_premium.html" target="_blank" class="port-card" data-cat="tienda" data-level="premium">
+<div class="port-img" style="background:linear-gradient(135deg,#1a0a0a,#2e1a1a)">🛍️<span class="port-tag">Tienda</span><span class="port-level premium">Premium</span></div>
+<div class="port-body"><h3>Tienda Premium</h3><p>Catalogo avanzado con filtros, carrito de compras, pasarela de pagos y panel de administracion.</p>
+<div class="port-tech"><span>E-commerce</span><span>Pagos</span><span>CMS</span><span>Analytics</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
+</a>
+
+</div>
 </div>
 
 <section class="bento">
@@ -196,17 +264,15 @@ window.addEventListener('resize',rs);rs();
 var pts=[];for(var i=0;i<40;i++){pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.5,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,o:Math.random()*.2+.06})}
 function dr(){ctx.clearRect(0,0,W,H);for(var p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(108,92,231,'+p.o+')';ctx.fill()}requestAnimationFrame(dr)}dr();
 
-var hs=document.getElementById('hscroll'),spf=document.getElementById('spf');
-hs.addEventListener('scroll',function(){var pct=hs.scrollLeft/(hs.scrollWidth-hs.clientWidth)*100;spf.style.width=Math.max(20,pct)+'%'});
-
 document.querySelectorAll('.filter-btn').forEach(function(btn){
 btn.addEventListener('click',function(){
 document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
 btn.classList.add('active');
-var f=btn.dataset.f;
+var f=btn.dataset.f;var count=0;
 document.querySelectorAll('.port-card').forEach(function(c){
-if(f==='todos'||c.dataset.cat===f){c.style.display=''}else{c.style.display='none'}
-})
+if(f==='todos'||c.dataset.cat===f){c.style.display='';count++}else{c.style.display='none'}
+});
+document.getElementById('pcount').textContent=count;
 })
 });
 

@@ -3,20 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Victor Ontiveros — Sitios Web Premium</title>
+<title>Victor Ontiveros — Sitios Web que Generan Clientes</title>
+<meta name="description" content="Diseno de sitios web profesionales para negocios en Merida, Cancun, Campeche y toda la peninsula de Yucatan. WhatsApp, Google Maps, SEO integrado.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
---bg:#0a0a0f;--bg2:#12121a;--bg3:#1a1a2e;
---text:#e8e8f0;--text2:#9898b0;--text3:#6868a0;
---accent:#6c5ce7;--accent2:#a29bfe;--accent3:#00cec9;
---glow:rgba(108,92,231,.15);--glow2:rgba(0,206,201,.1);
---card:#16162a;--card2:#1e1e3a;
---grad:linear-gradient(135deg,#6c5ce7,#a29bfe,#00cec9);
---radius:16px;--radius-sm:10px;
-}
+:root{--bg:#0a0a0f;--bg2:#12121a;--bg3:#1a1a2e;--text:#e8e8f0;--text2:#9898b0;--text3:#6868a0;--accent:#6c5ce7;--accent2:#a29bfe;--accent3:#00cec9;--glow:rgba(108,92,231,.15);--glow2:rgba(0,206,201,.1);--card:#16162a;--card2:#1e1e3a;--grad:linear-gradient(135deg,#6c5ce7,#a29bfe,#00cec9);--radius:16px;--radius-sm:10px}
 html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
 body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none}
 a{color:inherit;text-decoration:none}
@@ -52,6 +45,7 @@ nav.hide-nav{transform:translateY(-100%)}
 .nav-mob span{width:24px;height:2px;background:var(--text);border-radius:2px;transition:transform .3s}
 
 section{position:relative;z-index:2}
+
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:50px;background:rgba(108,92,231,.1);border:1px solid rgba(108,92,231,.2);font-size:13px;color:var(--accent2);margin-bottom:32px;backdrop-filter:blur(10px)}
 .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent3);animation:blink 2s infinite}
@@ -66,7 +60,6 @@ section{position:relative;z-index:2}
 .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px var(--glow)}
 .btn-outline{padding:14px 36px;background:transparent;border:2px solid var(--accent);border-radius:50px;color:var(--accent2);font-weight:600;font-size:15px;cursor:none;transition:all .3s}
 .btn-outline:hover{background:rgba(108,92,231,.1);transform:translateY(-3px)}
-
 .scroll-indicator{position:absolute;bottom:40px;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text3);font-size:12px;animation:float 2s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent)}
@@ -90,6 +83,45 @@ section{position:relative;z-index:2}
 .stat-num{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .stat-lbl{color:var(--text2);font-size:14px;margin-top:4px}
 
+.portfolio{padding:100px 24px;max-width:1200px;margin:0 auto}
+.portfolio .section-label,.portfolio .section-title,.portfolio .section-sub{text-align:center;display:block}
+.portfolio .section-label::before{display:none}
+.port-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
+.port-card{background:var(--card);border:1px solid rgba(108,92,231,.08);border-radius:var(--radius);overflow:hidden;transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
+.port-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.port-img{width:100%;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;overflow:hidden}
+.port-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,var(--card))}
+.port-tag{position:absolute;top:16px;left:16px;padding:6px 14px;border-radius:50px;background:rgba(108,92,231,.8);backdrop-filter:blur(10px);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;z-index:1}
+.port-body{padding:24px}
+.port-body h3{font-size:1.15rem;font-weight:700;margin-bottom:8px}
+.port-body p{color:var(--text2);font-size:14px;line-height:1.6;margin-bottom:16px}
+.port-tech{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.port-tech span{padding:4px 10px;border-radius:50px;background:rgba(108,92,231,.1);font-size:11px;color:var(--accent2);font-weight:500}
+.port-link{display:inline-flex;align-items:center;gap:6px;color:var(--accent2);font-size:13px;font-weight:600;transition:color .3s}
+.port-link:hover{color:var(--accent3)}
+.port-link::after{content:'\2192';transition:transform .3s}
+.port-link:hover::after{transform:translateX(4px)}
+
+.testimonials{padding:100px 24px;max-width:1200px;margin:0 auto;overflow:hidden}
+.test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.test-card{background:var(--card);border:1px solid rgba(108,92,231,.08);border-radius:var(--radius);padding:32px 28px;position:relative;transition:transform .3s}
+.test-card:hover{transform:translateY(-4px)}
+.test-card::before{content:'\201C';position:absolute;top:16px;right:24px;font-size:4rem;color:var(--accent);opacity:.15;font-family:serif;line-height:1}
+.test-stars{color:#f1c40f;font-size:14px;margin-bottom:12px;letter-spacing:2px}
+.test-text{color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:20px;font-style:italic}
+.test-author{display:flex;align-items:center;gap:12px}
+.test-avatar{width:42px;height:42px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#fff}
+.test-name{font-weight:600;font-size:14px}
+.test-role{color:var(--text3);font-size:12px}
+
+.process{padding:100px 24px;max-width:900px;margin:0 auto}
+.steps{display:flex;flex-direction:column;gap:0;position:relative}
+.steps::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent),var(--accent3))}
+.step{display:flex;gap:24px;padding:32px 0;position:relative}
+.step-num{width:56px;height:56px;border-radius:50%;background:var(--bg3);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--accent2);flex-shrink:0;z-index:1}
+.step-content h3{font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.step-content p{color:var(--text2);font-size:14px;line-height:1.65}
+
 .cta{padding:100px 24px;text-align:center;position:relative}
 .cta-box{max-width:700px;margin:0 auto;padding:60px 40px;background:var(--card);border:1px solid rgba(108,92,231,.15);border-radius:24px;position:relative;overflow:hidden}
 .cta-box::before{content:'';position:absolute;inset:-1px;border-radius:24px;padding:1px;background:var(--grad);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.3}
@@ -109,6 +141,8 @@ footer{padding:60px 24px 30px;border-top:1px solid rgba(108,92,231,.08);max-widt
 @keyframes pulse-wa{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 18px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
 .wa-float svg{width:30px;height:30px;fill:#fff}
 
+.noise{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease-out,transform .7s ease-out}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
@@ -120,6 +154,8 @@ nav{padding:12px 20px}
 .footer-grid{grid-template-columns:1fr 1fr}
 .stats{grid-template-columns:repeat(2,1fr)}
 .hero h1{font-size:2rem}
+.port-grid{grid-template-columns:1fr}
+.test-grid{grid-template-columns:1fr}
 }
 @media(max-width:480px){
 .footer-grid{grid-template-columns:1fr}
@@ -128,6 +164,8 @@ nav{padding:12px 20px}
 </style>
 </head>
 <body>
+
+<div class="noise"></div>
 
 <div id="preloader">
 <h2>Victor Ontiveros</h2>
@@ -215,10 +253,90 @@ nav{padding:12px 20px}
 <div class="stat reveal"><div class="stat-num" data-target="5000">0</div><div class="stat-lbl">Clientes Potenciales</div></div>
 </section>
 
+<section class="portfolio">
+<div class="section-label reveal" style="justify-content:center">Proyectos recientes</div>
+<h2 class="section-title reveal" style="text-align:center">Sitios que ya <span class="grad">estan funcionando</span></h2>
+<p class="section-sub reveal" style="text-align:center;margin-left:auto;margin-right:auto">Cada negocio es unico, cada sitio es diferente. Revisa ejemplos reales.</p>
+<div class="port-grid">
+<a href="https://rtvic.github.io/nevas-xmaben/demo_taqueria.html" target="_blank" class="port-card reveal">
+<div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#2d1b4e)">🌮<span class="port-tag">Restaurante</span></div>
+<div class="port-body"><h3>Taqueria El Trompo</h3><p>Menu digital interactivo con particulas 3D, agendador de reservas y WhatsApp directo.</p>
+<div class="port-tech"><span>Three.js</span><span>WhatsApp</span><span>Maps</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
+</a>
+<a href="https://rtvic.github.io/nevas-xmaben/demo_cafeteria.html" target="_blank" class="port-card reveal">
+<div class="port-img" style="background:linear-gradient(135deg,#0a1628,#1a2a4e)">☕<span class="port-tag">Cafeteria</span></div>
+<div class="port-body"><h3>Cafe Colonial</h3><p>Bento grid, galeria polaroid animada, menu de cafes con precios y estadisticas.</p>
+<div class="port-tech"><span>Bento Grid</span><span>Animaciones</span><span>SEO</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
+</a>
+<a href="https://rtvic.github.io/nevas-xmaben/demo_abarrotes.html" target="_blank" class="port-card reveal">
+<div class="port-img" style="background:linear-gradient(135deg,#0a2818,#1a3a2e)">🛒<span class="port-tag">Tienda</span></div>
+<div class="port-body"><h3>Abarrotes Don Toño</h3><p>Catalogo de productos, promociones destacadas, delivery y pedidos por WhatsApp.</p>
+<div class="port-tech"><span>Catalogo</span><span>WhatsApp</span><span>Promos</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
+</a>
+<a href="https://rtvic.github.io/nevas-xmaben/demo_taller.html" target="_blank" class="port-card reveal">
+<div class="port-img" style="background:linear-gradient(135deg,#1a1a0a,#2e2a1a)">🔧<span class="port-tag">Taller</span></div>
+<div class="port-body"><h3>Taller El Tigre</h3><p>Servicios detallados, agendador de citas, testimonios y galeria de trabajos.</p>
+<div class="port-tech"><span>Agendador</span><span>Galeria</span><span>Testimonios</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
+</a>
+<a href="https://rtvic.github.io/nevas-xmaben/demo_restaurante.html" target="_blank" class="port-card reveal">
+<div class="port-img" style="background:linear-gradient(135deg,#0a0a2e,#1a1a4e)">🌊<span class="port-tag">Premium</span></div>
+<div class="port-body"><h3>Restaurante La Perla</h3><p>Three.js 3D inmersivo, cursor personalizado, preloader animado y efectos de scroll.</p>
+<div class="port-tech"><span>Three.js</span><span>Cursor 3D</span><span>Scroll FX</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
+</a>
+<a href="https://rtvic.github.io/nevas-xmaben/demo_salon_profesional.html" target="_blank" class="port-card reveal">
+<div class="port-img" style="background:linear-gradient(135deg,#2e0a2e,#4e1a4e)">💇<span class="port-tag">Salon</span></div>
+<div class="port-body"><h3>Salon Belleza Moderna</h3><p>Galeria de trabajos, agendador de citas, servicios con precios y WhatsApp.</p>
+<div class="port-tech"><span>Galeria</span><span>Agendador</span><span>WhatsApp</span></div>
+<span class="port-link">Ver sitio en vivo</span></div>
+</a>
+</div>
+</section>
+
+<section class="testimonials">
+<div class="section-label reveal">Lo que dicen mis clientes</div>
+<h2 class="section-title reveal">Negocios que ya <span class="grad">confiaron en mi</span></h2>
+<p class="section-sub reveal">Opiniones reales de negocios reales en Yucatan y peninsula.</p>
+<div class="test-grid">
+<div class="test-card reveal">
+<div class="test-stars">★★★★★</div>
+<p class="test-text">"En una semana ya me estaban llegando clientes por WhatsApp gracias al sitio. Victor hizo todo rapido y se ve increible."</p>
+<div class="test-author"><div class="test-avatar">M</div><div><div class="test-name">Marco A.</div><div class="test-role">Restaurante en Merida</div></div></div>
+</div>
+<div class="test-card reveal">
+<div class="test-stars">★★★★★</p>
+<p class="test-text">"Tenia un Facebook nada mas. Ahora tengo pagina profesional con Google Maps y mis clientes me encuentran solos."</p>
+<div class="test-author"><div class="test-avatar">L</div><div><div class="test-name">Laura G.</div><div class="test-role">Taller Mecanico en Campeche</div></div></div>
+</div>
+<div class="test-card reveal">
+<div class="test-stars">★★★★★</div>
+<p class="test-text">"El agendador de citas es perfecto. Mis clientes apartan su hora sin llamarme. Esto me ahorra horas al dia."</p>
+<div class="test-author"><div class="test-avatar">R</div><div><div class="test-name">Roberto S.</div><div class="test-role">Salon de Belleza en Cancun</div></div></div>
+</div>
+</div>
+</section>
+
+<section class="process">
+<div class="section-label reveal">Como funciona</div>
+<h2 class="section-title reveal">De idea a sitio en <span class="grad">5 pasos</span></h2>
+<p class="section-sub reveal">Asi de facil es tener tu pagina web profesional.</p>
+<div class="steps">
+<div class="step reveal"><div class="step-num">1</div><div class="step-content"><h3>Platicamos</h3><p>Me dices que negocio tienes, que necesitas, colores, fotos. Todo lo que necesito para empezar.</p></div></div>
+<div class="step reveal"><div class="step-num">2</div><div class="step-content"><h3>Te muestro</h3><p>Te propongo un diseno, te muestro ejemplos y ajustamos hasta que te encante.</p></div></div>
+<div class="step reveal"><div class="step-num">3</div><div class="step-content"><h3>Pagas</h3><p>Mercado Pago (tarjeta, SPEI, Oxxo) o transferencia. Puedes pagar 50% anticipo.</p></div></div>
+<div class="step reveal"><div class="step-num">4</div><div class="step-content"><h3>Creo tu sitio</h3><p>Empiezo a trabajar. En 3-10 dias habiles lo tienes listo segun tu plan.</p></div></div>
+<div class="step reveal"><div class="step-num">5</div><div class="step-content"><h3>Lo recibes</h3><p>Tu sitio listo. Te ayudo a subirlo a internet. Revisiones incluidas.</p></div></div>
+</div>
+</section>
+
 <section class="cta">
 <div class="cta-box reveal">
 <h2>Tu negocio merece estar en internet</h2>
-<p>Mas de 150 negocios en Yucatan, Quintana Roo y Campecho ya tienen su pagina. El tuyo puede ser el siguiente.</p>
+<p>Mas de 150 negocios en Yucatan, Quintana Roo y Campeche ya tienen su pagina. El tuyo puede ser el siguiente.</p>
 <button class="btn-primary mg-btn" onclick="location.href='contacto.html'" style="font-size:16px;padding:16px 48px">Empezar Ahora</button>
 </div>
 </section>
@@ -261,22 +379,11 @@ nav{padding:12px 20px}
 <script>
 var pf=document.getElementById('pf'),pp=document.getElementById('pp'),pct=0;
 var pInt=setInterval(function(){pct+=Math.random()*12+4;if(pct>99)pct=99;pf.style.width=pct+'%';pp.textContent=Math.floor(pct)+'%'},120);
-
-window.addEventListener('load',function(){
-clearInterval(pInt);pf.style.width='100%';pp.textContent='100%';
-setTimeout(function(){document.getElementById('preloader').classList.add('hide')},600)
-});
+window.addEventListener('load',function(){clearInterval(pInt);pf.style.width='100%';pp.textContent='100%';setTimeout(function(){document.getElementById('preloader').classList.add('hide')},600)});
 
 var cur=document.getElementById('cursor'),curD=document.getElementById('cursor-dot'),cgl=document.getElementById('cglow');
-document.addEventListener('mousemove',function(e){
-cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
-curD.style.left=e.clientX+'px';curD.style.top=e.clientY+'px';
-cgl.style.left=e.clientX+'px';cgl.style.top=e.clientY+'px'
-});
-document.querySelectorAll('a,button,.feat-card,.mg-btn').forEach(function(el){
-el.addEventListener('mouseenter',function(){cur.classList.add('grow')});
-el.addEventListener('mouseleave',function(){cur.classList.remove('grow')})
-});
+document.addEventListener('mousemove',function(e){cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';curD.style.left=e.clientX+'px';curD.style.top=e.clientY+'px';cgl.style.left=e.clientX+'px';cgl.style.top=e.clientY+'px'});
+document.querySelectorAll('a,button,.feat-card,.port-card,.test-card,.mg-btn').forEach(function(el){el.addEventListener('mouseenter',function(){cur.classList.add('grow')});el.addEventListener('mouseleave',function(){cur.classList.remove('grow')})});
 
 var c3=document.getElementById('bg3d'),sc=new THREE.Scene(),ca=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,.1,1000);
 var re=new THREE.WebGLRenderer({canvas:c3,alpha:true,antialias:true});
@@ -291,9 +398,7 @@ var sf=new THREE.Points(st,new THREE.PointsMaterial({color:0x00cec9,size:.025,tr
 sc.add(sf);ca.position.z=5;
 var mx=0,my=0;
 document.addEventListener('mousemove',function(e){mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2});
-function an(){requestAnimationFrame(an);
-me.rotation.x+=.003;me.rotation.y+=.005;me.rotation.x+=my*.001;me.rotation.y+=mx*.001;
-sf.rotation.y+=.0002;re.render(sc,ca)}an();
+function an(){requestAnimationFrame(an);me.rotation.x+=.003;me.rotation.y+=.005;me.rotation.x+=my*.001;me.rotation.y+=mx*.001;sf.rotation.y+=.0002;re.render(sc,ca)}an();
 window.addEventListener('resize',function(){ca.aspect=innerWidth/innerHeight;ca.updateProjectionMatrix();re.setSize(innerWidth,innerHeight)});
 
 var pc=document.getElementById('particles'),ctx=pc.getContext('2d');
@@ -310,32 +415,15 @@ if(d<140){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[
 ctx.strokeStyle='rgba(162,155,254,'+(.05*(1-d/140))+')';ctx.stroke()}}}
 requestAnimationFrame(dr)}dr();
 
-var lastY=0;window.addEventListener('scroll',function(){
-var y=window.scrollY;
-document.getElementById('nav').classList.toggle('hide-nav',y>lastY&&y>100);
-lastY=y
-});
+var lastY=0;window.addEventListener('scroll',function(){var y=window.scrollY;document.getElementById('nav').classList.toggle('hide-nav',y>lastY&&y>100);lastY=y});
 
-var obs=new IntersectionObserver(function(entries){
-entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})
-},{threshold:.12});
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
 
-var nobs=new IntersectionObserver(function(entries){
-entries.forEach(function(e){
-if(e.isIntersecting){var t=e.target,n=+t.dataset.target;
-var c=0,inc=Math.ceil(n/40);
-var ti=setInterval(function(){c+=inc;if(c>=n){c=n;clearInterval(ti)}t.textContent=c.toLocaleString()},30)}
-})
-},{threshold:.5});
+var nobs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var t=e.target,n=+t.dataset.target;var c=0,inc=Math.ceil(n/40);var ti=setInterval(function(){c+=inc;if(c>=n){c=n;clearInterval(ti)}t.textContent=c.toLocaleString()},30)}})},{threshold:.5});
 document.querySelectorAll('.stat-num').forEach(function(el){nobs.observe(el)});
 
-document.querySelectorAll('.mg-btn').forEach(function(btn){
-btn.addEventListener('mousemove',function(e){
-var r=btn.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;
-btn.style.transform='translate('+(x*.15)+'px,'+(y*.15)+'px)'});
-btn.addEventListener('mouseleave',function(){btn.style.transform='translate(0,0)'})
-});
+document.querySelectorAll('.mg-btn').forEach(function(btn){btn.addEventListener('mousemove',function(e){var r=btn.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;btn.style.transform='translate('+(x*.15)+'px,'+(y*.15)+'px)'});btn.addEventListener('mouseleave',function(){btn.style.transform='translate(0,0)'})});
 </script>
 </body>
 </html>
