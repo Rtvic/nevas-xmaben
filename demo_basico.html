@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Demo Básico — Sitio Web Profesional Simple</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#2563eb;--primary-dark:#1d4ed8;--primary-light:#3b82f6;--dark:#0f172a;--dark2:#1e293b;--dark3:#334155;--text:#f1f5f9;--text2:#94a3b8;--border:rgba(255,255,255,.08);--glass:rgba(15,23,42,.85);--spring:cubic-bezier(.34,1.56,.64,1)}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:Inter,sans-serif;background:var(--dark);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.6}
+.bg-glow{position:fixed;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,.15),transparent 70%);pointer-events:none;z-index:0}
+.bg-glow2{position:fixed;bottom:-200px;left:-200px;width:500px;height:500px;background:radial-gradient(circle,rgba(16,185,129,.1),transparent 70%);pointer-events:none;z-index:0}
+.ov{position:relative;z-index:1}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-size:1.3em;font-weight:800;color:#fff;text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-logo .icon{width:36px;height:36px;background:linear-gradient(135deg,var(--primary),#10b981);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-links{display:flex;gap:8px}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.88em;padding:8px 16px;border-radius:10px;transition:all .3s var(--spring);font-weight:500}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.nav-cta{background:linear-gradient(135deg,var(--primary),#10b981);color:#fff!important;padding:10px 20px!important;font-weight:600!important}
+.nav-cta:hover{transform:scale(1.05);box-shadow:0 4px 20px rgba(37,99,235,.4)!important}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 24px 80px;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:50px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.3);color:var(--primary-light);font-size:.82em;font-weight:600;margin-bottom:24px}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:800;line-height:1.1;margin-bottom:20px;max-width:800px}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--primary),#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(1rem,2vw,1.2rem);color:var(--text2);max-width:600px;margin-bottom:40px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;border-radius:14px;font-weight:600;font-size:1em;text-decoration:none;transition:all .3s var(--spring);border:none;cursor:pointer;font-family:inherit}
+.btn-primary{background:linear-gradient(135deg,var(--primary),#10b981);color:#fff}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,99,235,.4)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-3px)}
+.hero-stats{display:flex;gap:40px;margin-top:60px;flex-wrap:wrap;justify-content:center}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--primary),#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-stat .label{font-size:.82em;color:var(--text2);margin-top:4px}
+
+/* SECCIONES */
+.section{padding:100px 24px;max-width:1100px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:60px}
+.section-header .tag{display:inline-block;padding:6px 14px;border-radius:50px;background:rgba(37,99,235,.1);color:var(--primary-light);font-size:.78em;font-weight:600;margin-bottom:16px;letter-spacing:.5px;text-transform:uppercase}
+.section-header h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;margin-bottom:16px}
+.section-header p{color:var(--text2);max-width:600px;margin:0 auto;font-size:1.05em}
+
+/* SERVICIOS */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.service-card{background:var(--dark2);border:1px solid var(--border);border-radius:20px;padding:32px;transition:all .4s var(--spring);position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),#10b981);opacity:0;transition:opacity .3s}
+.service-card:hover{transform:translateY(-8px);border-color:rgba(37,99,235,.3)}
+.service-card:hover::before{opacity:1}
+.service-icon{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,rgba(37,99,235,.15),rgba(16,185,129,.1));display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
+.service-card h3{font-size:1.15em;font-weight:700;margin-bottom:10px}
+.service-card p{color:var(--text2);font-size:.92em;line-height:1.7}
+
+/* GALERÍA */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.gallery-item{border-radius:16px;overflow:hidden;position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,var(--dark2),var(--dark3));border:1px solid var(--border);transition:all .4s var(--spring);cursor:pointer}
+.gallery-item:hover{transform:scale(1.02);border-color:var(--primary)}
+.gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,.9),transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
+.gallery-item .overlay h4{font-size:1.05em;font-weight:700;margin-bottom:4px}
+.gallery-item .overlay p{font-size:.82em;color:var(--text2)}
+.gallery-item .emoji-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;opacity:.6}
+
+/* TESTIMONIOS */
+.testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.testimonial-card{background:var(--dark2);border:1px solid var(--border);border-radius:20px;padding:28px;position:relative}
+.testimonial-card .stars{color:#fbbf24;font-size:.9em;margin-bottom:12px;letter-spacing:2px}
+.testimonial-card p{color:var(--text2);font-size:.92em;line-height:1.7;margin-bottom:16px;font-style:italic}
+.testimonial-card .author{display:flex;align-items:center;gap:12px}
+.testimonial-card .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--primary),#10b981);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9em}
+.testimonial-card .info h5{font-size:.9em;font-weight:600}
+.testimonial-card .info span{font-size:.78em;color:var(--text2)}
+
+/* CONTACTO */
+.contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+@media(max-width:768px){.contact-wrapper{grid-template-columns:1fr}}
+.contact-info{display:flex;flex-direction:column;gap:24px}
+.contact-item{display:flex;gap:16px;align-items:flex-start}
+.contact-item .icon{width:48px;height:48px;border-radius:12px;background:rgba(37,99,235,.12);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.contact-item h4{font-size:.95em;font-weight:600;margin-bottom:4px}
+.contact-item p{font-size:.88em;color:var(--text2)}
+.contact-form{background:var(--dark2);border:1px solid var(--border);border-radius:20px;padding:32px}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:.85em;font-weight:600;margin-bottom:8px;color:var(--text2)}
+.form-group input,.form-group textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:var(--dark);color:var(--text);font-size:.95em;font-family:inherit;outline:none;transition:border .3s}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--primary)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-submit{width:100%;padding:16px;border-radius:12px;background:linear-gradient(135deg,var(--primary),#10b981);color:#fff;font-weight:700;font-size:1em;border:none;cursor:pointer;transition:all .3s var(--spring);font-family:inherit}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,99,235,.4)}
+
+/* FOOTER */
+.footer{text-align:center;padding:60px 24px;border-top:1px solid var(--border);margin-top:40px}
+.footer p{color:var(--text2);font-size:.88em}
+.footer a{color:var(--primary-light);text-decoration:none}
+
+/* WHATSAPP */
+.whatsapp-btn{position:fixed;bottom:28px;right:28px;z-index:200;width:64px;height:64px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;text-decoration:none;box-shadow:0 4px 24px rgba(37,211,102,.4);transition:all .3s var(--spring);animation:pulse 2s infinite}
+.whatsapp-btn:hover{transform:scale(1.1)}
+@keyframes pulse{0%,100%{box-shadow:0 4px 24px rgba(37,211,102,.4)}50%{box-shadow:0 4px 40px rgba(37,211,102,.7)}}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hero h1{font-size:2rem}
+  .hero-stats{gap:24px}
+  .services-grid,.gallery-grid,.testimonials-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="bg-glow2"></div>
+<div class="ov">
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <div class="icon">🏪</div>
+    MiNegocio
+  </a>
+  <div class="nav-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#galeria">Trabajo</a>
+    <a href="#testimonios">Opiniones</a>
+    <a href="#contacto" class="nav-cta">Contactar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">✨ Tu negocio merece verse bien en internet</div>
+  <h1>Hacemos que tu negocio <span class="gradient">aparezca en Google</span> y atraiga más clientes</h1>
+  <p>Sitio web profesional con WhatsApp integrado, Google Maps y diseño que genera confianza. Todo desde tu celular.</p>
+  <div class="hero-btns">
+    <a href="#contacto" class="btn btn-primary">💬 Quiero mi página</a>
+    <a href="#galeria" class="btn btn-outline">Ver ejemplos</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">150+</div><div class="label">Sitios creados</div></div>
+    <div class="hero-stat"><div class="num">98%</div><div class="label">Clientes satisfechos</div></div>
+    <div class="hero-stat"><div class="num">3-5</div><div class="label">Días de entrega</div></div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="section" id="servicios">
+  <div class="section-header">
+    <div class="tag">Lo que incluye</div>
+    <h2>Todo lo que tu negocio necesita para <span class="gradient">estar en internet</span></h2>
+    <p>Sitio web completo, sin complicaciones. Tú nos dices qué necesitas y lo dejamos listo.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">📱</div>
+      <h3>Diseño Responsive</h3>
+      <p>Tu página se ve perfecta en celular, tablet y computadora. Donde sea que te busquen, se ve profesional.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💬</div>
+      <h3>WhatsApp Integrado</h3>
+      <p>Botón directo para que te escriban por WhatsApp con un clic. Tus clientes te contactan al instante.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📍</div>
+      <h3>Google Maps</h3>
+      <p>Tu ubicación en el mapa para que te encuentren fácil. Apareces cuando buscan "negocio cerca de mí".</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <h3>SEO en Google</h3>
+      <p>Apareces en los primeros resultados de Google cuando buscan tu tipo de negocio en tu ciudad.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>Carga Rápida</h3>
+      <p>Tu página carga en menos de 2 segundos. Nadie espera, y tus clientes tampoco.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛡️</div>
+      <h3>Soporte Incluido</h3>
+      <p>Te ayudamos con cambios y dudas. No te dejamos solo después de entregar tu página.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="section" id="galeria">
+  <div class="section-header">
+    <div class="tag">Nuestro trabajo</div>
+    <h2>Ejemplos de <span class="gradient">sitios que hemos creado</span></h2>
+    <p>Así puede verse tu negocio. Diseños modernos que generan confianza.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <div class="emoji-icon">🌮</div>
+      <div class="overlay">
+        <h4>Taquería El Pastor</h4>
+        <p>Menú digital + pedidos por WhatsApp</p>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="emoji-icon">🔧</div>
+      <div class="overlay">
+        <h4>Taller Mecánico AutoFix</h4>
+        <p>Sitio de servicios + agendamiento</p>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <div class="emoji-icon">🦷</div>
+      <div class="overlay">
+        <h4>Clínica Dental Sonrisa</h4>
+        <p>Sitio profesional + agendar citas</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="section" id="testimonios">
+  <div class="section-header">
+    <div class="tag">Opiniones</div>
+    <h2>Lo que dicen nuestros <span class="gradient">clientes</span></h2>
+    <p>Negocios reales que confiaron en nosotros.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Desde que tengo mi página, me llegan más clientes por WhatsApp. Antes solo me conocían por la calle."</p>
+      <div class="author">
+        <div class="avatar">CM</div>
+        <div class="info"><h5>Carlos Mendoza</h5><span>Taquería El Trompo, Mérida</span></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Profesionales, rápido y el sitio se ve increíble. Mis pacientes pueden agendar cita desde su celular."</p>
+      <div class="author">
+        <div class="avatar">DR</div>
+        <div class="info"><h5>Dra. Rocío López</h5><span>Clínica Dental, Cancún</span></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Ya no tengo que explicar qué hago, la página lo dice todo. Ahorro tiempo y llegan mejores clientes."</p>
+      <div class="author">
+        <div class="avatar">MR</div>
+        <div class="info"><h5>Miguel Rodríguez</h5><span>Taller Automotriz, Monterrey</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="section" id="contacto">
+  <div class="section-header">
+    <div class="tag">Contacto</div>
+    <h2>¿Listo para <span class="gradient">tener tu página</span>?</h2>
+    <p>Escríbenos y te damos una cotización sin compromiso.</p>
+  </div>
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="icon">💬</div>
+        <div><h4>WhatsApp</h4><p>Escríbenos y te respondemos al instante</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📧</div>
+        <div><h4>Email</h4><p>victor@nevasxmaben.com</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">📍</div>
+        <div><h4>Ubicación</h4><p>Mérida, Yucatán, México</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="icon">⏰</div>
+        <div><h4>Horario</h4><p>Lun - Sáb: 9:00 AM - 6:00 PM</p></div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="event.preventDefault();alert('¡Mensaje enviado! Te contactaremos pronto.');">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" placeholder="Tu nombre" required>
+      </div>
+      <div class="form-group">
+        <label>Negocio</label>
+        <input type="text" placeholder="Nombre de tu negocio">
+      </div>
+      <div class="form-group">
+        <label>Teléfono / WhatsApp</label>
+        <input type="tel" placeholder="Tu número" required>
+      </div>
+      <div class="form-group">
+        <label>¿Qué necesitas?</label>
+        <textarea placeholder="Cuéntanos sobre tu negocio y qué te gustaría..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Enviar mensaje →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 <a href="#">Victor Ontiveros</a> — Diseño Web Profesional</p>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/529214875347?text=Hola,%20me%20interesa%20un%20sitio%20web" target="_blank" class="whatsapp-btn">💬</a>
+
+</div>
+</body>
+</html>
