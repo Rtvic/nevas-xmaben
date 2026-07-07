@@ -1,0 +1,91 @@
+{
+    "negocio": {
+        "nombre": "Victor Ontiveros",
+        "rol": "Consultor Tecnologico y Desarrollador de Software",
+        "ciudad": "Merida",
+        "estado": "Yucatan",
+        "whatsapp": "529214875347",
+        "email": "",
+        "descripcion": "Ayudo a negocios locales a resolver problemas con tecnologia a la medida. No solo hago paginas web: desarrollo CRMs personalizados, sistemas de punto de venta (POS), control de inventarios, agendas de citas, tiendas en linea, sistemas de pedidos por WhatsApp, y cualquier solucion digital que el negocio necesite."
+    },
+    "servicios": [
+        "Pagina web profesional (desde $1,500 MXN)",
+        "Tienda en linea con carrito de compras",
+        "CRM personalizado para gestion de clientes",
+        "Sistema de punto de venta (POS) con inventario",
+        "Sistema de agenda y reservas en linea",
+        "Sistema de pedidos por WhatsApp automatizado",
+        "Panel de administracion y reportes",
+        "Optimizacion de Google Maps y SEO local",
+        "Integracion con Mercado Pago, Stripe, PayPal",
+        "Mantenimiento mensual ($300 MXN\/mes)",
+        "Hosting ($600 MXN\/ano)"
+    ],
+    "planes": [
+        {
+            "nombre": "Basico",
+            "precio": "1,500 MXN",
+            "incluye": "Pagina web sencilla, WhatsApp, Google Maps, formulario, responsive"
+        },
+        {
+            "nombre": "Profesional",
+            "precio": "3,000 MXN",
+            "incluye": "Multiples paginas, galeria, SEO basico, hosting 1 ano, panel"
+        },
+        {
+            "nombre": "Premium",
+            "precio": "5,000 MXN",
+            "incluye": "Paginas ilimitadas, tienda en linea, CMS, dominio, SEO avanzado"
+        },
+        {
+            "nombre": "CRM Personalizado",
+            "precio": "desde 5,000 MXN",
+            "incluye": "Sistema a medida: inventario, clientes, ventas, reportes"
+        },
+        {
+            "nombre": "Sistema de Pedidos",
+            "precio": "desde 3,000 MXN",
+            "incluye": "Pedidos WhatsApp\/web, panel admin, notificaciones"
+        },
+        {
+            "nombre": "POS + Inventario",
+            "precio": "desde 8,000 MXN",
+            "incluye": "Punto de venta, inventario, reportes, multi-usuario"
+        }
+    ],
+    "demos": {
+        "taqueria": {
+            "url": "https:\/\/rtvic.github.io\/nevas-xmaben\/demos\/taqueria.html",
+            "giro": "taqueria"
+        },
+        "restaurante": {
+            "url": "https:\/\/rtvic.github.io\/restaurante-web\/",
+            "giro": "restaurante"
+        },
+        "clinica": {
+            "url": "https:\/\/rtvic.github.io\/nevas-xmaben\/demos\/clinica.html",
+            "giro": "clinica"
+        },
+        "taller": {
+            "url": "https:\/\/rtvic.github.io\/nevas-xmaben\/demos\/taller.html",
+            "giro": "taller"
+        },
+        "barberia": {
+            "url": "https:\/\/rtvic.github.io\/nevas-xmaben\/demos\/barberia.html",
+            "giro": "barberia"
+        },
+        "default": {
+            "url": "https:\/\/rtvic.github.io\/nevas-xmaben\/demos\/taqueria.html",
+            "giro": "negocio"
+        }
+    },
+    "pago": {
+        "url": "http:\/\/localhost\/crm-webdesign-v2\/api\/crear_pago.php",
+        "metodos": [
+            "Mercado Pago",
+            "Transferencia BBVA",
+            "Efectivo"
+        ],
+        "anticipo": "50% para empezar, 50% al entregar"
+    }
+}
